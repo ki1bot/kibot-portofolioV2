@@ -15,6 +15,7 @@ export default function App() {
     certificates: [],
     comments: [],
   });
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,10 +39,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app-shell">
-      <div className="background-orb orb-one" />
-      <div className="background-orb orb-two" />
-      <div className="background-grid" />
+    <div className="relative isolate min-h-screen overflow-x-hidden bg-slate-950 text-slate-50 antialiased">
+      <div className="pointer-events-none fixed -left-40 top-[12vh] -z-20 h-[440px] w-[440px] rounded-full bg-violet-600/20 blur-[110px]" />
+      <div className="pointer-events-none fixed -right-40 top-[48vh] -z-20 h-[440px] w-[440px] rounded-full bg-blue-600/20 blur-[110px]" />
 
       <Navbar />
 
@@ -56,8 +56,8 @@ export default function App() {
         />
 
         {loading ? (
-          <section className="content-section loading-section">
-            <div className="loading-card glass-card">
+          <section className="mx-auto w-full max-w-[1180px] px-4 py-16 sm:px-5">
+            <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-9 text-center text-sm text-slate-400 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
               Memuat data portofolio...
             </div>
           </section>

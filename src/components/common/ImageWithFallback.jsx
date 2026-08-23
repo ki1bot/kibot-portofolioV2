@@ -10,7 +10,9 @@ export function ImageWithFallback({
 
   if (!src || failed) {
     return (
-      <div className={`image-fallback ${className}`}>
+      <div
+        className={`grid place-items-center bg-gradient-to-br from-blue-500/25 via-violet-500/30 to-fuchsia-500/20 font-black tracking-tight text-white ${className}`}
+      >
         {String(initials).slice(0, 2).toUpperCase()}
       </div>
     );

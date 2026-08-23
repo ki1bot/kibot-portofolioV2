@@ -35,7 +35,11 @@ export function Reveal({ children, className = "" }) {
   return (
     <div
       ref={setNode}
-      className={`reveal ${visible ? "reveal-visible" : ""} ${className}`}
+      className={`transition-all duration-700 ease-out motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:blur-none motion-reduce:transition-none ${
+        visible
+          ? "translate-y-0 opacity-100 blur-none"
+          : "translate-y-7 opacity-0 blur-sm"
+      } ${className}`}
     >
       {children}
     </div>
