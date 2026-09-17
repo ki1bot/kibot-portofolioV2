@@ -18,16 +18,26 @@ function formatCommentDate(value) {
 
 export function CommentCard({ comment }) {
   return (
-    <article className="guestbook-note">
-      <div className="guestbook-note-head">
-        <strong>{comment.user_name || "Guest"}</strong>
+    <article className="relative border-b border-black/15 py-[18px] dark:border-white/15">
+      <div className="flex items-center justify-between gap-4">
+        <strong className="text-[0.9rem]">
+          {comment.user_name || "Guest"}
+        </strong>
 
-        <span>{formatCommentDate(comment.created_at)}</span>
+        <span className="font-mono text-[0.62rem] text-[#68665f] dark:text-[#a7a49d]">
+          {formatCommentDate(comment.created_at)}
+        </span>
       </div>
 
-      <p>{comment.content}</p>
+      <p className="mt-[9px] text-[0.88rem] leading-[1.65] text-[#68665f] dark:text-[#a7a49d]">
+        {comment.content}
+      </p>
 
-      {comment.is_pinned ? <small>PINNED</small> : null}
+      {comment.is_pinned ? (
+        <small className="mt-2.5 inline-flex bg-[#b8df14] px-1.5 py-1 font-mono text-[0.56rem] font-black text-[#101010] dark:bg-[#d8ff3e] dark:text-[#090909]">
+          PINNED
+        </small>
+      ) : null}
     </article>
   );
 }

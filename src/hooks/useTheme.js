@@ -15,15 +15,16 @@ function getInitialTheme() {
     return "dark";
   }
 
-  return window.matchMedia("(prefers-color-scheme: light)").matches
-    ? "light"
-    : "dark";
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 export function useTheme() {
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.style.colorScheme = theme;
 
     try {
