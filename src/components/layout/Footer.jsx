@@ -1,94 +1,64 @@
-import { useState } from "react";
 import { NAV_ITEMS } from "../../data/portfolioPage";
+import { PERSONAL_INFO } from "../../lib/portfolio";
 
-export function Navbar({ theme, onToggleTheme }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  function closeMenu() {
-    setMenuOpen(false);
-  }
-
+export function Footer() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/15 bg-[#eeeae0]/90 backdrop-blur-xl dark:border-white/15 dark:bg-[#080808]/90">
-      <div className="mx-auto flex min-h-[76px] w-full max-w-[1240px] items-center justify-between gap-7 px-6 max-[700px]:min-h-[68px] max-[700px]:px-[15px]">
-        <a
-          className="inline-flex items-center text-2xl font-black tracking-[-0.08em] max-[480px]:text-xl"
-          href="#home"
-          onClick={closeMenu}
-        >
-          RIFQI<span className="text-[#9fbe00] dark:text-[#d8ff3e]">.</span>
-        </a>
+    <footer className="bg-[#e4dfd4] py-16 dark:bg-[#121212]">
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-[1.45fr_0.7fr_0.85fr] gap-[50px] px-6 max-[900px]:grid-cols-2 max-[700px]:grid-cols-1 max-[700px]:px-[15px]">
+        <div className="max-[900px]:col-span-2 max-[700px]:col-auto">
+          <a
+            className="inline-flex items-center text-[clamp(2.6rem,6vw,5.5rem)] font-black leading-none tracking-[-0.08em]"
+            href="#home"
+          >
+            RIFQI
+            <span className="text-[#9fbe00] dark:text-[#d8ff3e]">.</span>
+          </a>
 
-        <nav
-          className="ml-auto hidden items-center gap-7 min-[901px]:flex"
-          aria-label="Navigasi utama"
-        >
+          <p className="mt-5 max-w-[470px] leading-[1.7] text-[#68665f] dark:text-[#a7a49d]">
+            Information Systems Student &amp; Software Engineer focused on
+            building practical digital products.
+          </p>
+        </div>
+
+        <div className="grid content-start gap-3">
+          <p className="mb-1.5 font-mono text-[0.66rem] font-extrabold tracking-[0.08em] text-[#718800] dark:text-[#d8ff3e]">
+            // NAVIGATE
+          </p>
+
           {NAV_ITEMS.map((item) => (
             <a
-              className="text-[0.72rem] font-extrabold tracking-[0.12em] text-[#3d3b37] uppercase transition-colors hover:text-[#718800] dark:text-[#cbc7bd] dark:hover:text-[#d8ff3e]"
+              className="flex items-center justify-between border-b border-black/15 pb-2 text-[0.82rem] leading-[1.6] text-[#68665f] transition-colors hover:text-[#111111] dark:border-white/15 dark:text-[#a7a49d] dark:hover:text-[#f4f1e8]"
               href={`#${item.target}`}
               key={item.target}
             >
               {item.label}
+
+              <span>→</span>
             </a>
           ))}
-        </nav>
+        </div>
 
-        <div className="flex items-center gap-2.5">
-          <button
-            type="button"
-            className="min-h-[38px] cursor-pointer border border-black/20 bg-[#f7f3e9] px-3.5 text-[0.72rem] font-extrabold tracking-[0.12em] text-[#3d3b37] uppercase transition hover:-translate-y-px hover:border-black/40 dark:border-white/20 dark:bg-[#121212] dark:text-[#cbc7bd] dark:hover:border-white/40 max-[700px]:min-h-9 max-[700px]:px-2.5 max-[700px]:text-[0.64rem]"
-            onClick={onToggleTheme}
-            aria-label={`Gunakan tema ${theme === "dark" ? "terang" : "gelap"}`}
+        <div className="grid content-start gap-3">
+          <p className="mb-1.5 font-mono text-[0.66rem] font-extrabold tracking-[0.08em] text-[#718800] dark:text-[#d8ff3e]">
+            // INFO
+          </p>
+
+          <span className="text-[0.82rem] leading-[1.6] text-[#68665f] dark:text-[#a7a49d]">
+            {PERSONAL_INFO.location}
+          </span>
+
+          <a
+            className="text-[0.82rem] leading-[1.6] text-[#68665f] transition-colors hover:text-[#111111] dark:text-[#a7a49d] dark:hover:text-[#f4f1e8]"
+            href={`mailto:${PERSONAL_INFO.email}`}
           >
-            {theme === "dark" ? "LIGHT" : "DARK"}
-          </button>
+            {PERSONAL_INFO.email}
+          </a>
 
-          <button
-            type="button"
-            className="relative hidden h-[38px] w-[42px] cursor-pointer border border-black/20 bg-[#f7f3e9] dark:border-white/20 dark:bg-[#121212] max-[900px]:block max-[700px]:h-9 max-[700px]:w-10"
-            onClick={() => setMenuOpen((current) => !current)}
-            aria-label="Buka navigasi"
-            aria-expanded={menuOpen}
-          >
-            <span
-              className={`absolute left-1/2 top-1/2 block h-px w-[18px] -translate-x-1/2 bg-[#111111] transition-transform dark:bg-[#f4f1e8] ${
-                menuOpen ? "-translate-y-1/2 rotate-45" : "-translate-y-[4px]"
-              }`}
-            />
-
-            <span
-              className={`absolute left-1/2 top-1/2 block h-px w-[18px] -translate-x-1/2 bg-[#111111] transition-transform dark:bg-[#f4f1e8] ${
-                menuOpen ? "-translate-y-1/2 -rotate-45" : "translate-y-[3px]"
-              }`}
-            />
-          </button>
+          <span className="text-[0.82rem] leading-[1.6] text-[#68665f] dark:text-[#a7a49d]">
+            © {new Date().getFullYear()} Rifqi Susanto
+          </span>
         </div>
       </div>
-
-      <nav
-        className={`fixed inset-x-0 top-[77px] z-40 grid overflow-hidden border-b bg-[#eeeae0] transition-all duration-200 dark:bg-[#080808] min-[901px]:hidden max-[700px]:top-[69px] ${
-          menuOpen
-            ? "max-h-[520px] border-black/15 opacity-100 dark:border-white/15"
-            : "max-h-0 border-transparent opacity-0"
-        }`}
-        aria-label="Navigasi mobile"
-      >
-        {NAV_ITEMS.map((item, index) => (
-          <a
-            className="mx-auto grid w-full max-w-[1240px] grid-cols-[46px_1fr] border-b border-black/15 px-6 py-[17px] text-xl font-black tracking-[-0.035em] uppercase dark:border-white/15 max-[700px]:px-[15px]"
-            href={`#${item.target}`}
-            key={item.target}
-            onClick={closeMenu}
-          >
-            <span className="font-mono text-[0.66rem] text-[#718800] dark:text-[#d8ff3e]">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-
-            {item.label}
-          </a>
-        ))}
-      </nav>
-    </header>
+    </footer>
   );
 }

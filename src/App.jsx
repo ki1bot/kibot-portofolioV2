@@ -1,18 +1,19 @@
-import { AboutSection } from "./components/sections/AboutSection.jsx";
-import { BackToTop } from "./components/layout/BackToTop.jsx";
-import { CertificatesSection } from "./components/sections/CertificatesSection.jsx";
-import { ContactSection } from "./components/sections/ContactSection.jsx";
-import { EducationSection } from "./components/sections/EducationSection.jsx";
-import { Footer } from "./components/layout/Footer.jsx";
-import { HeroSection } from "./components/sections/HeroSection.jsx";
-import { Navbar } from "./components/layout/Navbar.jsx";
-import { ProjectsSection } from "./components/sections/ProjectsSection.jsx";
-import { usePortfolioData } from "./hooks/usePortfolioData.js";
-import { useReveal } from "./hooks/useReveal.js";
-import { useTheme } from "./hooks/useTheme.jsx";
+import { AboutSection } from "./components/sections/AboutSection";
+import { BackToTop } from "./components/layout/BackToTop";
+import { CertificatesSection } from "./components/sections/CertificatesSection";
+import { ContactSection } from "./components/sections/ContactSection";
+import { EducationSection } from "./components/sections/EducationSection";
+import { Footer } from "./components/layout/Footer";
+import { HeroSection } from "./components/sections/HeroSection";
+import { Navbar } from "./components/layout/Navbar";
+import { ProjectsSection } from "./components/sections/ProjectsSection";
+import { usePortfolioData } from "./hooks/usePortfolioData";
+import { useReveal } from "./hooks/useReveal";
+import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
   const { portfolio, loading, loadError, addComment } = usePortfolioData();
+
   const { theme, toggleTheme } = useTheme();
 
   useReveal(
@@ -30,6 +31,7 @@ export default function App() {
       className={`${theme === "dark" ? "dark" : ""} relative min-h-screen overflow-x-hidden bg-[#eeeae0] text-[#111111] antialiased transition-colors duration-200 dark:bg-[#080808] dark:text-[#f4f1e8]`}
     >
       <div className="pointer-events-none fixed -left-40 top-[10vh] -z-10 h-[420px] w-[420px] rounded-full bg-[#d8ff3e]/10 blur-[120px]" />
+
       <div className="pointer-events-none fixed -right-40 top-[48vh] -z-10 h-[420px] w-[420px] rounded-full bg-black/5 blur-[120px] dark:bg-white/5" />
 
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
@@ -66,6 +68,7 @@ export default function App() {
       </main>
 
       <Footer />
+
       <BackToTop />
     </div>
   );
