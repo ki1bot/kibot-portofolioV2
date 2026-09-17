@@ -3,60 +3,76 @@ import { PERSONAL_INFO } from "../../lib/portfolio";
 
 export function Footer() {
   return (
-    <footer className="bg-[#e4dfd4] py-16 dark:bg-[#121212]">
-      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-[1.45fr_0.7fr_0.85fr] gap-[50px] px-6 max-[900px]:grid-cols-2 max-[700px]:grid-cols-1 max-[700px]:px-[15px]">
+    <footer className="bg-[#0b0b0b] py-16">
+      <div className="mx-auto grid w-full max-w-[1180px] grid-cols-[1.35fr_0.7fr_0.95fr] gap-12 px-6 max-[900px]:grid-cols-2 max-[700px]:grid-cols-1 max-[700px]:px-4">
         <div className="max-[900px]:col-span-2 max-[700px]:col-auto">
           <a
-            className="inline-flex items-center text-[clamp(2.6rem,6vw,5.5rem)] font-black leading-none tracking-[-0.08em]"
+            className="inline-flex items-center text-[clamp(2.6rem,6vw,5rem)] font-black leading-none tracking-[-0.075em]"
             href="#home"
           >
             RIFQI
-            <span className="text-[#9fbe00] dark:text-[#d8ff3e]">.</span>
+            <span className="text-[#d8ff3e]">.</span>
           </a>
 
-          <p className="mt-5 max-w-[470px] leading-[1.7] text-[#68665f] dark:text-[#a7a49d]">
-            Information Systems Student &amp; Software Engineer focused on
-            building practical digital products.
+          <p className="mt-5 max-w-[450px] text-[0.9rem] leading-[1.8] text-white/45">
+            Information Systems student and Software Engineer focused on
+            practical, maintainable web and mobile products.
+          </p>
+
+          <p className="mt-8 font-mono text-[0.61rem] tracking-[0.06em] text-white/30 uppercase">
+            © {new Date().getFullYear()} All Rights Reserved
           </p>
         </div>
 
         <div className="grid content-start gap-3">
-          <p className="mb-1.5 font-mono text-[0.66rem] font-extrabold tracking-[0.08em] text-[#718800] dark:text-[#d8ff3e]">
-            // NAVIGATE
+          <p className="mb-2 font-mono text-[0.63rem] font-black tracking-[0.09em] text-[#d8ff3e] uppercase">
+            // Navigate
           </p>
 
           {NAV_ITEMS.map((item) => (
             <a
-              className="flex items-center justify-between border-b border-black/15 pb-2 text-[0.82rem] leading-[1.6] text-[#68665f] transition-colors hover:text-[#111111] dark:border-white/15 dark:text-[#a7a49d] dark:hover:text-[#f4f1e8]"
+              className="flex items-center gap-2 border-b border-white/10 pb-2.5 text-[0.82rem] text-white/45 transition-colors hover:text-white"
               href={`#${item.target}`}
               key={item.target}
             >
-              {item.label}
+              <span className="text-[#d8ff3e]">→</span>
 
-              <span>→</span>
+              {item.label}
             </a>
           ))}
         </div>
 
         <div className="grid content-start gap-3">
-          <p className="mb-1.5 font-mono text-[0.66rem] font-extrabold tracking-[0.08em] text-[#718800] dark:text-[#d8ff3e]">
-            // INFO
+          <p className="mb-2 font-mono text-[0.63rem] font-black tracking-[0.09em] text-[#d8ff3e] uppercase">
+            // Info
           </p>
 
-          <span className="text-[0.82rem] leading-[1.6] text-[#68665f] dark:text-[#a7a49d]">
-            {PERSONAL_INFO.location}
-          </span>
+          <div className="border-b border-white/10 pb-3">
+            <span className="block font-mono text-[0.58rem] text-white/28 uppercase">
+              Location
+            </span>
+
+            <span className="mt-1 block text-[0.82rem] leading-[1.5] text-white/48">
+              {PERSONAL_INFO.location}
+            </span>
+          </div>
+
+          <div className="border-b border-white/10 pb-3">
+            <span className="block font-mono text-[0.58rem] text-white/28 uppercase">
+              Availability
+            </span>
+
+            <span className="mt-1 block text-[0.82rem] text-white/48">
+              Open to work
+            </span>
+          </div>
 
           <a
-            className="text-[0.82rem] leading-[1.6] text-[#68665f] transition-colors hover:text-[#111111] dark:text-[#a7a49d] dark:hover:text-[#f4f1e8]"
+            className="pt-1 text-[0.82rem] text-white/45 transition-colors hover:text-[#d8ff3e]"
             href={`mailto:${PERSONAL_INFO.email}`}
           >
             {PERSONAL_INFO.email}
           </a>
-
-          <span className="text-[0.82rem] leading-[1.6] text-[#68665f] dark:text-[#a7a49d]">
-            © {new Date().getFullYear()} Rifqi Susanto
-          </span>
         </div>
       </div>
     </footer>
