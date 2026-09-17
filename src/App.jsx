@@ -1,76 +1,64 @@
-import { useEffect, useState } from "react";
-import { BackToTop } from "./components/layout/BackToTop";
-import { Footer } from "./components/layout/Footer";
-import { Navbar } from "./components/layout/Navbar";
 import { AboutSection } from "./components/sections/AboutSection";
+import { BackToTop } from "./components/layout/BackToTop";
+import { CertificatesSection } from "./components/sections/CertificatesSection";
 import { ContactSection } from "./components/sections/ContactSection";
 import { EducationSection } from "./components/sections/EducationSection";
+import { Footer } from "./components/layout/Footer";
 import { HeroSection } from "./components/sections/HeroSection";
-import { PortfolioSection } from "./components/sections/PortfolioSection";
-import { getPortfolioData } from "./lib/portfolio";
+import { Navbar } from "./components/layout/Navbar";
+import { ProjectsSection } from "./components/sections/ProjectsSection";
+import { usePortfolioData } from "./hooks/usePortfolioData";
+import { useReveal } from "./hooks/useReveal";
+import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
-  const [portfolio, setPortfolio] = useState({
-    projects: [],
-    certificates: [],
-    comments: [],
-  });
+  const { portfolio, loading, loadError, addComment } = usePortfolioData();
 
-  const [loading, setLoading] = useState(true);
+  const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    let active = true;
+  useReveal(
+    `${loading}:${portfolio.projects.length}:${portfolio.certificates.length}:${portfolio.comments.length}`,
+  );
 
-    getPortfolioData()
-      .then((data) => {
-        if (active) {
-          setPortfolio(data);
-        }
-      })
-      .finally(() => {
-        if (active) {
-          setLoading(false);
-        }
-      });
+  const projectCount = loading ? "10+" : `${portfolio.projects.length}+`;
 
-    return () => {
-      active = false;
-    };
-  }, []);
+  const certificateCount = loading
+    ? "14+"
+    : `${portfolio.certificates.length}+`;
 
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden bg-slate-950 text-slate-50 antialiased">
-      <div className="pointer-events-none fixed -left-40 top-[12vh] -z-20 h-[440px] w-[440px] rounded-full bg-violet-600/20 blur-[110px]" />
-      <div className="pointer-events-none fixed -right-40 top-[48vh] -z-20 h-[440px] w-[440px] rounded-full bg-blue-600/20 blur-[110px]" />
-
-      <Navbar />
+    <div className={`portfolio-shell ${theme === "light" ? "is-light" : ""}`}>
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       <main>
-        <HeroSection />
+        <HeroSection
+          projectCount={projectCount}
+          certificateCount={certificateCount}
+        />
+
+        <AboutSection
+          projectCount={projectCount}
+          certificateCount={certificateCount}
+        />
 
         <EducationSection />
 
-        <AboutSection
-          projectCount={portfolio.projects.length}
-          certificateCount={portfolio.certificates.length}
+        <ProjectsSection
+          projects={portfolio.projects}
+          loading={loading}
+          loadError={loadError}
         />
 
-        {loading ? (
-          <section className="mx-auto w-full max-w-[1180px] px-4 py-16 sm:px-5">
-            <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-9 text-center text-sm text-slate-400 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
-              Memuat data portofolio...
-            </div>
-          </section>
-        ) : (
-          <>
-            <PortfolioSection
-              projects={portfolio.projects}
-              certificates={portfolio.certificates}
-            />
+        <CertificatesSection
+          certificates={portfolio.certificates}
+          loading={loading}
+        />
 
-            <ContactSection comments={portfolio.comments} />
-          </>
-        )}
+        <ContactSection
+          comments={portfolio.comments}
+          onCommentAdded={addComment}
+          loading={loading}
+        />
       </main>
 
       <Footer />

@@ -1,13 +1,4 @@
 import { useEffect } from "react";
-import {
-  Cancel01Icon,
-  CodeIcon,
-  Download01Icon,
-  LinkSquare02Icon,
-  Tick02Icon,
-} from "@hugeicons/core-free-icons";
-import { HugeIcon } from "../common/HugeIcon";
-import { ImageWithFallback } from "../common/ImageWithFallback";
 
 export function ProjectModal({ project, onClose }) {
   useEffect(() => {
@@ -19,138 +10,109 @@ export function ProjectModal({ project, onClose }) {
 
     document.body.style.overflow = "hidden";
 
-    const onKeyDown = (event) => {
+    function onKeyDown(event) {
       if (event.key === "Escape") {
         onClose();
       }
-    };
+    }
 
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
       document.body.style.overflow = previousOverflow;
+
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [onClose, project]);
+  }, [project, onClose]);
 
   if (!project) {
     return null;
   }
 
+  const features = Array.isArray(project.features) ? project.features : [];
+
+  const stack = Array.isArray(project.tech_stack) ? project.tech_stack : [];
+
   return (
-    <div
-      className="fixed inset-0 z-[100] grid place-items-center bg-slate-950/85 p-3 backdrop-blur-xl sm:p-6"
-      role="presentation"
-      onMouseDown={onClose}
-    >
+    <div className="modal-backdrop" onMouseDown={onClose} role="presentation">
       <div
-        className="relative max-h-[94vh] w-full max-w-[900px] overflow-y-auto rounded-3xl border border-white/10 bg-slate-900/95 shadow-2xl shadow-black/50 sm:max-h-[88vh]"
+        className="project-modal"
+        onMouseDown={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-label={`Detail ${project.title}`}
-        onMouseDown={(event) => event.stopPropagation()}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute right-3.5 top-3.5 z-20 grid h-11 w-11 cursor-pointer place-items-center rounded-2xl border border-white/10 bg-slate-950/85 text-white backdrop-blur-xl transition hover:border-violet-400/40 hover:bg-violet-500/15"
-          aria-label="Tutup detail"
-        >
-          <HugeIcon icon={Cancel01Icon} size={22} />
-        </button>
+        <div className="modal-topbar">
+          <span>PROJECT DETAIL</span>
 
-        <ImageWithFallback
-          src={project.img}
-          alt={project.title}
-          className="aspect-[16/7] w-full rounded-t-3xl bg-slate-950 object-cover"
-          initials={project.title}
-        />
+          <button type="button" onClick={onClose} aria-label="Tutup modal">
+            Close ×
+          </button>
+        </div>
 
-        <div className="p-5 sm:p-7">
-          <span className="text-xs font-bold tracking-wide text-violet-300">
-            Project Detail
-          </span>
+        <div className="modal-media">
+          {project.img ? (
+            <img src={project.img} alt={project.title} />
+          ) : (
+            <span>{project.title}</span>
+          )}
+        </div>
 
-          <h2 className="mt-2 text-[clamp(1.8rem,5vw,2.8rem)] font-black tracking-[-0.04em] text-white">
-            {project.title}
-          </h2>
+        <div className="modal-content">
+          <p className="project-kicker">Selected work</p>
 
-          <p className="mt-3 leading-7 text-slate-400">{project.description}</p>
+          <h2>{project.title}</h2>
 
-          {project.features?.length > 0 && (
-            <div className="mt-6">
-              <h3 className="mb-3 font-bold text-white">Fitur Utama</h3>
+          <p className="modal-description">{project.description}</p>
 
-              <ul className="grid gap-2.5">
-                {project.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex gap-2.5 text-sm leading-6 text-slate-400"
-                  >
-                    <span className="mt-0.5 shrink-0 text-violet-400">
-                      <HugeIcon icon={Tick02Icon} size={18} />
-                    </span>
+          {features.length ? (
+            <div className="modal-block">
+              <p className="modal-label">Key features</p>
 
-                    <span>{feature}</span>
-                  </li>
+              <ul>
+                {features.map((feature) => (
+                  <li key={feature}>{feature}</li>
                 ))}
               </ul>
             </div>
-          )}
+          ) : null}
 
-          {project.tech_stack?.length > 0 && (
-            <div className="mt-6">
-              <h3 className="mb-3 font-bold text-white">Tech Stack</h3>
+          {stack.length ? (
+            <div className="modal-block">
+              <p className="modal-label">Stack</p>
 
-              <div className="flex flex-wrap gap-2">
-                {project.tech_stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300"
-                  >
-                    {tech}
+              <div className="tag-list">
+                {stack.map((item) => (
+                  <span className="tag" key={item}>
+                    {item}
                   </span>
                 ))}
               </div>
             </div>
-          )}
+          ) : null}
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            {project.link && (
+          <div className="modal-actions">
+            {project.github ? (
               <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-violet-400/30 bg-gradient-to-br from-violet-600 to-indigo-600 px-4 text-sm font-bold text-white transition hover:-translate-y-0.5"
-              >
-                Live Demo
-                <HugeIcon icon={LinkSquare02Icon} size={17} />
-              </a>
-            )}
-
-            {project.github && (
-              <a
+                className="button button-secondary"
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-white/10 bg-slate-950/70 px-4 text-sm font-bold text-slate-200 transition hover:-translate-y-0.5 hover:border-violet-400/30"
               >
-                <HugeIcon icon={CodeIcon} size={17} />
-                GitHub
+                Source code ↗
               </a>
-            )}
+            ) : null}
 
-            {project.pdf && (
+            {project.link ? (
               <a
-                href={project.pdf}
+                className="button button-primary"
+                href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-white/10 bg-slate-950/70 px-4 text-sm font-bold text-slate-200 transition hover:-translate-y-0.5 hover:border-violet-400/30"
               >
-                <HugeIcon icon={Download01Icon} size={17} />
-                PDF
+                Open project ↗
               </a>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

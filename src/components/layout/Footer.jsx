@@ -1,13 +1,42 @@
+import { NAV_ITEMS } from "../../data/portfolioPage";
+import { PERSONAL_INFO } from "../../lib/portfolio";
+
 export function Footer() {
   return (
-    <footer className="mx-auto flex w-full max-w-[1180px] flex-col items-center justify-center gap-4 border-t border-white/10 px-4 py-8 text-center text-xs text-slate-500 sm:px-5 md:flex-row md:justify-between md:text-left">
-      <div className="flex items-center gap-2 text-slate-300">
-        <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-blue-400 via-violet-400 to-fuchsia-400" />
+    <footer className="site-footer">
+      <div className="site-container footer-grid">
+        <div className="footer-brand-block">
+          <a className="brand footer-brand" href="#home">
+            RIFQI<span>.</span>
+          </a>
 
-        <strong>Rifqi</strong>
+          <p>
+            Information Systems Student &amp; Software Engineer focused on
+            building practical digital products.
+          </p>
+        </div>
+
+        <div className="footer-nav">
+          <p>// NAVIGATE</p>
+
+          {NAV_ITEMS.map((item) => (
+            <a href={`#${item.target}`} key={item.target}>
+              {item.label}
+              <span>→</span>
+            </a>
+          ))}
+        </div>
+
+        <div className="footer-info">
+          <p>// INFO</p>
+
+          <span>{PERSONAL_INFO.location}</span>
+
+          <a href={`mailto:${PERSONAL_INFO.email}`}>{PERSONAL_INFO.email}</a>
+
+          <span>© {new Date().getFullYear()} Rifqi</span>
+        </div>
       </div>
-
-      <p>© {new Date().getFullYear()} Rifqi. All rights reserved.</p>
     </footer>
   );
 }
