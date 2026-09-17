@@ -1,10 +1,12 @@
 import { useCallback, useState } from "react";
+
 import { ProjectCard } from "../portfolio/ProjectCard";
 import { ProjectModal } from "../portfolio/ProjectModal";
 import { SectionHeading } from "../common/SectionHeading";
 
 export function ProjectsSection({ projects, loading, loadError }) {
   const [showAll, setShowAll] = useState(false);
+
   const [selectedProject, setSelectedProject] = useState(null);
 
   const closeProject = useCallback(() => {
@@ -13,43 +15,56 @@ export function ProjectsSection({ projects, loading, loadError }) {
 
   const visibleProjects = showAll ? projects : projects.slice(0, 6);
 
+  const visibleCount = Math.min(visibleProjects.length, projects.length);
+
   return (
     <section
-      className="border-b border-black/15 py-[clamp(92px,10vw,148px)] dark:border-white/15"
+      className="border-b border-white/10 py-[clamp(90px,10vw,140px)]"
       id="projects"
     >
-      <div className="mx-auto w-full max-w-[1240px] px-6 max-[700px]:px-[15px]">
-        <div className="flex items-end justify-between gap-10 max-[700px]:grid max-[700px]:items-start">
-          <SectionHeading
-            eyebrow="Proof of work"
-            title="MY"
-            accent="PROJECTS."
-            description="Beberapa project yang paling mewakili kemampuan saya dalam frontend, backend, database, dan integrasi layanan."
-          />
+      <div className="mx-auto w-full max-w-[1180px] px-6 max-[700px]:px-4">
+        <SectionHeading
+          eyebrow="Proof of work"
+          title="MY"
+          accent="PROJECTS."
+          description="Project pilihan yang menunjukkan bagaimana saya menggabungkan frontend, backend, database, dan deployment menjadi produk yang dapat digunakan."
+        />
 
-          <div
-            className="shrink-0 text-right text-[clamp(3.2rem,7vw,6rem)] font-black leading-[0.9] tracking-[-0.07em] max-[700px]:text-left"
-            data-reveal
-          >
-            {loading ? "--" : String(projects.length).padStart(2, "0")}
+        <div
+          className="mt-14 flex items-end justify-between gap-6 border-y border-white/10 py-4 max-[640px]:grid"
+          data-reveal
+        >
+          <div>
+            <p className="font-mono text-[0.65rem] font-black tracking-[0.09em] text-[#d7ff3f] uppercase">
+              // All Projects
+            </p>
 
-            <span className="mt-2.5 block font-mono text-[0.67rem] tracking-[0.12em] text-[#68665f] dark:text-[#a7a49d]">
-              PROJECTS
-            </span>
+            <p className="mt-1 font-mono text-[0.62rem] text-white/40 uppercase">
+              Showing {visibleCount} of {projects.length} projects
+            </p>
           </div>
+
+          <a
+            className="font-mono text-[0.68rem] font-bold text-white/55 transition-colors hover:text-[#d7ff3f]"
+            href="https://github.com/ki1bot"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @ki1bot ↗
+          </a>
         </div>
 
         {loading ? (
-          <div className="mt-[70px] grid min-h-[220px] place-items-center border border-black/15 bg-[#f7f3e9] font-mono text-[0.75rem] tracking-[0.1em] text-[#68665f] uppercase dark:border-white/15 dark:bg-[#121212] dark:text-[#a7a49d]">
+          <div className="mt-8 grid min-h-[220px] place-items-center border border-white/10 bg-white/[0.02] font-mono text-[0.68rem] tracking-[0.1em] text-white/45 uppercase">
             Loading projects...
           </div>
         ) : loadError ? (
-          <div className="mt-[70px] grid min-h-[220px] place-items-center border border-red-400/30 bg-[#f7f3e9] font-mono text-[0.75rem] tracking-[0.1em] text-red-600 uppercase dark:bg-[#121212] dark:text-red-300">
+          <div className="mt-8 grid min-h-[220px] place-items-center border border-red-400/30 bg-white/[0.02] font-mono text-[0.68rem] text-red-300 uppercase">
             {loadError}
           </div>
         ) : (
           <>
-            <div className="mt-[70px] grid grid-cols-2 gap-[18px] max-[900px]:grid-cols-1 max-[700px]:mt-[46px]">
+            <div className="mt-8 space-y-5">
               {visibleProjects.map((project, index) => (
                 <ProjectCard
                   project={project}
@@ -61,14 +76,13 @@ export function ProjectsSection({ projects, loading, loadError }) {
             </div>
 
             {projects.length > 6 ? (
-              <div className="mt-[42px] flex justify-center" data-reveal>
+              <div className="mt-10 flex justify-center" data-reveal>
                 <button
                   type="button"
-                  className="inline-flex min-h-[50px] cursor-pointer items-center justify-center gap-3 border border-black/30 bg-[#f7f3e9] px-5 text-[0.76rem] font-black tracking-[0.08em] uppercase transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-white dark:border-white/30 dark:bg-[#121212] dark:hover:bg-[#181818]"
+                  className="min-h-[48px] cursor-pointer border border-white/20 px-6 font-mono text-[0.68rem] font-black tracking-[0.07em] text-white uppercase transition hover:border-[#d7ff3f] hover:bg-[#d7ff3f] hover:text-black"
                   onClick={() => setShowAll((current) => !current)}
                 >
-                  {showAll ? "Show less" : "Show all projects"}
-                  <span>{showAll ? "↑" : "↓"}</span>
+                  {showAll ? "Show first 6" : "Show all projects"}
                 </button>
               </div>
             ) : null}

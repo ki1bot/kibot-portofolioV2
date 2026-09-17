@@ -9,15 +9,12 @@ import { Navbar } from "./components/layout/Navbar";
 import { ProjectsSection } from "./components/sections/ProjectsSection";
 import { usePortfolioData } from "./hooks/usePortfolioData";
 import { useReveal } from "./hooks/useReveal";
-import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
-  const { portfolio, loading, loadError, addComment } = usePortfolioData();
-
-  const { theme, toggleTheme } = useTheme();
+  const { portfolio, loading, loadError } = usePortfolioData();
 
   useReveal(
-    `${loading}:${portfolio.projects.length}:${portfolio.certificates.length}:${portfolio.comments.length}`,
+    `${loading}:${portfolio.projects.length}:${portfolio.certificates.length}`,
   );
 
   const projectCount = loading ? "10+" : `${portfolio.projects.length}+`;
@@ -27,14 +24,8 @@ export default function App() {
     : `${portfolio.certificates.length}+`;
 
   return (
-    <div
-      className={`${theme === "dark" ? "dark" : ""} relative min-h-screen overflow-x-hidden bg-[#eeeae0] text-[#111111] antialiased transition-colors duration-200 dark:bg-[#080808] dark:text-[#f4f1e8]`}
-    >
-      <div className="pointer-events-none fixed -left-40 top-[10vh] -z-10 h-[420px] w-[420px] rounded-full bg-[#d8ff3e]/10 blur-[120px]" />
-
-      <div className="pointer-events-none fixed -right-40 top-[48vh] -z-10 h-[420px] w-[420px] rounded-full bg-black/5 blur-[120px] dark:bg-white/5" />
-
-      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+    <div className="dark relative min-h-screen overflow-x-hidden bg-[#090909] text-[#f5f5ef] antialiased">
+      <Navbar />
 
       <main>
         <HeroSection
@@ -60,15 +51,10 @@ export default function App() {
           loading={loading}
         />
 
-        <ContactSection
-          comments={portfolio.comments}
-          onCommentAdded={addComment}
-          loading={loading}
-        />
+        <ContactSection />
       </main>
 
       <Footer />
-
       <BackToTop />
     </div>
   );
