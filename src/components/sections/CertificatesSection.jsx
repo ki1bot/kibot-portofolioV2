@@ -1,18 +1,36 @@
 import { useState } from "react";
 import { CertificateCard } from "../portfolio/CertificateCard";
 import { SectionHeading } from "../common/SectionHeading";
+import { NavIcon } from "../common/NavIcon";
 
 export function CertificatesSection({ certificates, loading }) {
-  const [showAll, setShowAll] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const visibleCertificates = showAll ? certificates : certificates.slice(0, 6);
+  const total = certificates.length;
+
+  function normalize(index) {
+    if (!total) {
+      return 0;
+    }
+
+    return (index + total) % total;
+  }
+
+  function previous() {
+    setActiveIndex((current) => normalize(current - 1));
+  }
+
+  function next() {
+    setActiveIndex((current) => normalize(current + 1));
+  }
+
+  const previousIndex = normalize(activeIndex - 1);
+
+  const nextIndex = normalize(activeIndex + 1);
 
   return (
-    <section
-      className="border-b border-white/10 bg-[#0d0d0d] py-[clamp(94px,10vw,145px)]"
-      id="certificates"
-    >
-      <div className="mx-auto w-full max-w-[1180px] px-6 max-[700px]:px-4">
+    <section className="pattern-section certificates-section" id="certificates">
+      <div className="section-container">
         <SectionHeading
           eyebrow="Proof of work"
           title="MY"
@@ -21,33 +39,58 @@ export function CertificatesSection({ certificates, loading }) {
         />
 
         {loading ? (
-          <div className="mt-14 grid min-h-[220px] place-items-center border border-white/10 bg-white/[0.015] font-mono text-[0.66rem] tracking-[0.1em] text-white/40 uppercase">
-            Loading certificates...
-          </div>
-        ) : (
-          <>
-            <div className="mt-14 grid grid-cols-2 gap-3 max-[900px]:grid-cols-1">
-              {visibleCertificates.map((certificate, index) => (
+          <div className="section-state">Loading certificates...</div>
+        ) : total ? (
+          <div className="certificate-carousel" data-reveal>
+            <div className="certificate-stage">
+              {total > 1 ? (
                 <CertificateCard
-                  certificate={certificate}
-                  index={index}
-                  key={certificate.id}
+                  certificate={certificates[previousIndex]}
+                  position="previous"
+                  onSelect={previous}
                 />
-              ))}
+              ) : null}
+
+              <CertificateCard
+                certificate={certificates[activeIndex]}
+                position="active"
+              />
+
+              {total > 1 ? (
+                <CertificateCard
+                  certificate={certificates[nextIndex]}
+                  position="next"
+                  onSelect={next}
+                />
+              ) : null}
             </div>
 
-            {certificates.length > 6 ? (
-              <div className="mt-10 flex justify-center" data-reveal>
-                <button
-                  type="button"
-                  className="min-h-[48px] cursor-pointer border border-white/20 px-6 font-mono text-[0.65rem] font-black tracking-[0.08em] text-white uppercase transition hover:border-[#d8ff3e] hover:bg-[#d8ff3e] hover:text-black"
-                  onClick={() => setShowAll((current) => !current)}
-                >
-                  {showAll ? "Show less" : "Show all certificates"}
-                </button>
-              </div>
-            ) : null}
-          </>
+            <div className="certificate-controls">
+              <button
+                type="button"
+                onClick={previous}
+                disabled={total <= 1}
+                aria-label="Sertifikat sebelumnya"
+              >
+                <NavIcon name="chevron-left" size={18} />
+              </button>
+
+              <strong>
+                {activeIndex + 1} / {total}
+              </strong>
+
+              <button
+                type="button"
+                onClick={next}
+                disabled={total <= 1}
+                aria-label="Sertifikat berikutnya"
+              >
+                <NavIcon name="chevron-right" size={18} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="section-state">Belum ada certificate.</div>
         )}
       </div>
     </section>
