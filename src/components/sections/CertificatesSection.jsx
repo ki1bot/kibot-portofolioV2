@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { NavIcon } from "../common/NavIcon";
 import { CertificateCard } from "../portfolio/CertificateCard";
 import { SectionHeading } from "../common/SectionHeading";
-import { NavIcon } from "../common/NavIcon";
 
 export function CertificatesSection({ certificates, loading }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -30,10 +30,10 @@ export function CertificatesSection({ certificates, loading }) {
 
   return (
     <section
-      className="relative overflow-hidden border-t border-black/10 bg-[#f7f7f4] bg-[repeating-linear-gradient(135deg,rgba(17,17,17,0.055)_0,rgba(17,17,17,0.055)_1px,transparent_1px,transparent_8px)] dark:border-white/10 dark:bg-[#0a0a0a] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.048)_0,rgba(255,255,255,0.048)_1px,transparent_1px,transparent_8px)]"
+      className="portfolio-texture relative overflow-hidden border-t border-black/10 dark:border-white/10"
       id="certificates"
     >
-      <div className="mx-auto w-[calc(100%_-_48px)] max-w-[1510px] py-28 pb-32 max-[960px]:w-[calc(100%_-_36px)] max-[760px]:w-[calc(100%_-_32px)] max-[760px]:py-[90px] max-[760px]:pb-[105px]">
+      <div className="portfolio-shell py-[108px] pb-[122px] max-[760px]:py-[88px] max-[760px]:pb-[100px]">
         <SectionHeading
           eyebrow="Proof of work"
           title="MY"
@@ -42,12 +42,15 @@ export function CertificatesSection({ certificates, loading }) {
         />
 
         {loading ? (
-          <div className="mt-11 grid min-h-[280px] place-items-center rounded-[14px] border border-black/15 bg-white text-[0.74rem] tracking-[0.1em] text-[#777] uppercase dark:border-white/10 dark:bg-[#111] dark:text-[#767676]">
+          <div className="mt-10 grid min-h-[260px] place-items-center rounded-[14px] border border-black/14 bg-white/72 text-[0.72rem] tracking-[0.1em] text-[#777] uppercase dark:border-white/10 dark:bg-[#111]/78">
             Loading certificates...
           </div>
         ) : total ? (
-          <div className="relative mt-[54px] pb-7" data-reveal>
-            <div className="grid grid-cols-[minmax(0,0.74fr)_minmax(0,1.28fr)_minmax(0,0.74fr)] items-center gap-5 max-[760px]:block">
+          <div
+            className="relative mx-auto mt-[50px] max-w-[1220px] pb-8"
+            data-reveal
+          >
+            <div className="grid grid-cols-[minmax(0,0.64fr)_minmax(0,1.36fr)_minmax(0,0.64fr)] items-center gap-4 max-[760px]:block">
               {total > 1 ? (
                 <CertificateCard
                   certificate={certificates[previousIndex]}
@@ -70,34 +73,34 @@ export function CertificatesSection({ certificates, loading }) {
               ) : null}
             </div>
 
-            <div className="relative z-[6] mx-auto -mt-[17px] flex w-fit items-center gap-3 rounded-full border border-black/25 bg-[#f1f1ee] p-[7px_9px] shadow-[0_18px_55px_rgba(0,0,0,0.09)] dark:border-white/20 dark:bg-[#171717] dark:shadow-[0_22px_65px_rgba(0,0,0,0.42)]">
+            <div className="relative z-[6] mx-auto -mt-4 flex w-fit items-center gap-2.5 rounded-full border border-black/18 bg-[#f1f1ee]/92 p-[6px_8px] shadow-[0_14px_42px_rgba(0,0,0,0.12)] backdrop-blur-[12px] dark:border-white/14 dark:bg-[#171717]/94 dark:shadow-[0_18px_50px_rgba(0,0,0,0.42)]">
               <button
                 type="button"
-                className="grid h-[38px] w-[38px] cursor-pointer place-items-center rounded-full border border-black/15 bg-white disabled:cursor-default disabled:opacity-35 dark:border-white/10 dark:bg-[#111]"
+                className="grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-black/12 bg-white/86 transition hover:border-[#ffd400] disabled:cursor-default disabled:opacity-35 dark:border-white/10 dark:bg-[#101010]"
                 onClick={previous}
                 disabled={total <= 1}
                 aria-label="Sertifikat sebelumnya"
               >
-                <NavIcon name="chevron-left" size={18} />
+                <NavIcon name="chevron-left" size={16} />
               </button>
 
-              <strong className="min-w-[58px] text-center text-[0.72rem]">
+              <strong className="min-w-[56px] text-center text-[0.68rem]">
                 {currentIndex + 1} / {total}
               </strong>
 
               <button
                 type="button"
-                className="grid h-[38px] w-[38px] cursor-pointer place-items-center rounded-full border border-black/15 bg-white disabled:cursor-default disabled:opacity-35 dark:border-white/10 dark:bg-[#111]"
+                className="grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-black/12 bg-white/86 transition hover:border-[#ffd400] disabled:cursor-default disabled:opacity-35 dark:border-white/10 dark:bg-[#101010]"
                 onClick={next}
                 disabled={total <= 1}
                 aria-label="Sertifikat berikutnya"
               >
-                <NavIcon name="chevron-right" size={18} />
+                <NavIcon name="chevron-right" size={16} />
               </button>
             </div>
           </div>
         ) : (
-          <div className="mt-11 grid min-h-[280px] place-items-center rounded-[14px] border border-black/15 bg-white text-[0.74rem] tracking-[0.1em] text-[#777] uppercase dark:border-white/10 dark:bg-[#111] dark:text-[#767676]">
+          <div className="mt-10 grid min-h-[260px] place-items-center rounded-[14px] border border-black/14 bg-white/72 text-[0.72rem] tracking-[0.1em] text-[#777] uppercase dark:border-white/10 dark:bg-[#111]/78">
             Belum ada certificate.
           </div>
         )}
