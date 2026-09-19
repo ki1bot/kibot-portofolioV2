@@ -5,6 +5,9 @@
 :root {
   font-family:
     Inter,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
     ui-sans-serif,
     system-ui,
     -apple-system,
@@ -14,6 +17,8 @@
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  color-scheme: dark;
+  background: #090909;
 }
 
 * {
@@ -22,18 +27,22 @@
 
 html {
   scroll-behavior: smooth;
+  background: #090909;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
+  background: #090909;
 }
 
+body,
 button,
 input,
 textarea {
-  font: inherit;
+  font-family: inherit;
 }
 
 button,
@@ -41,6 +50,10 @@ a,
 input,
 textarea {
   -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
 }
 
 a {
@@ -58,28 +71,91 @@ img {
   background: #d8ff3e;
 }
 
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1.3px #111111;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.dark .text-outline {
-  -webkit-text-stroke-color: #f4f1e8;
+::-webkit-scrollbar-track {
+  background: #090909;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid #090909;
+  background: #3b3b3b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d8ff3e;
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.3px rgba(245, 245, 239, 0.95);
 }
 
 .profile-grid-pattern {
   background-image:
-    linear-gradient(rgba(127, 127, 127, 0.22) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(127, 127, 127, 0.22) 1px, transparent 1px);
-
-  background-size: 38px 38px;
+    linear-gradient(rgba(255, 255, 255, 0.095) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.095) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-.ticker-track {
-  animation: ticker-scroll 42s linear infinite;
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 20%,
+    black 75%,
+    transparent
+  );
 }
 
-@keyframes ticker-scroll {
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.13'/%3E%3C/svg%3E");
+}
+
+.brand-ticker {
+  overflow: hidden;
+}
+
+.brand-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: brand-ticker 30s linear infinite;
+  will-change: transform;
+}
+
+.brand-ticker:hover .brand-ticker-track {
+  animation-play-state: paused;
+}
+
+.stack-ticker {
+  overflow: hidden;
+}
+
+.stack-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: stack-ticker 42s linear infinite;
+  will-change: transform;
+}
+
+.stack-ticker.reverse .stack-ticker-track {
+  animation-direction: reverse;
+  animation-duration: 48s;
+}
+
+@keyframes brand-ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes stack-ticker {
   to {
     transform: translateX(-50%);
   }
@@ -87,16 +163,25 @@ img {
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(22px);
-
+  transform: translateY(24px);
   transition:
-    opacity 520ms ease,
-    transform 520ms ease;
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+}
+
+@media (max-width: 700px) {
+  .hero-grid-pattern {
+    background-size: 48px 48px;
+  }
+
+  .brand-ticker-track {
+    animation-duration: 22s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
