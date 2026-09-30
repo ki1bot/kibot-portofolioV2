@@ -48,22 +48,22 @@ export function CertificateCard({
     return (
       <button
         type="button"
-        className="group block w-full cursor-pointer overflow-hidden rounded-[8px] border border-black/10 bg-white/34 p-0 opacity-35 grayscale-[0.2] transition duration-300 hover:opacity-55 dark:border-white/8 dark:bg-[#111]/68 max-[760px]:hidden"
+        className="block h-full w-full cursor-pointer overflow-hidden rounded-[10px] border border-black/12 bg-white/45 p-0 opacity-35 grayscale-[0.2] transition duration-300 hover:opacity-55 dark:border-white/10 dark:bg-[#111]/80"
         onClick={onSelect}
         aria-label={`Pilih ${certificate.title}`}
       >
-        <div className="aspect-[4/3] overflow-hidden bg-[#e5e5e2] dark:bg-[#171717]">
+        <div className="grid h-full min-h-[280px] place-items-center overflow-hidden bg-[#e4e4e1] p-5 dark:bg-[#171717]">
           {certificate.img ? (
             <img
-              className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.02]"
+              className="h-full max-h-[310px] w-full object-contain"
               src={certificate.img}
               alt={certificate.title}
               loading="lazy"
             />
           ) : (
-            <div className="grid h-full w-full place-items-center text-[0.72rem] font-black tracking-[0.1em] text-[#777]">
+            <span className="text-[0.72rem] font-black tracking-[0.1em] text-[#777]">
               CERTIFICATE
-            </div>
+            </span>
           )}
         </div>
       </button>
@@ -71,35 +71,35 @@ export function CertificateCard({
   }
 
   return (
-    <article className="relative z-[3] grid min-h-[330px] grid-cols-[0.4fr_0.6fr] overflow-hidden rounded-[9px] border border-[#c6a400]/42 bg-white/82 shadow-[0_22px_70px_rgba(0,0,0,0.13)] animate-[certificate-in_380ms_cubic-bezier(0.22,1,0.36,1)] dark:border-[#ffd400]/32 dark:bg-[#0d0d0d]/94 dark:shadow-[0_28px_80px_rgba(0,0,0,0.5)] max-[900px]:grid-cols-[0.45fr_0.55fr] max-[760px]:grid-cols-1">
-      <div className="flex flex-col justify-center border-r border-black/10 px-7 py-7 dark:border-white/8 max-[760px]:border-r-0 max-[760px]:border-b">
-        <p className="m-0 font-mono text-[0.55rem] font-black tracking-[0.14em] text-[#987600] uppercase dark:text-[#ffd400]">
+    <article className="certificate-active grid min-h-[390px] grid-cols-[0.36fr_0.64fr] overflow-hidden rounded-[12px] border border-[#c7a400]/45 bg-white/78 shadow-[0_24px_75px_rgba(0,0,0,0.13)] dark:border-[#ffd400]/30 dark:bg-[#0d0d0d]/95 dark:shadow-[0_30px_90px_rgba(0,0,0,0.52)] max-[850px]:grid-cols-1">
+      <div className="flex flex-col justify-center border-r border-black/10 px-8 py-8 dark:border-white/9 max-[850px]:border-r-0 max-[850px]:border-b">
+        <p className="m-0 font-mono text-[0.57rem] font-black tracking-[0.16em] text-[#967500] uppercase dark:text-[#ffd400]">
           {issuer}
           {year ? ` · ${year}` : ""}
         </p>
 
-        <h3 className="mt-2.5 text-[clamp(1rem,1.45vw,1.42rem)] font-black leading-[1.25] tracking-[-0.025em] uppercase">
+        <h3 className="display-font mt-3 text-[clamp(1.08rem,1.6vw,1.55rem)] font-black leading-[1.2] tracking-[-0.025em] uppercase">
           {certificate.title}
         </h3>
 
-        <p className="mt-3.5 text-[0.65rem] leading-[1.65] text-[#666] dark:text-[#999]">
-          Learning record and certificate supporting my software-development and
-          academic journey.
+        <p className="mt-4 text-[0.68rem] leading-[1.68] text-[#656565] dark:text-[#999]">
+          Certificate and learning record supporting my academic and
+          software-development journey.
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          <span className="rounded-full border border-black/10 bg-black/[0.025] px-2.5 py-[5px] text-[0.49rem] text-[#686868] dark:border-white/8 dark:bg-white/[0.035] dark:text-[#8b8b8b]">
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          <span className="rounded-full border border-black/10 bg-black/[0.03] px-2.5 py-[5px] text-[0.49rem] text-[#696969] dark:border-white/9 dark:bg-white/[0.04] dark:text-[#888]">
             Certificate
           </span>
 
-          <span className="rounded-full border border-black/10 bg-black/[0.025] px-2.5 py-[5px] text-[0.49rem] text-[#686868] dark:border-white/8 dark:bg-white/[0.035] dark:text-[#8b8b8b]">
+          <span className="rounded-full border border-black/10 bg-black/[0.03] px-2.5 py-[5px] text-[0.49rem] text-[#696969] dark:border-white/9 dark:bg-white/[0.04] dark:text-[#888]">
             Learning
           </span>
         </div>
 
         {href ? (
           <a
-            className="mt-5 inline-flex min-h-[34px] w-fit items-center rounded-[5px] border border-[#c7a400] bg-[#ffd400] px-3.5 text-[0.56rem] font-black text-[#111] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ffe03a]"
+            className="mt-6 inline-flex min-h-[38px] w-fit items-center rounded-[5px] border border-[#c7a400] bg-[#ffd400] px-4 text-[0.58rem] font-black text-[#111] shadow-[0_8px_22px_rgba(255,212,0,0.12)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ffe13a]"
             href={href}
             target="_blank"
             rel="noreferrer"
@@ -109,16 +109,16 @@ export function CertificateCard({
         ) : null}
       </div>
 
-      <div className="grid min-h-[330px] place-items-center overflow-hidden bg-[#e6e6e3] p-3 dark:bg-[#181818] max-[760px]:min-h-0">
+      <div className="grid min-h-[390px] place-items-center overflow-hidden bg-[#e5e5e2] p-4 dark:bg-[#1a1a1a] max-[850px]:min-h-[260px]">
         {certificate.img ? (
           <img
-            className="h-full max-h-[330px] w-full object-contain"
+            className="h-full max-h-[380px] w-full object-contain"
             src={certificate.img}
             alt={certificate.title}
             loading="lazy"
           />
         ) : (
-          <div className="grid h-full min-h-[260px] w-full place-items-center text-[0.9rem] font-black tracking-[0.12em] text-[#777]">
+          <div className="grid h-full min-h-[260px] place-items-center text-[0.9rem] font-black tracking-[0.12em] text-[#777]">
             CERTIFICATE
           </div>
         )}
