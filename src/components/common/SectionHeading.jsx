@@ -1,30 +1,19 @@
 export function SectionHeading({ eyebrow, title, accent, description }) {
   return (
-    <div className="max-w-[900px]" data-reveal>
-      <span className="inline-flex min-h-[30px] items-center rounded-full border border-black/20 bg-white/20 px-3.5 py-[5px] font-mono text-[0.58rem] font-black tracking-[0.22em] text-[#555] uppercase backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.015] dark:text-[#aaa]">
-        // {eyebrow}
-      </span>
+    <div className="section-heading" data-reveal>
+      <span className="section-eyebrow">// {eyebrow}</span>
 
-      <h2 className="display-font mt-7 w-fit text-[clamp(4.2rem,6vw,7.2rem)] font-black leading-[0.76] tracking-[-0.075em] uppercase max-[760px]:text-[clamp(3.4rem,17vw,5rem)]">
-        <span className="block">{title}</span>
-
-        {accent ? (
-          <span className="mt-4 block text-transparent [-webkit-text-stroke:1.5px_rgba(17,17,17,0.78)] dark:[-webkit-text-stroke:1.5px_rgba(245,245,242,0.82)]">
-            {accent}
-          </span>
-        ) : null}
+      <h2>
+        <span>{title}</span>
+        {accent ? <strong>{accent}</strong> : null}
       </h2>
 
-      <div className="mt-7 flex items-center gap-3" aria-hidden="true">
-        <span className="h-[4px] w-[66px] rounded-full bg-[#ffd400]" />
-        <span className="h-[4px] w-[25px] rounded-full bg-[#ffd400]/30" />
+      <div className="section-heading-bars" aria-hidden="true">
+        <span />
+        <span />
       </div>
 
-      {description ? (
-        <p className="mt-7 max-w-[720px] text-[0.88rem] leading-[1.72] text-[#656565] dark:text-[#969696]">
-          {description}
-        </p>
-      ) : null}
+      {description ? <p>{description}</p> : null}
     </div>
   );
 }
