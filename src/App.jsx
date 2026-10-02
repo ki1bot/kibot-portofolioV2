@@ -20,13 +20,15 @@ export default function App() {
   );
 
   const projectCount = loading ? "10+" : `${portfolio.projects.length}+`;
+
   const certificateCount = loading
     ? "14+"
     : `${portfolio.certificates.length}+`;
 
   return (
-    <div className="portfolio-root">
+    <div className="min-h-screen overflow-x-hidden bg-[#f8f8f5] text-[#111111] transition-colors duration-200 dark:bg-[#080808] dark:text-[#f4f4f1]">
       <Navbar />
+
       <FloatingControls theme={theme} onToggleTheme={toggleTheme} />
 
       <main>

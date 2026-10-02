@@ -29,16 +29,21 @@ export function CertificatesSection({ certificates, loading }) {
 
   return (
     <section
-      className="portfolio-texture portfolio-section certificate-section"
+      className="relative overflow-hidden border-t border-black/8 bg-[#f8f8f5] bg-[repeating-linear-gradient(135deg,rgba(17,17,17,0.04)_0,rgba(17,17,17,0.04)_1px,transparent_1px,transparent_8px)] dark:border-white/8 dark:bg-[#080808] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.043)_0,rgba(255,255,255,0.043)_1px,transparent_1px,transparent_8px)]"
       id="certificates"
     >
-      <div className="portfolio-shell section-shell">
+      <div className="mx-auto w-[min(1480px,calc(100%_-_56px))] py-[108px] pb-[126px] max-[760px]:w-[min(100%_-_30px,1480px)] max-[760px]:py-[88px] max-[760px]:pb-[98px]">
         <SectionHeading eyebrow="Proof of work" title="MY" accent="CERTS." />
 
         {loading ? (
-          <div className="projects-state">Loading certificates...</div>
+          <div className="mt-10 grid min-h-[280px] place-items-center rounded-[12px] border border-black/12 bg-white/50 text-[0.68rem] tracking-[0.09em] text-[#777] uppercase dark:border-white/10 dark:bg-[#0d0d0d]/82">
+            Loading certificates...
+          </div>
         ) : total ? (
-          <div className="certificate-stage" data-reveal="scale">
+          <div
+            className="relative mt-[60px] h-[500px] max-[760px]:h-[420px] max-[520px]:h-[355px]"
+            data-reveal="scale"
+          >
             {total > 1 ? (
               <CertificateCard
                 certificate={certificates[previousIndex]}
@@ -61,9 +66,10 @@ export function CertificatesSection({ certificates, loading }) {
               />
             ) : null}
 
-            <div className="certificate-controls">
+            <div className="absolute bottom-[-22px] left-1/2 z-[8] flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-black/18 bg-[#ededeb]/96 p-[6px_8px] shadow-[0_15px_45px_rgba(0,0,0,0.15)] backdrop-blur-[14px] dark:border-white/14 dark:bg-[#181818]/97 dark:shadow-[0_20px_55px_rgba(0,0,0,0.48)]">
               <button
                 type="button"
+                className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-black/12 bg-white/85 transition hover:border-[#ffd400] disabled:cursor-default disabled:opacity-35 dark:border-white/10 dark:bg-[#0d0d0d]"
                 onClick={previous}
                 disabled={total <= 1}
                 aria-label="Sertifikat sebelumnya"
@@ -71,12 +77,13 @@ export function CertificatesSection({ certificates, loading }) {
                 <NavIcon name="chevron-left" size={16} />
               </button>
 
-              <strong>
+              <strong className="min-w-[62px] text-center text-[0.67rem]">
                 {currentIndex + 1} / {total}
               </strong>
 
               <button
                 type="button"
+                className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-black/12 bg-white/85 transition hover:border-[#ffd400] disabled:cursor-default disabled:opacity-35 dark:border-white/10 dark:bg-[#0d0d0d]"
                 onClick={next}
                 disabled={total <= 1}
                 aria-label="Sertifikat berikutnya"
@@ -86,7 +93,9 @@ export function CertificatesSection({ certificates, loading }) {
             </div>
           </div>
         ) : (
-          <div className="projects-state">Belum ada certificate.</div>
+          <div className="mt-10 grid min-h-[280px] place-items-center rounded-[12px] border border-black/12 bg-white/50 text-[0.68rem] tracking-[0.09em] text-[#777] uppercase dark:border-white/10 dark:bg-[#0d0d0d]/82">
+            Belum ada certificate.
+          </div>
         )}
       </div>
     </section>
