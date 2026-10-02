@@ -1,9 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NAV_ITEMS } from "../../data/portfolioPage";
 import { NavIcon } from "../common/NavIcon";
 
+const INACTIVE_ITEM_WIDTH = 44;
+
+const ACTIVE_ITEM_WIDTHS = {
+  home: 92,
+  about: 104,
+  journey: 146,
+  projects: 128,
+  certificates: 156,
+  contact: 120,
+};
+
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
+
+  const programmaticScrollRef = useRef(false);
+  const unlockTimerRef = useRef(null);
 
   useEffect(() => {
     const sections = NAV_ITEMS.map((item) =>
@@ -12,8 +26,21 @@ export function Navbar() {
 
     let frameId = null;
 
+    const releaseNavigationLock = () => {
+      programmaticScrollRef.current = false;
+
+      if (unlockTimerRef.current !== null) {
+        window.clearTimeout(unlockTimerRef.current);
+        unlockTimerRef.current = null;
+      }
+    };
+
     const updateActiveSection = () => {
       frameId = null;
+
+      if (programmaticScrollRef.current) {
+        return;
+      }
 
       const marker = Math.min(window.innerHeight * 0.28, 260);
       let currentSection = sections[0]?.id ?? "home";
@@ -39,11 +66,45 @@ export function Navbar() {
     };
 
     const handleScroll = () => {
+      if (programmaticScrollRef.current) {
+        return;
+      }
+
       if (frameId !== null) {
         return;
       }
 
       frameId = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    const handleManualScrollStart = () => {
+      if (!programmaticScrollRef.current) {
+        return;
+      }
+
+      releaseNavigationLock();
+
+      if (frameId === null) {
+        frameId = window.requestAnimationFrame(updateActiveSection);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      const scrollKeys = [
+        "ArrowUp",
+        "ArrowDown",
+        "PageUp",
+        "PageDown",
+        "Home",
+        "End",
+        " ",
+      ];
+
+      if (!scrollKeys.includes(event.key)) {
+        return;
+      }
+
+      handleManualScrollStart();
     };
 
     updateActiveSection();
@@ -54,12 +115,34 @@ export function Navbar() {
 
     window.addEventListener("resize", handleScroll);
 
+    window.addEventListener("scrollend", releaseNavigationLock, {
+      passive: true,
+    });
+
+    window.addEventListener("wheel", handleManualScrollStart, {
+      passive: true,
+    });
+
+    window.addEventListener("touchstart", handleManualScrollStart, {
+      passive: true,
+    });
+
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("scrollend", releaseNavigationLock);
+      window.removeEventListener("wheel", handleManualScrollStart);
+      window.removeEventListener("touchstart", handleManualScrollStart);
+      window.removeEventListener("keydown", handleKeyDown);
 
       if (frameId !== null) {
         window.cancelAnimationFrame(frameId);
+      }
+
+      if (unlockTimerRef.current !== null) {
+        window.clearTimeout(unlockTimerRef.current);
       }
     };
   }, []);
@@ -73,26 +156,41 @@ export function Navbar() {
       return;
     }
 
+    if (unlockTimerRef.current !== null) {
+      window.clearTimeout(unlockTimerRef.current);
+      unlockTimerRef.current = null;
+    }
+
+    programmaticScrollRef.current = true;
+
     setActiveSection(target);
+
+    window.history.replaceState(null, "", `#${target}`);
 
     section.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
 
-    window.history.replaceState(null, "", `#${target}`);
+    unlockTimerRef.current = window.setTimeout(() => {
+      programmaticScrollRef.current = false;
+      unlockTimerRef.current = null;
+    }, 1500);
   };
 
   return (
     <header className="fixed top-[18px] left-1/2 z-[100] -translate-x-1/2 max-[520px]:top-3">
       <nav
-        className="flex items-center gap-0 rounded-full border border-black/10 bg-white/75 p-[7px] shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-[14px] dark:border-white/10 dark:bg-[#0b0b0b]/78 dark:shadow-[0_12px_32px_rgba(0,0,0,0.3)] max-[520px]:p-[6px]"
+        className="flex items-center rounded-full border border-white/[0.11] bg-[#090909]/90 p-[7px] shadow-[0_10px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-[14px] max-[520px]:p-[6px]"
         aria-label="Navigasi utama"
       >
         {NAV_ITEMS.map((item) => {
           const active = activeSection === item.target;
+
           const label =
             item.target === "certificates" ? "Certificates" : item.label;
+
+          const activeWidth = ACTIVE_ITEM_WIDTHS[item.target] ?? 120;
 
           return (
             <a
@@ -101,24 +199,38 @@ export function Navbar() {
               onClick={(event) => handleNavigation(event, item.target)}
               aria-label={label}
               aria-current={active ? "location" : undefined}
-              className={`flex h-[34px] shrink-0 items-center justify-center overflow-hidden rounded-full border px-[14px] transition-[color,background-color,border-color,box-shadow] duration-200 ease-out max-[520px]:h-[32px] max-[520px]:px-[12px] ${
+              title={!active ? label : undefined}
+              style={{
+                width: active ? activeWidth : INACTIVE_ITEM_WIDTH,
+              }}
+              className={`group relative h-[34px] shrink-0 transform-gpu overflow-hidden rounded-full border outline-none transition-[width,color,background-color,border-color,box-shadow] duration-[430ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width] focus-visible:ring-2 focus-visible:ring-[#f4bb16]/45 max-[520px]:h-[32px] ${
                 active
-                  ? "border-[#c6a300]/40 bg-[#ffd400]/12 text-[#9a7600] shadow-[inset_0_0_0_1px_rgba(255,212,0,0.02)] dark:border-[#ffd400]/30 dark:bg-[#ffd400]/12 dark:text-[#ffd400]"
-                  : "border-transparent text-[#5f5f5f] hover:text-[#111] dark:text-[#dddddd] dark:hover:text-white"
+                  ? "border-[#705710] bg-[#2b2208]/95 shadow-[inset_0_1px_0_rgba(255,214,70,0.055)]"
+                  : "border-transparent"
               }`}
             >
-              <span className="grid h-4 w-4 shrink-0 place-items-center">
+              <span
+                className={`absolute inset-y-0 left-[11px] flex w-[18px] items-center justify-center transform-gpu transition-[color,transform] duration-[300ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  active
+                    ? "scale-100 text-[#f4bb16]"
+                    : "scale-[0.98] text-[#eeeeea] group-hover:scale-100 group-hover:text-[#f4bb16]"
+                }`}
+              >
                 <NavIcon name={item.icon} size={16} />
               </span>
 
               <span
-                className={`overflow-hidden whitespace-nowrap transition-[max-width,margin,opacity,transform] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                className={`absolute inset-y-0 left-[38px] flex items-center whitespace-nowrap transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   active
-                    ? "ml-[10px] max-w-[150px] translate-x-0 opacity-100"
-                    : "ml-0 max-w-0 -translate-x-1 opacity-0"
+                    ? "translate-x-0 opacity-100 delay-[90ms]"
+                    : "-translate-x-[4px] opacity-0 delay-0"
                 }`}
               >
-                <span className="block text-[12px] leading-none font-black tracking-[0.065em] uppercase max-[520px]:text-[10px]">
+                <span
+                  className={`block text-[12px] leading-[1] font-black tracking-[0.045em] uppercase max-[520px]:text-[10px] ${
+                    active ? "text-[#f4bb16]" : "text-[#eeeeea]"
+                  }`}
+                >
                   {label}
                 </span>
               </span>
