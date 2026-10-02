@@ -10,58 +10,117 @@ export function Navbar() {
       document.getElementById(item.target),
     ).filter(Boolean);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    let frameId = null;
 
-        if (visibleEntries.length) {
-          setActiveSection(visibleEntries[0].target.id);
+    const updateActiveSection = () => {
+      frameId = null;
+
+      const marker = Math.min(window.innerHeight * 0.28, 260);
+      let currentSection = sections[0]?.id ?? "home";
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= marker) {
+          currentSection = section.id;
         }
-      },
-      {
-        rootMargin: "-12% 0px -74% 0px",
-        threshold: [0.02, 0.12, 0.3, 0.5],
-      },
-    );
+      }
 
-    sections.forEach((section) => observer.observe(section));
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 4
+      ) {
+        currentSection = sections.at(-1)?.id ?? currentSection;
+      }
 
-    return () => observer.disconnect();
+      setActiveSection((current) =>
+        current === currentSection ? current : currentSection,
+      );
+    };
+
+    const handleScroll = () => {
+      if (frameId !== null) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
+
+  const handleNavigation = (event, target) => {
+    event.preventDefault();
+
+    const section = document.getElementById(target);
+
+    if (!section) {
+      return;
+    }
+
+    setActiveSection(target);
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    window.history.replaceState(null, "", `#${target}`);
+  };
 
   return (
     <header className="fixed top-[18px] left-1/2 z-[100] -translate-x-1/2 max-[520px]:top-3">
       <nav
-        className="flex items-center gap-[2px] rounded-full border border-black/15 bg-white/80 p-[5px] shadow-[0_14px_42px_rgba(0,0,0,0.1)] backdrop-blur-[20px] dark:border-white/12 dark:bg-[#0b0b0b]/90 dark:shadow-[0_16px_52px_rgba(0,0,0,0.4)]"
+        className="flex items-center gap-0 rounded-full border border-black/10 bg-white/75 p-[7px] shadow-[0_10px_30px_rgba(0,0,0,0.12)] backdrop-blur-[14px] dark:border-white/10 dark:bg-[#0b0b0b]/78 dark:shadow-[0_12px_32px_rgba(0,0,0,0.3)] max-[520px]:p-[6px]"
         aria-label="Navigasi utama"
       >
         {NAV_ITEMS.map((item) => {
           const active = activeSection === item.target;
+          const label =
+            item.target === "certificates" ? "Certificates" : item.label;
 
           return (
             <a
-              className={`flex h-[35px] min-w-[35px] items-center justify-center rounded-full border px-[9px] transition-all duration-300 max-[520px]:h-[31px] max-[520px]:min-w-[31px] max-[520px]:px-[7px] ${
-                active
-                  ? "gap-2 border-[#ffd400]/40 bg-[#ffd400]/10 text-[#987600] dark:text-[#ffd400]"
-                  : "gap-0 border-transparent text-[#666] hover:text-[#111] dark:text-[#8d8d8d] dark:hover:text-white"
-              }`}
-              href={`#${item.target}`}
               key={item.target}
-              aria-label={item.label}
-              aria-current={active ? "page" : undefined}
+              href={`#${item.target}`}
+              onClick={(event) => handleNavigation(event, item.target)}
+              aria-label={label}
+              aria-current={active ? "location" : undefined}
+              className={`flex h-[34px] shrink-0 items-center justify-center overflow-hidden rounded-full border px-[14px] transition-[color,background-color,border-color,box-shadow] duration-200 ease-out max-[520px]:h-[32px] max-[520px]:px-[12px] ${
+                active
+                  ? "border-[#c6a300]/40 bg-[#ffd400]/12 text-[#9a7600] shadow-[inset_0_0_0_1px_rgba(255,212,0,0.02)] dark:border-[#ffd400]/30 dark:bg-[#ffd400]/12 dark:text-[#ffd400]"
+                  : "border-transparent text-[#5f5f5f] hover:text-[#111] dark:text-[#dddddd] dark:hover:text-white"
+              }`}
             >
-              <NavIcon name={item.icon} size={14} />
+              <span className="grid h-4 w-4 shrink-0 place-items-center">
+                <NavIcon name={item.icon} size={16} />
+              </span>
 
               <span
-                className={`overflow-hidden whitespace-nowrap font-mono text-[0.59rem] font-black tracking-[0.075em] uppercase transition-all duration-300 max-[520px]:text-[0.51rem] ${
+                className={`overflow-hidden whitespace-nowrap transition-[max-width,margin,opacity,transform] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   active
-                    ? "max-w-[110px] translate-x-0 opacity-100"
-                    : "max-w-0 -translate-x-1 opacity-0"
+                    ? "ml-[10px] max-w-[150px] translate-x-0 opacity-100"
+                    : "ml-0 max-w-0 -translate-x-1 opacity-0"
                 }`}
               >
-                {item.label}
+                <span className="block text-[12px] leading-none font-black tracking-[0.065em] uppercase max-[520px]:text-[10px]">
+                  {label}
+                </span>
               </span>
             </a>
           );
