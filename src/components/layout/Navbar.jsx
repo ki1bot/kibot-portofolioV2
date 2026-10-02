@@ -13,6 +13,15 @@ const ACTIVE_ITEM_WIDTHS = {
   contact: 120,
 };
 
+const ACTIVE_LABEL_LEFT = {
+  home: 34,
+  about: 38,
+  journey: 38,
+  projects: 38,
+  certificates: 38,
+  contact: 38,
+};
+
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
@@ -181,7 +190,7 @@ export function Navbar() {
   return (
     <header className="fixed top-[18px] left-1/2 z-[100] -translate-x-1/2 max-[520px]:top-3">
       <nav
-        className="flex items-center rounded-full border border-white/[0.11] bg-[#090909]/90 p-[7px] shadow-[0_10px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-[14px] max-[520px]:p-[6px]"
+        className="flex items-center rounded-full border border-white/[0.11] bg-black/[0.16] p-[7px] shadow-[0_8px_24px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-[2px] max-[520px]:p-[6px]"
         aria-label="Navigasi utama"
       >
         {NAV_ITEMS.map((item) => {
@@ -191,6 +200,8 @@ export function Navbar() {
             item.target === "certificates" ? "Certificates" : item.label;
 
           const activeWidth = ACTIVE_ITEM_WIDTHS[item.target] ?? 120;
+
+          const labelLeft = ACTIVE_LABEL_LEFT[item.target] ?? 38;
 
           return (
             <a
@@ -205,7 +216,7 @@ export function Navbar() {
               }}
               className={`group relative h-[34px] shrink-0 transform-gpu overflow-hidden rounded-full border outline-none transition-[width,color,background-color,border-color,box-shadow] duration-[430ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width] focus-visible:ring-2 focus-visible:ring-[#f4bb16]/45 max-[520px]:h-[32px] ${
                 active
-                  ? "border-[#705710] bg-[#2b2208]/95 shadow-[inset_0_1px_0_rgba(255,214,70,0.055)]"
+                  ? "border-[#705710] bg-[#2b2208]/80 shadow-[inset_0_1px_0_rgba(255,214,70,0.055)]"
                   : "border-transparent"
               }`}
             >
@@ -220,7 +231,10 @@ export function Navbar() {
               </span>
 
               <span
-                className={`absolute inset-y-0 left-[38px] flex items-center whitespace-nowrap transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                style={{
+                  left: `${labelLeft}px`,
+                }}
+                className={`absolute inset-y-0 flex items-center whitespace-nowrap transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   active
                     ? "translate-x-0 opacity-100 delay-[90ms]"
                     : "-translate-x-[4px] opacity-0 delay-0"
