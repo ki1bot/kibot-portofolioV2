@@ -69,6 +69,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/javascript/javascript-original.svg`,
     bg: "#f7df1e",
     fg: "#111111",
+    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   {
     name: "TypeScript",
@@ -76,6 +77,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/typescript/typescript-original.svg`,
     bg: "#397cc7",
     fg: "#ffffff",
+    href: "https://www.typescriptlang.org/",
   },
   {
     name: "PHP",
@@ -83,6 +85,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/php/php-original.svg`,
     bg: "#777bb4",
     fg: "#ffffff",
+    href: "https://www.php.net/",
   },
   {
     name: "Golang",
@@ -90,6 +93,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/go/go-original-wordmark.svg`,
     bg: "#20b8c5",
     fg: "#08252b",
+    href: "https://go.dev/",
   },
   {
     name: "Python",
@@ -97,6 +101,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/python/python-original.svg`,
     bg: "#427da2",
     fg: "#ffffff",
+    href: "https://www.python.org/",
   },
   {
     name: "HTML5",
@@ -104,6 +109,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/html5/html5-original.svg`,
     bg: "#d9442f",
     fg: "#ffffff",
+    href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
   },
   {
     name: "CSS3",
@@ -111,6 +117,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/css3/css3-original.svg`,
     bg: "#2389bd",
     fg: "#ffffff",
+    href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
   },
   {
     name: "Bootstrap",
@@ -118,6 +125,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/bootstrap/bootstrap-original.svg`,
     bg: "#7850ad",
     fg: "#ffffff",
+    href: "https://getbootstrap.com/",
   },
   {
     name: "Tailwind CSS",
@@ -125,6 +133,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/tailwindcss/tailwindcss-original.svg`,
     bg: "#25bdc6",
     fg: "#071f22",
+    href: "https://tailwindcss.com/",
   },
   {
     name: "React",
@@ -132,6 +141,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/react/react-original.svg`,
     bg: "#5ed5e6",
     fg: "#10242b",
+    href: "https://react.dev/",
   },
   {
     name: "Laravel",
@@ -139,6 +149,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/laravel/laravel-original.svg`,
     bg: "#f31d2a",
     fg: "#ffffff",
+    href: "https://laravel.com/",
   },
   {
     name: "CodeIgniter",
@@ -146,6 +157,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/codeigniter/codeigniter-plain.svg`,
     bg: "#d73e19",
     fg: "#ffffff",
+    href: "https://codeigniter.com/",
   },
   {
     name: "Next.JS",
@@ -154,6 +166,7 @@ export const TECH_CARDS = [
     bg: "#1b1b1b",
     fg: "#ffffff",
     invert: true,
+    href: "https://nextjs.org/",
   },
   {
     name: "Vue",
@@ -161,6 +174,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/vuejs/vuejs-original.svg`,
     bg: "#50c987",
     fg: "#ffffff",
+    href: "https://vuejs.org/",
   },
   {
     name: "Svelte",
@@ -168,6 +182,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/svelte/svelte-original.svg`,
     bg: "#fb3f13",
     fg: "#ffffff",
+    href: "https://svelte.dev/",
   },
   {
     name: "Express.JS",
@@ -176,6 +191,7 @@ export const TECH_CARDS = [
     bg: "#202020",
     fg: "#ffffff",
     invert: true,
+    href: "https://expressjs.com/",
   },
   {
     name: "Node.JS",
@@ -183,6 +199,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/nodejs/nodejs-original.svg`,
     bg: "#37a83a",
     fg: "#ffffff",
+    href: "https://nodejs.org/",
   },
   {
     name: "PostgreSQL",
@@ -190,6 +207,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/postgresql/postgresql-original.svg`,
     bg: "#39759a",
     fg: "#ffffff",
+    href: "https://www.postgresql.org/",
   },
   {
     name: "MySQL",
@@ -197,6 +215,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/mysql/mysql-original.svg`,
     bg: "#538caf",
     fg: "#ffffff",
+    href: "https://www.mysql.com/",
   },
   {
     name: "MongoDB",
@@ -204,6 +223,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/mongodb/mongodb-original.svg`,
     bg: "#4ab34c",
     fg: "#ffffff",
+    href: "https://www.mongodb.com/",
   },
   {
     name: "Supabase",
@@ -211,6 +231,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/supabase/supabase-original.svg`,
     bg: "#3fda8e",
     fg: "#08271d",
+    href: "https://supabase.com/",
   },
   {
     name: "Vercel",
@@ -219,6 +240,7 @@ export const TECH_CARDS = [
     bg: "#202020",
     fg: "#ffffff",
     invert: true,
+    href: "https://vercel.com/",
   },
   {
     name: "Git",
@@ -226,6 +248,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/git/git-original.svg`,
     bg: "#e6483b",
     fg: "#ffffff",
+    href: "https://git-scm.com/",
   },
   {
     name: "Docker",
@@ -233,6 +256,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/docker/docker-original.svg`,
     bg: "#1978c9",
     fg: "#ffffff",
+    href: "https://www.docker.com/",
   },
   {
     name: "Firebase",
@@ -240,6 +264,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/firebase/firebase-original.svg`,
     bg: "#f4b72d",
     fg: "#282000",
+    href: "https://firebase.google.com/",
   },
   {
     name: "Flutter",
@@ -247,6 +272,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/flutter/flutter-original.svg`,
     bg: "#48b9e8",
     fg: "#082b3a",
+    href: "https://flutter.dev/",
   },
   {
     name: "Java",
@@ -254,6 +280,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/java/java-original.svg`,
     bg: "#e36b18",
     fg: "#ffffff",
+    href: "https://dev.java/",
   },
   {
     name: "C++",
@@ -261,6 +288,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/cplusplus/cplusplus-original.svg`,
     bg: "#1766a0",
     fg: "#ffffff",
+    href: "https://isocpp.org/",
   },
   {
     name: "Linux",
@@ -268,6 +296,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/linux/linux-original.svg`,
     bg: "#262626",
     fg: "#ffffff",
+    href: "https://www.kernel.org/",
   },
   {
     name: "VS Code",
@@ -275,6 +304,7 @@ export const TECH_CARDS = [
     icon: `${DEVICON}/vscode/vscode-original.svg`,
     bg: "#1686c5",
     fg: "#ffffff",
+    href: "https://code.visualstudio.com/",
   },
 ];
 

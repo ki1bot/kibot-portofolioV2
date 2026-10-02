@@ -79,8 +79,11 @@ export function AboutSection({ projectCount, certificateCount }) {
 
             <div className="grid grid-cols-6 gap-[8px] max-[1200px]:grid-cols-5 max-[1050px]:grid-cols-6 max-[760px]:grid-cols-4 max-[520px]:grid-cols-3">
               {TECH_CARDS.map((item, index) => (
-                <article
-                  className="tech-card relative flex aspect-square min-w-0 flex-col items-center justify-center overflow-hidden rounded-[9px] border border-black/10 px-2 pt-3 pb-3 shadow-[0_8px_22px_rgba(0,0,0,0.05)] transition duration-300 hover:z-[2] hover:-translate-y-1.5 hover:scale-[1.025] hover:shadow-[0_14px_28px_rgba(0,0,0,0.16)]"
+                <a
+                  className="tech-card relative flex aspect-square min-w-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[9px] border border-black/10 px-2 pt-3 pb-3 shadow-[0_8px_22px_rgba(0,0,0,0.05)] outline-none transition duration-300 hover:z-[2] hover:-translate-y-1.5 hover:scale-[1.025] hover:shadow-[0_14px_28px_rgba(0,0,0,0.16)] focus-visible:z-[3] focus-visible:-translate-y-1.5 focus-visible:scale-[1.025] focus-visible:ring-2 focus-visible:ring-[#ffd400] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f8f5] dark:focus-visible:ring-offset-[#080808]"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     backgroundColor: item.bg,
                     color: item.fg,
@@ -88,6 +91,8 @@ export function AboutSection({ projectCount, certificateCount }) {
                   }}
                   key={item.name}
                   data-reveal="scale"
+                  aria-label={`Buka website resmi ${item.name}`}
+                  title={`Buka website resmi ${item.name}`}
                 >
                   <img
                     className="h-[31px] w-[31px] object-contain"
@@ -119,10 +124,10 @@ export function AboutSection({ projectCount, certificateCount }) {
                     {item.name}
                   </span>
 
-                  <i className="absolute right-[7px] bottom-[6px] grid h-[17px] w-[17px] place-items-center rounded-full bg-white/18 text-[0.43rem] not-italic">
+                  <i className="absolute right-[7px] bottom-[6px] grid h-[17px] w-[17px] place-items-center rounded-full bg-white/18 text-[0.43rem] not-italic transition duration-300 group-hover:-translate-y-0.5">
                     ↗
                   </i>
-                </article>
+                </a>
               ))}
             </div>
           </div>
