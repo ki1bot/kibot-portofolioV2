@@ -39,6 +39,12 @@ html.dark {
   color-scheme: dark;
 }
 
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
 * {
   box-sizing: border-box;
 }

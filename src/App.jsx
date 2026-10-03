@@ -9,14 +9,12 @@ import { Navbar } from "./components/layout/Navbar";
 import { ProjectsSection } from "./components/sections/ProjectsSection";
 import { usePortfolioData } from "./hooks/usePortfolioData";
 import { useReveal } from "./hooks/useReveal";
-import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
   const { portfolio, loading, loadError } = usePortfolioData();
-  const { theme, toggleTheme } = useTheme();
 
   useReveal(
-    `${loading}:${portfolio.projects.length}:${portfolio.certificates.length}:${theme}`,
+    `${loading}:${portfolio.projects.length}:${portfolio.certificates.length}`,
   );
 
   const projectCount = loading ? "10+" : `${portfolio.projects.length}+`;
@@ -29,7 +27,7 @@ export default function App() {
     <div className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--ink)] transition-colors duration-300">
       <Navbar />
 
-      <FloatingControls theme={theme} onToggleTheme={toggleTheme} />
+      <FloatingControls />
 
       <main>
         <HeroSection

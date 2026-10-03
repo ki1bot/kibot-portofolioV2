@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { PERSONAL_INFO } from "../../lib/portfolio";
+import { useTheme } from "../../hooks/useTheme";
 import { NavIcon } from "../common/NavIcon";
 
-export function FloatingControls({ theme, onToggleTheme }) {
+export function FloatingControls() {
   const [playerOpen, setPlayerOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <>
       <button
         type="button"
         className="fixed top-[17px] right-[25px] z-[101] grid h-[40px] w-[40px] place-items-center rounded-full border border-black/12 bg-white/58 text-[#696966] shadow-[0_10px_32px_rgba(0,0,0,0.1)] backdrop-blur-[16px] transition-[transform,border-color,color,background-color] duration-300 hover:rotate-6 hover:border-[#bd930d]/55 hover:text-[#8f7000] dark:border-white/10 dark:bg-[#090909]/66 dark:text-[#aaa] dark:hover:border-[#ffd400]/55 dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-3.5 max-[760px]:bottom-[82px]"
-        onClick={onToggleTheme}
+        onClick={toggleTheme}
         aria-label={
           theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap"
         }
