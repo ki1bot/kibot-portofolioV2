@@ -32,7 +32,7 @@ export function ContactSection() {
             </span>
 
             <h3 className="mt-3 mb-0 text-[clamp(1.45rem,3vw,2rem)] font-black tracking-[-0.045em] uppercase">
-              RIFQI SUSANTO
+              RIFQI
             </h3>
 
             <p className="mt-3 max-w-[570px] text-[0.82rem] leading-[1.75] text-[#626262] dark:text-[#9b9b9b]">
