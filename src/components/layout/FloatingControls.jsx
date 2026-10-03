@@ -9,7 +9,7 @@ export function FloatingControls({ theme, onToggleTheme }) {
     <>
       <button
         type="button"
-        className="fixed top-[18px] right-[25px] z-[101] grid h-[38px] w-[38px] cursor-pointer place-items-center rounded-full border border-black/15 bg-white/80 text-[#5f5f5f] shadow-[0_10px_32px_rgba(0,0,0,0.09)] backdrop-blur-[18px] transition duration-300 hover:rotate-12 hover:border-[#c7a400] hover:text-[#8f7000] dark:border-white/10 dark:bg-[#0b0b0b]/90 dark:text-[#aaa] dark:hover:border-[#ffd400] dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-4 max-[760px]:bottom-[79px]"
+        className="fixed top-[18px] right-[25px] z-[101] grid h-[42px] w-[42px] cursor-pointer place-items-center rounded-full border border-black/15 bg-white/80 text-[#5f5f5f] shadow-[0_10px_32px_rgba(0,0,0,0.09)] backdrop-blur-[18px] transition-[transform,border-color,color] duration-300 hover:rotate-6 hover:border-[#c7a400] hover:text-[#8f7000] dark:border-white/10 dark:bg-[#0b0b0b]/90 dark:text-[#aaa] dark:hover:border-[#ffd400] dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-3.5 max-[760px]:bottom-[83px]"
         onClick={onToggleTheme}
         aria-label={
           theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap"
@@ -20,7 +20,7 @@ export function FloatingControls({ theme, onToggleTheme }) {
       </button>
 
       {playerOpen ? (
-        <div className="fixed right-5 bottom-[78px] z-[96] w-[330px] origin-bottom-right animate-[music-panel-enter_260ms_cubic-bezier(0.22,1,0.36,1)] overflow-hidden rounded-[15px] border border-black/14 bg-[#f5f5f2]/96 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur-[22px] dark:border-white/12 dark:bg-[#0d0d0d]/96 dark:shadow-[0_28px_80px_rgba(0,0,0,0.55)] max-[520px]:right-3 max-[520px]:w-[calc(100%_-_24px)]">
+        <div className="fixed right-5 bottom-[86px] z-[96] w-[330px] origin-bottom-right animate-[music-panel-enter_380ms_cubic-bezier(0.16,1,0.3,1)] overflow-hidden rounded-[15px] border border-black/14 bg-[#f5f5f2]/96 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur-[22px] dark:border-white/12 dark:bg-[#0d0d0d]/96 dark:shadow-[0_28px_80px_rgba(0,0,0,0.55)] max-[520px]:right-3 max-[520px]:w-[calc(100%_-_24px)]">
           <div className="flex items-center justify-between gap-3">
             <span className="rounded-full border border-black/15 px-2.5 py-1 font-mono text-[0.5rem] font-black tracking-[0.16em] text-[#5d5d5d] dark:border-white/12 dark:text-[#999]">
               // NOW PLAYING
@@ -100,7 +100,7 @@ export function FloatingControls({ theme, onToggleTheme }) {
 
       <button
         type="button"
-        className="fixed right-5 bottom-4 z-[97] flex min-w-[146px] cursor-pointer items-center gap-2.5 rounded-full border border-black/14 bg-white/80 py-[6px] pr-3.5 pl-[6px] text-left text-[#111] shadow-[0_15px_42px_rgba(0,0,0,0.12)] backdrop-blur-[18px] transition duration-300 hover:-translate-y-1 hover:border-[#c7a400] dark:border-white/10 dark:bg-[#0d0d0d]/92 dark:text-[#f5f5f2] dark:shadow-[0_18px_52px_rgba(0,0,0,0.42)] dark:hover:border-[#ffd400] max-[760px]:right-3.5 max-[760px]:min-w-0 max-[760px]:p-[6px]"
+        className="fixed right-5 bottom-4 z-[97] flex min-h-[50px] min-w-[146px] cursor-pointer items-center gap-2.5 rounded-full border border-black/14 bg-white/80 py-[6px] pr-3.5 pl-[6px] text-left text-[#111] shadow-[0_15px_42px_rgba(0,0,0,0.12)] backdrop-blur-[18px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-1 hover:border-[#c7a400] dark:border-white/10 dark:bg-[#0d0d0d]/92 dark:text-[#f5f5f2] dark:shadow-[0_18px_52px_rgba(0,0,0,0.42)] dark:hover:border-[#ffd400] max-[760px]:right-3.5 max-[760px]:min-w-0 max-[760px]:p-[6px]"
         onClick={() => setPlayerOpen((current) => !current)}
         aria-expanded={playerOpen}
         aria-label="Tampilkan music player"

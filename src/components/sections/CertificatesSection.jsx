@@ -28,11 +28,8 @@ export function CertificatesSection({ certificates, loading }) {
   }
 
   return (
-    <section
-      className="relative overflow-hidden border-t border-black/8 bg-[#f8f8f5] bg-[repeating-linear-gradient(135deg,rgba(17,17,17,0.04)_0,rgba(17,17,17,0.04)_1px,transparent_1px,transparent_8px)] dark:border-white/8 dark:bg-[#080808] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.043)_0,rgba(255,255,255,0.043)_1px,transparent_1px,transparent_8px)]"
-      id="certificates"
-    >
-      <div className="mx-auto w-[min(1480px,calc(100%_-_56px))] py-[108px] pb-[126px] max-[760px]:w-[min(100%_-_30px,1480px)] max-[760px]:py-[88px] max-[760px]:pb-[98px]">
+    <section className="portfolio-section" id="certificates">
+      <div className="portfolio-container">
         <SectionHeading eyebrow="Proof of work" title="MY" accent="CERTS." />
 
         {loading ? (
@@ -41,7 +38,7 @@ export function CertificatesSection({ certificates, loading }) {
           </div>
         ) : total ? (
           <div
-            className="relative mt-[60px] h-[500px] max-[760px]:h-[420px] max-[520px]:h-[355px]"
+            className="relative mx-auto mt-12 h-[510px] max-w-[1100px] max-[760px]:h-[440px] max-[520px]:h-[380px]"
             data-reveal="scale"
           >
             {total > 1 ? (
@@ -77,7 +74,7 @@ export function CertificatesSection({ certificates, loading }) {
                 <NavIcon name="chevron-left" size={16} />
               </button>
 
-              <strong className="min-w-[62px] text-center text-[0.67rem]">
+              <strong aria-live="polite" className="min-w-[62px] text-center text-[0.67rem]">
                 {currentIndex + 1} / {total}
               </strong>
 

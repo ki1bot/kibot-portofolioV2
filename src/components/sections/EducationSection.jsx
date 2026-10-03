@@ -4,22 +4,19 @@ import { NavIcon } from "../common/NavIcon";
 
 export function EducationSection() {
   return (
-    <section
-      className="relative overflow-hidden border-t border-black/8 bg-[#f8f8f5] bg-[repeating-linear-gradient(135deg,rgba(17,17,17,0.04)_0,rgba(17,17,17,0.04)_1px,transparent_1px,transparent_8px)] dark:border-white/8 dark:bg-[#080808] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.043)_0,rgba(255,255,255,0.043)_1px,transparent_1px,transparent_8px)]"
-      id="journey"
-    >
-      <div className="mx-auto w-[min(1480px,calc(100%_-_56px))] py-[108px] pb-[126px] max-[760px]:w-[min(100%_-_30px,1480px)] max-[760px]:py-[88px] max-[760px]:pb-[98px]">
+    <section className="portfolio-section" id="journey">
+      <div className="portfolio-container">
         <SectionHeading
-          eyebrow="Career path"
+          eyebrow="Academic journey"
           title="MY"
-          accent="EXPERIENCE."
+          accent="JOURNEY."
           description="My academic and technical journey, from vocational education to Information Systems at Universitas Gunadarma."
         />
 
-        <div className="relative mt-[58px] ml-[15px] max-w-[930px] pl-[50px] before:absolute before:inset-y-4 before:left-3 before:w-px before:bg-black/15 before:content-[''] dark:before:bg-white/14 max-[760px]:ml-0 max-[760px]:pl-[34px] max-[760px]:before:left-[9px]">
+        <div className="relative mx-auto mt-12 max-w-[980px] pl-[50px] before:absolute before:inset-y-4 before:left-3 before:w-px before:bg-black/15 before:content-[''] dark:before:bg-white/14 max-[760px]:ml-0 max-[760px]:pl-[34px] max-[760px]:before:left-[9px]">
           {JOURNEY_ITEMS.map((item, index) => (
             <article
-              className="relative mb-[34px] last:mb-0"
+              className="relative mb-7 last:mb-0"
               key={`${item.period}-${item.title}`}
               data-reveal
               style={{
@@ -34,7 +31,7 @@ export function EducationSection() {
               </span>
 
               <div
-                className={`rounded-[12px] border bg-white/60 p-[27px] shadow-[0_18px_48px_rgba(0,0,0,0.05)] backdrop-blur-[2px] transition duration-300 hover:-translate-y-0.5 hover:border-[#c7a400]/40 dark:bg-[#0d0d0d]/90 dark:shadow-[0_18px_48px_rgba(0,0,0,0.28)] max-[520px]:p-5 ${
+                className={`rounded-[12px] border bg-[var(--card-bg)] p-[27px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-0.5 hover:border-[#c7a400]/40 max-[520px]:p-5 ${
                   index === 0
                     ? "border-[#c7a400]/65 dark:border-[#ffd400]/60"
                     : "border-black/13 dark:border-white/10"

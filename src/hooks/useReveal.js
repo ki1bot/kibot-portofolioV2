@@ -2,44 +2,68 @@ import { useEffect } from "react";
 
 export function useReveal(dependencyKey) {
   useEffect(() => {
-    const elements = Array.from(
-      document.querySelectorAll("[data-reveal]:not(.is-visible)"),
-    );
+    const selector = "[data-reveal]:not(.is-visible)";
 
-    if (!elements.length) {
-      return undefined;
-    }
+    const showImmediately =
+      !("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (!("IntersectionObserver" in window)) {
-      elements.forEach((element) => {
+    if (showImmediately) {
+      document.querySelectorAll(selector).forEach((element) => {
         element.classList.add("is-visible");
       });
 
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
+    const intersectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
 
-            observer.unobserve(entry.target);
+            intersectionObserver.unobserve(entry.target);
           }
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -6% 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -5% 0px",
       },
     );
 
-    elements.forEach((element) => {
-      observer.observe(element);
+    const observeRevealElements = (node) => {
+      if (!(node instanceof Element)) {
+        return;
+      }
+
+      if (node.matches(selector)) {
+        intersectionObserver.observe(node);
+      }
+
+      node.querySelectorAll(selector).forEach((element) => {
+        intersectionObserver.observe(element);
+      });
+    };
+
+    document.querySelectorAll(selector).forEach((element) => {
+      intersectionObserver.observe(element);
+    });
+
+    const mutationObserver = new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach(observeRevealElements);
+      });
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
     });
 
     return () => {
-      observer.disconnect();
+      intersectionObserver.disconnect();
+      mutationObserver.disconnect();
     };
   }, [dependencyKey]);
 }

@@ -5,11 +5,11 @@ export function SectionHeading({ eyebrow, title, accent, description }) {
         // {eyebrow}
       </span>
 
-      <h2 className="mt-7 w-fit font-sans text-[clamp(4.5rem,6.6vw,7.9rem)] font-black leading-[0.76] tracking-[-0.078em] uppercase max-[760px]:text-[clamp(3.4rem,17vw,5rem)]">
+      <h2 className="mt-7 w-fit max-w-full font-sans text-[clamp(4rem,6.1vw,7.25rem)] font-black leading-[0.8] tracking-[-0.078em] uppercase max-[760px]:text-[clamp(3rem,14vw,4.25rem)]">
         <span className="block">{title}</span>
 
         {accent ? (
-          <strong className="mt-[18px] block font-black text-transparent [-webkit-text-stroke:1.5px_rgba(17,17,17,0.78)] dark:[-webkit-text-stroke:1.5px_rgba(244,244,241,0.82)]">
+          <strong className="mt-[18px] block font-black text-transparent [-webkit-text-stroke:1.4px_rgba(17,17,17,0.78)] dark:[-webkit-text-stroke:1.4px_rgba(244,244,241,0.82)]">
             {accent}
           </strong>
         ) : null}

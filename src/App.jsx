@@ -26,7 +26,7 @@ export default function App() {
     : `${portfolio.certificates.length}+`;
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f8f8f5] text-[#111111] transition-colors duration-200 dark:bg-[#080808] dark:text-[#f4f4f1]">
+    <div className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--ink)] transition-colors duration-300">
       <Navbar />
 
       <FloatingControls theme={theme} onToggleTheme={toggleTheme} />

@@ -190,7 +190,7 @@ export function Navbar() {
   return (
     <header className="fixed top-[18px] left-1/2 z-[100] -translate-x-1/2 max-[520px]:top-3">
       <nav
-        className="flex items-center rounded-full border border-white/[0.11] bg-black/[0.16] p-[7px] shadow-[0_8px_24px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-[2px] max-[520px]:p-[6px]"
+        className="main-navigation flex items-center rounded-full border border-white/[0.11] bg-black/[0.16] p-[7px] shadow-[0_8px_24px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.025)] backdrop-blur-[8px] max-[520px]:p-[6px]"
         aria-label="Navigasi utama"
       >
         {NAV_ITEMS.map((item) => {
@@ -212,9 +212,9 @@ export function Navbar() {
               aria-current={active ? "location" : undefined}
               title={!active ? label : undefined}
               style={{
-                width: active ? activeWidth : INACTIVE_ITEM_WIDTH,
+                "--item-width": `${active ? activeWidth : INACTIVE_ITEM_WIDTH}px`,
               }}
-              className={`group relative h-[34px] shrink-0 transform-gpu overflow-hidden rounded-full border outline-none transition-[width,color,background-color,border-color,box-shadow] duration-[430ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width] focus-visible:ring-2 focus-visible:ring-[#f4bb16]/45 max-[520px]:h-[32px] ${
+              className={`group relative h-[36px] w-[var(--item-width)] shrink-0 transform-gpu overflow-hidden rounded-full border outline-none transition-[width,color,background-color,border-color,box-shadow] duration-[430ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width] focus-visible:ring-2 focus-visible:ring-[#f4bb16]/45 max-[520px]:h-[38px] ${
                 active
                   ? "border-[#705710] bg-[#2b2208]/80 shadow-[inset_0_1px_0_rgba(255,214,70,0.055)]"
                   : "border-transparent"

@@ -56,15 +56,12 @@ export function ProjectsSection({ projects, loading, loadError }) {
   }
 
   return (
-    <section
-      className="relative overflow-hidden border-t border-black/8 bg-[#f8f8f5] bg-[repeating-linear-gradient(135deg,rgba(17,17,17,0.04)_0,rgba(17,17,17,0.04)_1px,transparent_1px,transparent_8px)] dark:border-white/8 dark:bg-[#080808] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.043)_0,rgba(255,255,255,0.043)_1px,transparent_1px,transparent_8px)]"
-      id="projects"
-    >
-      <div className="mx-auto w-[min(1480px,calc(100%_-_56px))] py-[108px] pb-[126px] max-[760px]:w-[min(100%_-_30px,1480px)] max-[760px]:py-[88px] max-[760px]:pb-[98px]">
+    <section className="portfolio-section" id="projects">
+      <div className="portfolio-container">
         <SectionHeading eyebrow="Proof of work" title="MY" accent="PROJECTS." />
 
         <div
-          className="mt-[52px] flex items-end justify-between gap-7 max-[820px]:flex-col max-[820px]:items-start"
+          className="mt-11 flex items-end justify-between gap-7 max-[820px]:flex-col max-[820px]:items-start max-[520px]:mt-9"
           data-reveal
         >
           <div className="grid gap-3">
@@ -81,17 +78,22 @@ export function ProjectsSection({ projects, loading, loadError }) {
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
-            <div className="flex items-center rounded-full border border-black/14 bg-white/30 p-1 dark:border-white/10 dark:bg-[#0c0c0c]/78 max-[520px]:w-full max-[520px]:justify-between">
+            <div
+              className="flex items-center rounded-full border border-black/14 bg-white/30 p-1 dark:border-white/10 dark:bg-[#0c0c0c]/78 max-[520px]:w-full max-[520px]:justify-between"
+              role="group"
+              aria-label="Filter proyek"
+            >
               {FILTERS.map((item) => (
                 <button
                   type="button"
-                  className={`min-h-[31px] cursor-pointer rounded-full px-4 text-[0.56rem] font-black tracking-[0.04em] uppercase transition duration-200 max-[520px]:px-3 ${
+                className={`min-h-[40px] cursor-pointer rounded-full px-4 text-[0.62rem] font-black tracking-[0.04em] uppercase transition-[color,background-color,box-shadow] duration-300 max-[520px]:px-3 ${
                     filter === item.id
                       ? "bg-[#ffd400] text-[#111] shadow-[0_5px_16px_rgba(255,212,0,0.17)]"
                       : "text-[#666] hover:text-[#111] dark:text-[#999] dark:hover:text-white"
                   }`}
                   onClick={() => changeFilter(item.id)}
                   key={item.id}
+                  aria-pressed={filter === item.id}
                 >
                   {item.label}
                 </button>
@@ -120,13 +122,13 @@ export function ProjectsSection({ projects, loading, loadError }) {
           </div>
         ) : filteredProjects.length ? (
           <>
-            <div className="mt-[38px] grid grid-cols-3 gap-[17px] max-[1120px]:grid-cols-2 max-[720px]:grid-cols-1">
+            <div className="mt-8 grid grid-cols-3 gap-5 max-[1120px]:grid-cols-2 max-[720px]:grid-cols-1 max-[520px]:gap-4">
               {visibleProjects.map((project, index) => (
                 <div
                   key={project.id}
                   data-reveal
                   style={{
-                    "--reveal-delay": `${index * 45}ms`,
+                    "--reveal-delay": `${(index % 3) * 70}ms`,
                   }}
                 >
                   <ProjectCard project={project} />
@@ -136,7 +138,7 @@ export function ProjectsSection({ projects, loading, loadError }) {
 
             {pageCount > 1 ? (
               <div
-                className="mt-[42px] flex items-center justify-center gap-2"
+                className="mt-9 flex items-center justify-center gap-2"
                 data-reveal
               >
                 <button
