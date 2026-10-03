@@ -1,7 +1,7 @@
 import { PERSONAL_INFO } from "../../lib/portfolio";
 import { NavIcon } from "../common/NavIcon";
 
-const TAPE_TEXT = Array.from({ length: 24 }, () => "RIFQI SUSANTO");
+const TAPE_TEXT = Array.from({ length: 24 }, () => "RIFQI");
 
 const TAPE_CONFIG = [
   {
@@ -133,7 +133,7 @@ export function HeroSection({ projectCount, certificateCount }) {
             </span>
 
             <strong className="hero-name mt-6 block whitespace-nowrap text-[clamp(3.4rem,4.5vw,5.3rem)] font-black leading-[0.88] tracking-[-0.04em] max-[760px]:whitespace-normal max-[760px]:text-[clamp(2.8rem,13vw,4.4rem)]">
-              RIFQI
+              RIFQI SUSANTO
             </strong>
           </h1>
 
