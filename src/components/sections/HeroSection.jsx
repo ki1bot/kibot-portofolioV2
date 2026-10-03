@@ -1,43 +1,43 @@
 import { PERSONAL_INFO } from "../../lib/portfolio";
 import { NavIcon } from "../common/NavIcon";
 
-const TAPE_TEXT = Array.from({ length: 24 }, () => "RIFQI");
+const TAPE_TEXT = Array.from({ length: 40 }, () => "RIFQI");
 
 const TAPE_CONFIG = [
   {
-    centerY: "9.5%",
-    rotate: 14,
-    opacity: 0.62,
+    centerY: "9%",
+    rotate: 14.2,
+    opacity: 0.58,
     reverse: false,
-    duration: "64s",
+    duration: "46s",
   },
   {
-    centerY: "6.1%",
-    rotate: -12,
-    opacity: 0.68,
+    centerY: "5.5%",
+    rotate: -11.8,
+    opacity: 0.72,
     reverse: true,
-    duration: "72s",
+    duration: "52s",
   },
   {
-    centerY: "68.5%",
-    rotate: 17,
-    opacity: 0.86,
+    centerY: "60%",
+    rotate: 15.8,
+    opacity: 0.88,
     reverse: true,
-    duration: "68s",
+    duration: "48s",
   },
   {
-    centerY: "65.2%",
-    rotate: -15,
-    opacity: 0.8,
+    centerY: "62.5%",
+    rotate: -14.4,
+    opacity: 0.82,
     reverse: false,
-    duration: "76s",
+    duration: "56s",
   },
 ];
 
 function Tape({ centerY, rotate, opacity, reverse, duration }) {
   return (
     <div
-      className="hero-tape pointer-events-none absolute left-1/2 z-0 flex h-[76px] w-[160vw] min-w-[2500px] origin-center items-center overflow-hidden border-y border-black/20 bg-[#c59620] max-[760px]:h-[52px] max-[760px]:min-w-[1500px]"
+      className="hero-tape pointer-events-none absolute left-1/2 z-0 flex h-[74px] w-[190vw] min-w-[2800px] origin-center items-center overflow-hidden border-y border-black/25 bg-[#bd8e19] max-[760px]:h-[52px] max-[760px]:min-w-[1700px]"
       style={{
         top: centerY,
         opacity,
@@ -54,7 +54,7 @@ function Tape({ centerY, rotate, opacity, reverse, duration }) {
       >
         {TAPE_TEXT.map((text, index) => (
           <span
-            className="inline-flex shrink-0 items-center pr-11 text-[clamp(1rem,1.08vw,1.28rem)] font-black tracking-[0.14em] whitespace-nowrap text-black/90 uppercase after:ml-11 after:text-black/85 after:content-['–'] max-[760px]:pr-7 max-[760px]:text-[0.76rem] max-[760px]:tracking-[0.12em] max-[760px]:after:ml-7"
+            className="inline-flex shrink-0 items-center pr-10 text-[clamp(1rem,1.06vw,1.26rem)] font-black tracking-[0.14em] whitespace-nowrap text-black/92 uppercase after:ml-10 after:text-black/88 after:content-['–'] max-[760px]:pr-7 max-[760px]:text-[0.76rem] max-[760px]:tracking-[0.12em] max-[760px]:after:ml-7"
             key={`${text}-${index}`}
           >
             {text}
@@ -93,11 +93,11 @@ export function HeroSection({ projectCount, certificateCount }) {
 
   return (
     <section
-      className="relative isolate min-h-svh overflow-hidden bg-[#f8f8f5] dark:bg-[#070707]"
+      className="relative isolate min-h-svh overflow-hidden bg-[#f7f7f3] dark:bg-[#080808]"
       id="home"
     >
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_72%_50%,rgba(105,61,170,0.05),transparent_24%),radial-gradient(circle_at_35%_42%,rgba(255,203,0,0.025),transparent_32%)] dark:bg-[radial-gradient(circle_at_72%_50%,rgba(101,55,165,0.115),transparent_24%),radial-gradient(circle_at_35%_42%,rgba(255,203,0,0.018),transparent_32%)]"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_73%_50%,rgba(104,61,168,0.055),transparent_23%),radial-gradient(circle_at_33%_42%,rgba(255,203,0,0.026),transparent_31%)] dark:bg-[radial-gradient(circle_at_72%_51%,rgba(101,55,165,0.13),transparent_23%),radial-gradient(circle_at_34%_42%,rgba(255,203,0,0.018),transparent_31%)]"
         aria-hidden="true"
       />
 
@@ -117,27 +117,27 @@ export function HeroSection({ projectCount, certificateCount }) {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto grid min-h-svh w-[min(1280px,calc(100%_-_56px))] grid-cols-[minmax(0,700px)_340px] items-center justify-center gap-[clamp(160px,12.5vw,200px)] pt-24 pb-24 max-[1500px]:grid-cols-[minmax(0,1fr)_320px] max-[1500px]:gap-[clamp(80px,8vw,130px)] max-[980px]:w-[min(100%_-_42px,900px)] max-[980px]:grid-cols-1 max-[980px]:gap-16 max-[980px]:pt-[135px] max-[980px]:pb-[110px] max-[760px]:w-[min(100%_-_30px,900px)] max-[760px]:gap-12 max-[760px]:pt-[120px]">
+      <div className="relative z-10 mx-auto grid min-h-svh w-[min(1510px,calc(100%_-_80px))] grid-cols-[minmax(0,720px)_340px] items-center justify-start gap-[clamp(160px,14vw,270px)] pt-24 pb-24 max-[1540px]:grid-cols-[minmax(0,680px)_320px] max-[1540px]:gap-[clamp(100px,10vw,175px)] max-[1240px]:w-[min(1100px,calc(100%_-_64px))] max-[1240px]:grid-cols-[minmax(0,620px)_300px] max-[1240px]:gap-[90px] max-[1050px]:w-[min(100%_-_42px,900px)] max-[1050px]:grid-cols-1 max-[1050px]:gap-14 max-[1050px]:pt-[132px] max-[1050px]:pb-[112px] max-[760px]:w-[min(100%_-_30px,900px)] max-[760px]:gap-11 max-[760px]:pt-[116px]">
         <div
-          className="w-full max-w-[700px] -translate-y-[25px] max-[980px]:mx-auto max-[980px]:translate-y-0 max-[760px]:text-center"
+          className="w-full max-w-[720px] -translate-y-[16px] max-[1050px]:mx-auto max-[1050px]:translate-y-0 max-[760px]:text-center"
           data-reveal="left"
         >
-          <span className="inline-flex min-h-[25px] items-center gap-2 rounded-full border border-[#cfa900]/30 bg-[#ffd400]/8 px-3 py-1 text-[0.62rem] font-semibold text-[#896b00] backdrop-blur-[6px] dark:border-[#ffd400]/25 dark:bg-[#ffd400]/[0.055] dark:text-[#d4ad21] max-[760px]:mx-auto">
+          <span className="inline-flex min-h-[24px] items-center gap-2 rounded-full border border-[#cfa900]/30 bg-[#ffd400]/8 px-3 py-1 text-[0.6rem] font-semibold text-[#896b00] backdrop-blur-[6px] dark:border-[#ffd400]/24 dark:bg-[#ffd400]/[0.05] dark:text-[#d5ad20] max-[760px]:mx-auto">
             <i className="h-[7px] w-[7px] animate-[status-pulse_1.8s_ease-in-out_infinite] rounded-full bg-[#21d26a]" />
             Open to work
           </span>
 
-          <h1 className="mt-[31px] font-black leading-[0.9] tracking-[-0.055em]">
-            <span className="block text-[clamp(3.35rem,4.25vw,5.15rem)] text-[#151515] dark:text-[#f3f3f0] max-[760px]:text-[clamp(3rem,14vw,4.7rem)]">
+          <h1 className="mt-[29px] font-black leading-[0.9] tracking-[-0.055em]">
+            <span className="block text-[clamp(3.45rem,4.25vw,5.2rem)] text-[#151515] dark:text-[#f2f2ef] max-[760px]:text-[clamp(3rem,14vw,4.7rem)]">
               Hi, I&apos;m
             </span>
 
-            <strong className="hero-name mt-6 block whitespace-nowrap text-[clamp(3.4rem,4.5vw,5.3rem)] font-black leading-[0.88] tracking-[-0.04em] max-[760px]:whitespace-normal max-[760px]:text-[clamp(2.8rem,13vw,4.4rem)]">
+            <strong className="hero-name mt-[23px] block whitespace-nowrap text-[clamp(3.55rem,4.55vw,5.45rem)] font-black leading-[0.88] tracking-[-0.04em] max-[760px]:whitespace-normal max-[760px]:text-[clamp(2.8rem,13vw,4.4rem)]">
               RIFQI SUSANTO
             </strong>
           </h1>
 
-          <p className="mt-[39px] max-w-[690px] text-[clamp(0.91rem,0.95vw,1rem)] leading-[1.75] text-[#62625f] dark:text-[#999996] max-[760px]:mx-auto max-[760px]:text-[0.9rem] max-[760px]:leading-[1.68]">
+          <p className="mt-[38px] max-w-[700px] text-[clamp(0.94rem,0.94vw,1.06rem)] leading-[1.72] text-[#62625f] dark:text-[#999996] max-[760px]:mx-auto max-[760px]:text-[0.9rem] max-[760px]:leading-[1.7]">
             Information Systems student and{" "}
             <span className="font-semibold text-[#987600] dark:text-[#d4ad20]">
               Software Engineer
@@ -147,24 +147,24 @@ export function HeroSection({ projectCount, certificateCount }) {
             systems.
           </p>
 
-          <div className="mt-[52px] flex items-start gap-[42px] max-[760px]:justify-center max-[520px]:grid max-[520px]:grid-cols-3 max-[520px]:gap-3">
+          <div className="mt-[44px] flex items-start gap-[42px] max-[760px]:justify-center max-[520px]:grid max-[520px]:grid-cols-3 max-[520px]:gap-3">
             {stats.map(([value, label]) => (
               <div
-                className="grid min-w-[45px] max-[760px]:justify-items-center"
+                className="grid min-w-[50px] max-[760px]:justify-items-center"
                 key={label}
               >
-                <strong className="text-[1.72rem] font-black leading-none tracking-[-0.055em] text-[#171717] dark:text-[#f2f2ef] max-[520px]:text-[1.22rem]">
+                <strong className="text-[1.75rem] font-black leading-none tracking-[-0.055em] text-[#171717] dark:text-[#f2f2ef] max-[520px]:text-[1.25rem]">
                   {value}
                 </strong>
 
-                <span className="mt-[6px] text-[0.62rem] text-[#747471] dark:text-[#858582] max-[520px]:text-[0.52rem]">
+                <span className="mt-[6px] text-[0.61rem] text-[#747471] dark:text-[#858582] max-[520px]:text-[0.52rem]">
                   {label}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="mt-[33px] flex flex-wrap gap-3.5 max-[760px]:justify-center max-[520px]:grid max-[520px]:grid-cols-1">
+          <div className="mt-[31px] flex flex-wrap gap-3.5 max-[760px]:justify-center max-[520px]:grid max-[520px]:grid-cols-1">
             <a
               className="group inline-flex min-h-[44px] items-center justify-center gap-2.5 rounded-[5px] border border-[#c7a400] bg-[#ffd400] px-6 text-[0.67rem] font-black text-[#111] shadow-[0_10px_28px_rgba(255,212,0,0.13)] transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-[3px] hover:bg-[#ffe13a] hover:shadow-[0_14px_32px_rgba(255,212,0,0.18)]"
               href={`mailto:${PERSONAL_INFO.email}`}
@@ -176,14 +176,14 @@ export function HeroSection({ projectCount, certificateCount }) {
             </a>
 
             <a
-              className="inline-flex min-h-[44px] items-center justify-center rounded-[5px] border border-black/20 bg-white/65 px-6 text-[0.67rem] font-black text-[#161616] backdrop-blur-[7px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-[3px] hover:border-[#c7a400] hover:bg-white/80 dark:border-white/14 dark:bg-[#101010]/78 dark:text-[#efefec] dark:hover:border-[#d6ad1d] dark:hover:bg-[#121212]/88"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-[5px] border border-black/18 bg-white/50 px-6 text-[0.67rem] font-black text-[#161616] backdrop-blur-[8px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-[3px] hover:border-[#c7a400] hover:bg-white/78 dark:border-white/14 dark:bg-[#0f0f0f]/72 dark:text-[#efefec] dark:hover:border-[#d6ad1d] dark:hover:bg-[#121212]/86"
               href="#projects"
             >
               View Projects
             </a>
           </div>
 
-          <div className="mt-[45px] flex max-w-[690px] items-center gap-6 border-t border-black/10 pt-[18px] text-[0.61rem] text-[#696966] dark:border-white/10 dark:text-[#858582] max-[760px]:mx-auto max-[760px]:flex-col max-[760px]:items-center max-[760px]:gap-2.5">
+          <div className="mt-[43px] flex max-w-[700px] items-center gap-6 border-t border-black/10 pt-[18px] text-[0.6rem] text-[#696966] dark:border-white/10 dark:text-[#858582] max-[760px]:mx-auto max-[760px]:flex-col max-[760px]:items-center max-[760px]:gap-2.5">
             <a
               className="inline-flex items-center gap-2 transition-colors duration-300 hover:text-[#8f7000] dark:hover:text-[#d5ad1d]"
               href={`mailto:${PERSONAL_INFO.email}`}
@@ -200,21 +200,21 @@ export function HeroSection({ projectCount, certificateCount }) {
         </div>
 
         <div
-          className="grid -translate-y-[1px] place-items-center max-[980px]:translate-y-0 max-[980px]:pb-[18px]"
+          className="grid -translate-y-[2px] place-items-center max-[1050px]:translate-y-0 max-[1050px]:pb-[16px]"
           data-reveal="right"
         >
-          <div className="relative grid aspect-square w-[320px] animate-[soft-float_5.3s_ease-in-out_infinite] place-items-center max-[1500px]:w-[310px] max-[980px]:w-[min(320px,70vw)]">
+          <div className="relative grid aspect-square w-[330px] animate-[soft-float_5.3s_ease-in-out_infinite] place-items-center max-[1540px]:w-[315px] max-[1240px]:w-[292px] max-[1050px]:w-[min(320px,70vw)]">
             <div
-              className="hero-profile-ring absolute inset-[-18px] rounded-full opacity-[0.11] blur-[25px] dark:opacity-[0.16]"
+              className="hero-profile-ring absolute inset-[-22px] rounded-full opacity-[0.12] blur-[28px] dark:opacity-[0.19]"
               aria-hidden="true"
             />
 
             <div
-              className="hero-profile-ring absolute inset-[-3px] animate-[avatar-ring_20s_linear_infinite] rounded-full"
+              className="hero-profile-ring absolute inset-[-3px] animate-[avatar-ring_22s_linear_infinite] rounded-full"
               aria-hidden="true"
             />
 
-            <div className="relative z-[2] h-full w-full overflow-hidden rounded-full bg-[#f8f8f5] p-[6px] shadow-[0_28px_80px_rgba(0,0,0,0.22)] dark:bg-[#070707] dark:shadow-[0_30px_82px_rgba(0,0,0,0.5)]">
+            <div className="relative z-[2] h-full w-full overflow-hidden rounded-full bg-[#f7f7f3] p-[6px] shadow-[0_30px_86px_rgba(0,0,0,0.22)] dark:bg-[#080808] dark:shadow-[0_32px_88px_rgba(0,0,0,0.58)]">
               <img
                 className="h-full w-full rounded-full bg-[#151515] object-cover object-center"
                 src={PERSONAL_INFO.profileImage}

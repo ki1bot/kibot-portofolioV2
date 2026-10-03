@@ -9,7 +9,7 @@ export function FloatingControls({ theme, onToggleTheme }) {
     <>
       <button
         type="button"
-        className="fixed top-[18px] right-[25px] z-[101] grid h-[42px] w-[42px] cursor-pointer place-items-center rounded-full border border-black/15 bg-white/80 text-[#5f5f5f] shadow-[0_10px_32px_rgba(0,0,0,0.09)] backdrop-blur-[18px] transition-[transform,border-color,color] duration-300 hover:rotate-6 hover:border-[#c7a400] hover:text-[#8f7000] dark:border-white/10 dark:bg-[#0b0b0b]/90 dark:text-[#aaa] dark:hover:border-[#ffd400] dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-3.5 max-[760px]:bottom-[83px]"
+        className="fixed top-[17px] right-[25px] z-[101] grid h-[40px] w-[40px] place-items-center rounded-full border border-black/12 bg-white/58 text-[#696966] shadow-[0_10px_32px_rgba(0,0,0,0.1)] backdrop-blur-[16px] transition-[transform,border-color,color,background-color] duration-300 hover:rotate-6 hover:border-[#bd930d]/55 hover:text-[#8f7000] dark:border-white/10 dark:bg-[#090909]/66 dark:text-[#aaa] dark:hover:border-[#ffd400]/55 dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-3.5 max-[760px]:bottom-[82px]"
         onClick={onToggleTheme}
         aria-label={
           theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap"
@@ -20,15 +20,15 @@ export function FloatingControls({ theme, onToggleTheme }) {
       </button>
 
       {playerOpen ? (
-        <div className="fixed right-5 bottom-[86px] z-[96] w-[330px] origin-bottom-right animate-[music-panel-enter_380ms_cubic-bezier(0.16,1,0.3,1)] overflow-hidden rounded-[15px] border border-black/14 bg-[#f5f5f2]/96 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.22)] backdrop-blur-[22px] dark:border-white/12 dark:bg-[#0d0d0d]/96 dark:shadow-[0_28px_80px_rgba(0,0,0,0.55)] max-[520px]:right-3 max-[520px]:w-[calc(100%_-_24px)]">
+        <div className="fixed right-5 bottom-[84px] z-[96] w-[330px] origin-bottom-right animate-[music-panel-enter_380ms_cubic-bezier(0.16,1,0.3,1)] overflow-hidden rounded-[16px] border border-black/12 bg-[#f6f6f2]/95 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.2)] backdrop-blur-[22px] dark:border-white/11 dark:bg-[#0d0d0d]/96 dark:shadow-[0_28px_80px_rgba(0,0,0,0.58)] max-[520px]:right-3 max-[520px]:w-[calc(100%_-_24px)]">
           <div className="flex items-center justify-between gap-3">
-            <span className="rounded-full border border-black/15 px-2.5 py-1 font-mono text-[0.5rem] font-black tracking-[0.16em] text-[#5d5d5d] dark:border-white/12 dark:text-[#999]">
+            <span className="rounded-full border border-black/12 px-2.5 py-1 font-mono text-[0.5rem] font-black tracking-[0.16em] text-[#666] dark:border-white/11 dark:text-[#999]">
               // NOW PLAYING
             </span>
 
             <button
               type="button"
-              className="grid h-7 w-7 cursor-pointer place-items-center rounded-[7px] border border-black/10 bg-black/[0.03] text-[0.8rem] transition hover:border-[#c7a400] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-[#ffd400]"
+              className="grid h-7 w-7 place-items-center rounded-[7px] border border-black/10 bg-black/[0.03] text-[0.8rem] transition hover:border-[#c7a400] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-[#ffd400]"
               onClick={() => setPlayerOpen(false)}
               aria-label="Tutup music player"
             >
@@ -100,7 +100,7 @@ export function FloatingControls({ theme, onToggleTheme }) {
 
       <button
         type="button"
-        className="fixed right-5 bottom-4 z-[97] flex min-h-[50px] min-w-[146px] cursor-pointer items-center gap-2.5 rounded-full border border-black/14 bg-white/80 py-[6px] pr-3.5 pl-[6px] text-left text-[#111] shadow-[0_15px_42px_rgba(0,0,0,0.12)] backdrop-blur-[18px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-1 hover:border-[#c7a400] dark:border-white/10 dark:bg-[#0d0d0d]/92 dark:text-[#f5f5f2] dark:shadow-[0_18px_52px_rgba(0,0,0,0.42)] dark:hover:border-[#ffd400] max-[760px]:right-3.5 max-[760px]:min-w-0 max-[760px]:p-[6px]"
+        className="fixed right-5 bottom-4 z-[97] flex min-h-[50px] min-w-[145px] items-center gap-2.5 rounded-full border border-black/12 bg-white/58 py-[6px] pr-3.5 pl-[6px] text-left text-[#111] shadow-[0_15px_42px_rgba(0,0,0,0.11)] backdrop-blur-[16px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-1 hover:border-[#c7a400]/65 dark:border-white/10 dark:bg-[#0d0d0d]/76 dark:text-[#f5f5f2] dark:shadow-[0_18px_52px_rgba(0,0,0,0.48)] dark:hover:border-[#ffd400]/55 max-[760px]:right-3.5 max-[760px]:min-w-0 max-[760px]:p-[6px]"
         onClick={() => setPlayerOpen((current) => !current)}
         aria-expanded={playerOpen}
         aria-label="Tampilkan music player"
