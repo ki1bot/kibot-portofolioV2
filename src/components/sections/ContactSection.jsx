@@ -5,7 +5,25 @@ import { SectionHeading } from "../common/SectionHeading";
 
 export function ContactSection() {
   return (
-    <section className="portfolio-section" id="contact">
+    <section
+      className="portfolio-section !border-black/[0.1] !bg-[#f4f3ed] !bg-none before:!bg-none dark:!border-white/[0.045] dark:!bg-[#080808]"
+      id="contact"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[repeating-linear-gradient(135deg,rgba(17,17,16,0.105)_0px,rgba(17,17,16,0.105)_1px,transparent_1px,transparent_10px)] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.14)_0px,rgba(255,255,255,0.14)_1px,transparent_1px,transparent_10px)]"
+        aria-hidden="true"
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_14%_18%,rgba(255,212,0,0.105),transparent_28%),radial-gradient(circle_at_82%_72%,rgba(255,184,0,0.045),transparent_30%)] dark:bg-none"
+        aria-hidden="true"
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.015))] dark:bg-none"
+        aria-hidden="true"
+      />
+
       <div className="portfolio-container portfolio-container--contact">
         <SectionHeading eyebrow="Get in touch" title="CONTACT" accent="ME." />
 
@@ -63,6 +81,7 @@ export function ContactSection() {
                     <strong className="text-[0.64rem] font-bold">
                       {item.label}
                     </strong>
+
                     <span className="truncate text-[0.58rem] text-[#747471] dark:text-[#999]">
                       {item.value}
                     </span>

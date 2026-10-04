@@ -10,7 +10,7 @@ export function Footer() {
         <div className="max-w-[420px] max-[980px]:col-span-2 max-[760px]:col-auto">
           <a
             className="inline-flex text-[clamp(2.2rem,2.8vw,3.35rem)] font-black leading-[0.9] tracking-[-0.055em] text-[#9c7a00] dark:text-[#ffd400]"
-            href="#home"
+            href="/"
           >
             RIFQI
           </a>

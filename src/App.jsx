@@ -1,14 +1,16 @@
+import { LoadingScreen } from "./components/common/LoadingScreen";
+import { FloatingControls } from "./components/layout/FloatingControls";
+import { Footer } from "./components/layout/Footer";
+import { Navbar } from "./components/layout/Navbar";
 import { AboutSection } from "./components/sections/AboutSection";
 import { CertificatesSection } from "./components/sections/CertificatesSection";
 import { ContactSection } from "./components/sections/ContactSection";
 import { EducationSection } from "./components/sections/EducationSection";
-import { FloatingControls } from "./components/layout/FloatingControls";
-import { Footer } from "./components/layout/Footer";
 import { HeroSection } from "./components/sections/HeroSection";
-import { Navbar } from "./components/layout/Navbar";
 import { ProjectsSection } from "./components/sections/ProjectsSection";
 import { usePortfolioData } from "./hooks/usePortfolioData";
 import { useReveal } from "./hooks/useReveal";
+import { useSectionScrollTransition } from "./hooks/useSectionScrollTransition";
 
 export default function App() {
   const { portfolio, loading, loadError } = usePortfolioData();
@@ -17,6 +19,8 @@ export default function App() {
     `${loading}:${portfolio.projects.length}:${portfolio.certificates.length}`,
   );
 
+  useSectionScrollTransition();
+
   const projectCount = loading ? "10+" : `${portfolio.projects.length}+`;
 
   const certificateCount = loading
@@ -24,39 +28,43 @@ export default function App() {
     : `${portfolio.certificates.length}+`;
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--ink)] transition-colors duration-300">
-      <Navbar />
+    <>
+      <LoadingScreen />
 
-      <FloatingControls />
+      <div className="min-h-screen overflow-x-hidden bg-[var(--page-bg)] text-[var(--ink)] transition-colors duration-300">
+        <Navbar />
 
-      <main>
-        <HeroSection
-          projectCount={projectCount}
-          certificateCount={certificateCount}
-        />
+        <FloatingControls />
 
-        <AboutSection
-          projectCount={projectCount}
-          certificateCount={certificateCount}
-        />
+        <main>
+          <HeroSection
+            projectCount={projectCount}
+            certificateCount={certificateCount}
+          />
 
-        <EducationSection />
+          <AboutSection
+            projectCount={projectCount}
+            certificateCount={certificateCount}
+          />
 
-        <ProjectsSection
-          projects={portfolio.projects}
-          loading={loading}
-          loadError={loadError}
-        />
+          <EducationSection />
 
-        <CertificatesSection
-          certificates={portfolio.certificates}
-          loading={loading}
-        />
+          <ProjectsSection
+            projects={portfolio.projects}
+            loading={loading}
+            loadError={loadError}
+          />
 
-        <ContactSection />
-      </main>
+          <CertificatesSection
+            certificates={portfolio.certificates}
+            loading={loading}
+          />
 
-      <Footer />
-    </div>
+          <ContactSection />
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 }

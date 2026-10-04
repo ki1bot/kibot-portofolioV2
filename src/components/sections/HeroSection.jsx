@@ -216,7 +216,7 @@ export function HeroSection({ projectCount, certificateCount }) {
 
             <a
               className="hero-projects-button inline-flex min-h-[44px] items-center justify-center rounded-[5px] px-6 text-[0.74rem] font-black backdrop-blur-[10px]"
-              href="#projects"
+              href="/projects"
             >
               <span className="hero-projects-content">View Projects</span>
             </a>
@@ -267,7 +267,7 @@ export function HeroSection({ projectCount, certificateCount }) {
 
       <a
         className="absolute bottom-[18px] left-1/2 z-20 h-[39px] w-6 -translate-x-1/2 rounded-full border-[1.5px] border-black/45 transition-colors duration-300 ease-out hover:border-[#8b6a00] dark:border-white/42 dark:hover:border-[#d3aa1c]"
-        href="#about"
+        href="/about"
         aria-label="Scroll ke bagian About"
       >
         <span className="absolute top-[7px] left-1/2 block h-[7px] w-[3px] -translate-x-1/2">

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { NAV_ITEMS } from "../../data/portfolioPage";
 import { NavIcon } from "../common/NavIcon";
 
@@ -13,10 +13,44 @@ const ACTIVE_ITEM_WIDTHS = {
   contact: 116,
 };
 
+const SECTION_PATHS = {
+  home: "/",
+  about: "/about",
+  journey: "/journey",
+  projects: "/projects",
+  certificates: "/certificates",
+  contact: "/contact",
+};
+
+const PATH_SECTIONS = {
+  "/": "home",
+  "/about": "about",
+  "/journey": "journey",
+  "/projects": "projects",
+  "/certificates": "certificates",
+  "/contact": "contact",
+};
+
+function normalizePath(pathname) {
+  if (!pathname || pathname === "/") {
+    return "/";
+  }
+
+  return pathname.replace(/\/+$/, "") || "/";
+}
+
+function getInitialSection() {
+  if (typeof window === "undefined") {
+    return "home";
+  }
+
+  const path = normalizePath(window.location.pathname);
+
+  return PATH_SECTIONS[path] ?? "home";
+}
+
 export function Navbar() {
-  const [activeSection, setActiveSection] = useState("home");
-  const programmaticScrollRef = useRef(false);
-  const unlockTimerRef = useRef(null);
+  const [activeSection, setActiveSection] = useState(getInitialSection);
 
   useEffect(() => {
     const sections = NAV_ITEMS.map((item) =>
@@ -25,23 +59,11 @@ export function Navbar() {
 
     let frameId = null;
 
-    const releaseNavigationLock = () => {
-      programmaticScrollRef.current = false;
-
-      if (unlockTimerRef.current !== null) {
-        window.clearTimeout(unlockTimerRef.current);
-        unlockTimerRef.current = null;
-      }
-    };
-
     const updateActiveSection = () => {
       frameId = null;
 
-      if (programmaticScrollRef.current) {
-        return;
-      }
-
       const marker = Math.min(window.innerHeight * 0.28, 260);
+
       let currentSection = sections[0]?.id ?? "home";
 
       for (const section of sections) {
@@ -65,102 +87,45 @@ export function Navbar() {
     };
 
     const handleScroll = () => {
-      if (programmaticScrollRef.current || frameId !== null) {
+      if (frameId !== null) {
         return;
       }
 
       frameId = window.requestAnimationFrame(updateActiveSection);
     };
 
-    const handleManualScrollStart = () => {
-      if (!programmaticScrollRef.current) {
-        return;
-      }
+    const handlePopState = () => {
+      const path = normalizePath(window.location.pathname);
 
-      releaseNavigationLock();
+      const target = PATH_SECTIONS[path];
 
-      if (frameId === null) {
-        frameId = window.requestAnimationFrame(updateActiveSection);
-      }
-    };
-
-    const handleKeyDown = (event) => {
-      const scrollKeys = [
-        "ArrowUp",
-        "ArrowDown",
-        "PageUp",
-        "PageDown",
-        "Home",
-        "End",
-        " ",
-      ];
-
-      if (scrollKeys.includes(event.key)) {
-        handleManualScrollStart();
+      if (target) {
+        setActiveSection(target);
       }
     };
 
     updateActiveSection();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     window.addEventListener("resize", handleScroll);
-    window.addEventListener("scrollend", releaseNavigationLock, {
-      passive: true,
-    });
-    window.addEventListener("wheel", handleManualScrollStart, {
-      passive: true,
-    });
-    window.addEventListener("touchstart", handleManualScrollStart, {
-      passive: true,
-    });
-    window.addEventListener("keydown", handleKeyDown);
+
+    window.addEventListener("popstate", handlePopState);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+
       window.removeEventListener("resize", handleScroll);
-      window.removeEventListener("scrollend", releaseNavigationLock);
-      window.removeEventListener("wheel", handleManualScrollStart);
-      window.removeEventListener("touchstart", handleManualScrollStart);
-      window.removeEventListener("keydown", handleKeyDown);
+
+      window.removeEventListener("popstate", handlePopState);
 
       if (frameId !== null) {
         window.cancelAnimationFrame(frameId);
       }
-
-      if (unlockTimerRef.current !== null) {
-        window.clearTimeout(unlockTimerRef.current);
-      }
     };
   }, []);
-
-  const handleNavigation = (event, target) => {
-    event.preventDefault();
-
-    const section = document.getElementById(target);
-
-    if (!section) {
-      return;
-    }
-
-    if (unlockTimerRef.current !== null) {
-      window.clearTimeout(unlockTimerRef.current);
-      unlockTimerRef.current = null;
-    }
-
-    programmaticScrollRef.current = true;
-    setActiveSection(target);
-    window.history.replaceState(null, "", `#${target}`);
-
-    section.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-
-    unlockTimerRef.current = window.setTimeout(() => {
-      programmaticScrollRef.current = false;
-      unlockTimerRef.current = null;
-    }, 1500);
-  };
 
   return (
     <header className="fixed top-[17px] left-1/2 z-[100] -translate-x-1/2 max-[520px]:top-3">
@@ -170,20 +135,23 @@ export function Navbar() {
       >
         {NAV_ITEMS.map((item) => {
           const active = activeSection === item.target;
+
           const label =
             item.target === "certificates" ? "Certificates" : item.label;
+
           const activeWidth = ACTIVE_ITEM_WIDTHS[item.target] ?? 116;
 
           return (
             <a
               key={item.target}
-              href={`#${item.target}`}
-              onClick={(event) => handleNavigation(event, item.target)}
+              href={SECTION_PATHS[item.target] ?? "/"}
               aria-label={label}
               aria-current={active ? "location" : undefined}
               title={!active ? label : undefined}
               style={{
-                "--item-width": `${active ? activeWidth : INACTIVE_ITEM_WIDTH}px`,
+                "--item-width": `${
+                  active ? activeWidth : INACTIVE_ITEM_WIDTH
+                }px`,
               }}
               className={`group relative flex h-[37px] w-[var(--item-width)] shrink-0 transform-gpu items-center justify-center overflow-hidden rounded-full border outline-none transition-[width,color,background-color,border-color,box-shadow] duration-[430ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[width] focus-visible:ring-2 focus-visible:ring-[#c99b00]/35 max-[520px]:h-[38px] ${
                 active

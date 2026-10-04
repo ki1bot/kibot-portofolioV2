@@ -56,7 +56,25 @@ export function ProjectsSection({ projects, loading, loadError }) {
   }
 
   return (
-    <section className="portfolio-section" id="projects">
+    <section
+      className="portfolio-section !border-black/[0.1] !bg-[#f4f3ed] !bg-none before:!bg-none dark:!border-white/[0.045] dark:!bg-[#080808]"
+      id="projects"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[repeating-linear-gradient(135deg,rgba(17,17,16,0.105)_0px,rgba(17,17,16,0.105)_1px,transparent_1px,transparent_10px)] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.14)_0px,rgba(255,255,255,0.14)_1px,transparent_1px,transparent_10px)]"
+        aria-hidden="true"
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_14%_18%,rgba(255,212,0,0.105),transparent_28%),radial-gradient(circle_at_82%_72%,rgba(255,184,0,0.045),transparent_30%)] dark:bg-none"
+        aria-hidden="true"
+      />
+
+      <div
+        className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.015))] dark:bg-none"
+        aria-hidden="true"
+      />
+
       <div className="portfolio-container">
         <SectionHeading eyebrow="Proof of work" title="MY" accent="PROJECTS." />
 
@@ -86,7 +104,7 @@ export function ProjectsSection({ projects, loading, loadError }) {
               {FILTERS.map((item) => (
                 <button
                   type="button"
-                className={`min-h-[40px] cursor-pointer rounded-full px-4 text-[0.62rem] font-black tracking-[0.04em] uppercase transition-[color,background-color,box-shadow] duration-300 max-[520px]:px-3 ${
+                  className={`min-h-[40px] cursor-pointer rounded-full px-4 text-[0.62rem] font-black tracking-[0.04em] uppercase transition-[color,background-color,box-shadow] duration-300 max-[520px]:px-3 ${
                     filter === item.id
                       ? "bg-[#ffd400] text-[#111] shadow-[0_5px_16px_rgba(255,212,0,0.17)]"
                       : "text-[#666] hover:text-[#111] dark:text-[#999] dark:hover:text-white"
