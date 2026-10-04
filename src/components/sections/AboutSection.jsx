@@ -484,7 +484,7 @@ export function AboutSection({ projectCount, certificateCount }) {
 
       <div className="relative z-10 mx-auto w-[min(1514px,calc(100%_-_96px))] pt-[56px] pb-[74px] max-[1500px]:w-[calc(100%_-_80px)] max-[1100px]:w-[min(900px,calc(100%_-_42px))] max-[760px]:w-[calc(100%_-_30px)] max-[760px]:pt-[82px] max-[760px]:pb-[90px]">
         <div className="max-w-[730px]" data-reveal="left">
-          <span className="inline-flex h-[30px] items-center rounded-full border border-[#9d7a11]/35 bg-[#fffdf6]/78 px-[14px] font-mono text-[12px] leading-none font-black tracking-[0.2em] text-[#594500] shadow-[0_5px_16px_rgba(95,70,0,0.055)] backdrop-blur-[5px] transition-[color,background-color,border-color,box-shadow] duration-300 dark:border-white/[0.2] dark:bg-black/[0.08] dark:text-[#d0d0cc] dark:shadow-none max-[760px]:text-[11px]">
+          <span className="inline-flex h-[34px] items-center rounded-full border border-[#9d7a11]/35 bg-[#fffdf6]/78 px-[16px] font-mono text-[14px] leading-none font-black tracking-[0.18em] text-[#594500] shadow-[0_5px_16px_rgba(95,70,0,0.055)] backdrop-blur-[5px] transition-[color,background-color,border-color,box-shadow] duration-300 dark:border-white/[0.2] dark:bg-black/[0.08] dark:text-[#d0d0cc] dark:shadow-none max-[760px]:h-[30px] max-[760px]:px-[14px] max-[760px]:text-[12px]">
             // WHO AM I
           </span>
 
@@ -560,7 +560,7 @@ export function AboutSection({ projectCount, certificateCount }) {
           </div>
 
           <div className="w-[733px] max-w-full" data-reveal="right">
-            <p className="mb-[24px] font-mono text-[12px] leading-[16px] font-black tracking-[0.2em] text-[#494337] uppercase transition-colors duration-300 dark:text-[#d0d0cc] max-[760px]:text-[11px]">
+            <p className="mb-[24px] font-mono text-[14px] leading-[18px] font-black tracking-[0.18em] text-[#494337] uppercase transition-colors duration-300 dark:text-[#d0d0cc] max-[760px]:text-[12px] max-[760px]:leading-[16px]">
               // STACK &amp; TOOLS
             </p>
 
