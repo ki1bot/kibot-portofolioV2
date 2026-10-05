@@ -125,30 +125,27 @@ export function EducationSection() {
       />
 
       <div className="portfolio-container">
-        <div className="max-w-[940px]" data-reveal="left">
+        <div className="max-w-[980px]" data-reveal="left">
           <span className="inline-flex min-h-[31px] items-center gap-2.5 rounded-full border border-[#b99a43]/45 bg-[#fffaf0]/92 px-[14px] font-mono text-[0.6rem] font-black tracking-[0.2em] text-[#6f5500] shadow-[0_5px_18px_rgba(95,70,0,0.07)] backdrop-blur-[5px] dark:border-white/[0.13] dark:bg-[#111]/72 dark:text-[#aaa9a3] dark:shadow-none">
             <span className="text-[#b28600] dark:text-[#ffd400]">//</span>
             Academic Journey
           </span>
 
-          <h2 className="mt-[29px] w-fit max-w-full font-sans text-[clamp(4.7rem,6.9vw,8.1rem)] font-black leading-[0.77] tracking-[-0.075em] uppercase max-[760px]:text-[clamp(3.4rem,14vw,4.9rem)]">
-            <span className="block text-[#18150f] dark:text-[#f2f2ef]">MY</span>
+          <h2 className="mt-5 w-fit max-w-full font-sans text-[clamp(4.2rem,6.2vw,7.4rem)] font-black leading-[0.79] tracking-[-0.075em] uppercase max-[760px]:text-[clamp(3.2rem,14vw,4.6rem)]">
+            <span className="block text-[#111] dark:text-[#f2f2ef]">MY</span>
 
-            <strong className="mt-[20px] block font-black text-transparent [-webkit-text-stroke:1.6px_rgba(40,33,19,0.72)] dark:[-webkit-text-stroke:1.6px_rgba(242,242,239,0.82)]">
+            <strong className="mt-[18px] block font-black text-transparent [-webkit-text-stroke:1.5px_rgba(17,17,17,0.76)] dark:[-webkit-text-stroke:1.5px_rgba(242,242,239,0.82)]">
               JOURNEY.
             </strong>
           </h2>
 
-          <div
-            className="mt-[48px] flex items-center gap-2.5 max-[760px]:mt-[40px]"
-            aria-hidden="true"
-          >
+          <div className="mt-7 flex items-center gap-2.5" aria-hidden="true">
             <span className="h-[3px] w-[72px] rounded-full bg-[#ffd400]" />
 
             <span className="h-[3px] w-[28px] rounded-full bg-[#ffd400]/28" />
           </div>
 
-          <p className="mt-7 max-w-[780px] text-[0.98rem] leading-[1.78] text-[#5c594f] dark:text-[#949491]">
+          <p className="mt-7 max-w-[740px] text-[0.9rem] leading-[1.75] text-[#666663] dark:text-[#949491]">
             My academic and technical journey, from vocational education to
             Information Systems at Universitas Gunadarma.
           </p>
@@ -236,7 +233,7 @@ export function EducationSection() {
           </div>
 
           <div
-            className="w-full min-w-0 -translate-x-[26px] -translate-y-[110px] justify-self-center max-[1380px]:-translate-x-[14px] max-[1380px]:-translate-y-[90px] max-[1180px]:translate-x-0 max-[1180px]:translate-y-0 max-[1180px]:justify-self-center"
+            className="w-full min-w-0 -translate-x-[26px] -translate-y-[180px] justify-self-center max-[1380px]:-translate-x-[14px] max-[1380px]:-translate-y-[150px] max-[1180px]:translate-x-0 max-[1180px]:translate-y-0 max-[1180px]:justify-self-center"
             data-scroll-side="right"
           >
             <JourneyMap />

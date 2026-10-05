@@ -1,17 +1,45 @@
-import { useState } from "react";
-import { PERSONAL_INFO } from "../../lib/portfolio";
 import { useTheme } from "../../hooks/useTheme";
 import { NavIcon } from "../common/NavIcon";
 
+function ArrowUpIcon({ size = 18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m6 11 6-6 6 6" />
+      <path d="M12 5v14" />
+    </svg>
+  );
+}
+
 export function FloatingControls() {
-  const [playerOpen, setPlayerOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
+  function scrollToTop() {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }
 
   return (
     <>
       <button
         type="button"
-        className="fixed top-[17px] right-[25px] z-[101] grid h-[40px] w-[40px] place-items-center rounded-full border border-black/12 bg-white/58 text-[#696966] shadow-[0_10px_32px_rgba(0,0,0,0.1)] backdrop-blur-[16px] transition-[transform,border-color,color,background-color] duration-300 hover:rotate-6 hover:border-[#bd930d]/55 hover:text-[#8f7000] dark:border-white/10 dark:bg-[#090909]/66 dark:text-[#aaa] dark:hover:border-[#ffd400]/55 dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-3.5 max-[760px]:bottom-[82px]"
+        className="fixed top-[17px] right-[25px] z-[101] grid h-[40px] w-[40px] place-items-center rounded-full border border-black/12 bg-white/58 text-[#696966] shadow-[0_10px_32px_rgba(0,0,0,0.1)] backdrop-blur-[16px] transition-[transform,border-color,color,background-color] duration-300 hover:rotate-6 hover:border-[#bd930d]/55 hover:text-[#8f7000] dark:border-white/10 dark:bg-[#090909]/66 dark:text-[#aaa] dark:hover:border-[#ffd400]/55 dark:hover:text-[#ffd400] max-[760px]:top-auto max-[760px]:right-3.5 max-[760px]:bottom-[76px]"
         onClick={toggleTheme}
         aria-label={
           theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap"
@@ -21,110 +49,15 @@ export function FloatingControls() {
         <NavIcon name={theme === "dark" ? "sun" : "moon"} size={15} />
       </button>
 
-      {playerOpen ? (
-        <div className="fixed right-5 bottom-[84px] z-[96] w-[330px] origin-bottom-right animate-[music-panel-enter_380ms_cubic-bezier(0.16,1,0.3,1)] overflow-hidden rounded-[16px] border border-black/12 bg-[#f6f6f2]/95 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.2)] backdrop-blur-[22px] dark:border-white/11 dark:bg-[#0d0d0d]/96 dark:shadow-[0_28px_80px_rgba(0,0,0,0.58)] max-[520px]:right-3 max-[520px]:w-[calc(100%_-_24px)]">
-          <div className="flex items-center justify-between gap-3">
-            <span className="rounded-full border border-black/12 px-2.5 py-1 font-mono text-[0.5rem] font-black tracking-[0.16em] text-[#666] dark:border-white/11 dark:text-[#999]">
-              // NOW PLAYING
-            </span>
-
-            <button
-              type="button"
-              className="grid h-7 w-7 place-items-center rounded-[7px] border border-black/10 bg-black/[0.03] text-[0.8rem] transition hover:border-[#c7a400] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-[#ffd400]"
-              onClick={() => setPlayerOpen(false)}
-              aria-label="Tutup music player"
-            >
-              ×
-            </button>
-          </div>
-
-          <div className="mt-4 flex items-center gap-3">
-            <img
-              className="h-[50px] w-[50px] shrink-0 rounded-full border-2 border-[#ffd400] object-cover"
-              src={PERSONAL_INFO.profileImage}
-              alt=""
-            />
-
-            <div className="min-w-0">
-              <strong className="block truncate text-[0.76rem] font-black uppercase">
-                Rifqi&apos;s Spotify
-              </strong>
-
-              <span className="mt-1 block truncate text-[0.58rem] text-[#6f6f6f] dark:text-[#909090]">
-                Personal playlist
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <div className="h-1 overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
-              <div className="h-full w-[46%] rounded-full bg-[#ffd400]" />
-            </div>
-
-            <div className="mt-2 flex justify-between text-[0.48rem] text-[#777]">
-              <span>0:00</span>
-              <span>Spotify</span>
-            </div>
-          </div>
-
-          <div className="mt-4 flex items-center justify-center gap-5">
-            <span className="text-[0.9rem] text-[#757575]">‹</span>
-
-            <a
-              className="grid h-[46px] w-[46px] place-items-center rounded-[9px] bg-[#ffd400] text-[1rem] font-black text-[#111] shadow-[0_10px_25px_rgba(255,212,0,0.15)] transition hover:-translate-y-0.5"
-              href={PERSONAL_INFO.spotify}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Buka Spotify"
-            >
-              ▶
-            </a>
-
-            <span className="text-[0.9rem] text-[#757575]">›</span>
-          </div>
-
-          <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-3 dark:border-white/10">
-            <span className="font-mono text-[0.5rem] font-black tracking-[0.12em] text-[#777]">
-              SPOTIFY
-            </span>
-
-            <a
-              className="text-[0.56rem] font-black text-[#967500] transition hover:text-[#6d5500] dark:text-[#ffd400]"
-              href={PERSONAL_INFO.spotify}
-              target="_blank"
-              rel="noreferrer"
-            >
-              OPEN PLAYER ↗
-            </a>
-          </div>
-        </div>
-      ) : null}
-
       <button
         type="button"
-        className="fixed right-5 bottom-4 z-[97] flex min-h-[50px] min-w-[145px] items-center gap-2.5 rounded-full border border-black/12 bg-white/58 py-[6px] pr-3.5 pl-[6px] text-left text-[#111] shadow-[0_15px_42px_rgba(0,0,0,0.11)] backdrop-blur-[16px] transition-[transform,border-color,background-color] duration-300 hover:-translate-y-1 hover:border-[#c7a400]/65 dark:border-white/10 dark:bg-[#0d0d0d]/76 dark:text-[#f5f5f2] dark:shadow-[0_18px_52px_rgba(0,0,0,0.48)] dark:hover:border-[#ffd400]/55 max-[760px]:right-3.5 max-[760px]:min-w-0 max-[760px]:p-[6px]"
-        onClick={() => setPlayerOpen((current) => !current)}
-        aria-expanded={playerOpen}
-        aria-label="Tampilkan music player"
+        className="group fixed right-5 bottom-5 z-[97] grid h-[46px] w-[46px] cursor-pointer place-items-center rounded-full border border-black/15 bg-white/72 text-[#57544b] shadow-[0_10px_28px_rgba(0,0,0,0.12)] backdrop-blur-[14px] transition-[transform,border-color,background-color,color,box-shadow] duration-300 hover:-translate-y-[3px] hover:border-[#b98d00]/60 hover:bg-[#ffd400] hover:text-[#111] hover:shadow-[0_14px_34px_rgba(103,77,0,0.18)] dark:border-white/12 dark:bg-[#111]/78 dark:text-[#d5d5d0] dark:shadow-[0_12px_34px_rgba(0,0,0,0.42)] dark:hover:border-[#ffd400] dark:hover:bg-[#ffd400] dark:hover:text-[#111] max-[760px]:right-3.5 max-[760px]:bottom-3.5 max-[760px]:h-[43px] max-[760px]:w-[43px]"
+        onClick={scrollToTop}
+        aria-label="Kembali ke atas halaman"
+        title="Back to top"
       >
-        <span className="relative shrink-0">
-          <img
-            className="h-[35px] w-[35px] rounded-full border border-[#c7a400] object-cover dark:border-[#ffd400]"
-            src={PERSONAL_INFO.profileImage}
-            alt=""
-          />
-
-          <i className="absolute right-[-1px] bottom-[-1px] h-2 w-2 rounded-full border border-white bg-[#1ed760] dark:border-[#0d0d0d]" />
-        </span>
-
-        <span className="grid gap-px max-[760px]:hidden">
-          <strong className="font-mono text-[0.52rem] font-black tracking-[0.18em]">
-            MUSIC
-          </strong>
-
-          <small className="text-[0.61rem] font-bold text-[#626262] dark:text-[#aaa]">
-            Show player
-          </small>
+        <span className="transition-transform duration-300 group-hover:-translate-y-[2px]">
+          <ArrowUpIcon size={17} />
         </span>
       </button>
     </>

@@ -705,11 +705,11 @@ export function JourneyMap() {
         <div className="px-[14px] pt-[20px] pb-[20px] max-[520px]:px-[9px] max-[520px]:pt-[14px] max-[520px]:pb-[13px]">
           <div className="mb-[17px] flex items-center justify-between gap-5 px-[4px]">
             <div>
-              <span className="block font-mono text-[0.72rem] font-black tracking-[0.15em] text-[#615b4e] uppercase dark:text-[#aaa9a3] max-[520px]:text-[0.63rem]">
+              <span className="block font-mono text-[0.86rem] font-black tracking-[0.15em] text-[#615b4e] uppercase dark:text-[#c0c0bb] max-[520px]:text-[0.72rem]">
                 Academic Locations
               </span>
 
-              <span className="mt-[5px] block text-[0.67rem] leading-[1.5] text-[#7a7467] dark:text-[#81817c] max-[520px]:text-[0.6rem]">
+              <span className="mt-[7px] block text-[0.76rem] font-medium leading-[1.55] text-[#70695c] dark:text-[#999994] max-[520px]:text-[0.65rem]">
                 Select a location to focus the map
               </span>
             </div>
@@ -833,23 +833,23 @@ export function JourneyMap() {
           </div>
         </div>
 
-        <div className="flex items-center gap-[13px] border-t border-[#ded2b6] bg-[#faf5e8]/76 px-[21px] py-[19px] dark:border-white/[0.065] dark:bg-transparent max-[520px]:px-[15px] max-[520px]:py-[16px]">
-          <span className="grid h-[36px] w-[36px] shrink-0 place-items-center rounded-full border border-[#b9921c]/25 bg-[#ffd400]/10 text-[#856500] dark:border-[#ffd400]/14 dark:text-[#d3aa00]">
+        <div className="flex items-center gap-[15px] border-t border-[#ded2b6] bg-[#faf5e8]/76 px-[21px] py-[21px] dark:border-white/[0.065] dark:bg-transparent max-[520px]:px-[15px] max-[520px]:py-[17px]">
+          <span className="grid h-[40px] w-[40px] shrink-0 place-items-center rounded-full border border-[#b9921c]/25 bg-[#ffd400]/10 text-[#856500] dark:border-[#ffd400]/14 dark:text-[#d3aa00]">
             {activeLocation ? (
-              <LocationPinIcon size={18} />
+              <LocationPinIcon size={19} />
             ) : (
-              <GlobeIcon size={18} />
+              <GlobeIcon size={19} />
             )}
           </span>
 
           <div className="min-w-0">
-            <span className="block text-[0.7rem] font-bold leading-[1.4] text-[#514d44] dark:text-[#aaa9a3] max-[520px]:text-[0.63rem]">
+            <span className="block text-[0.84rem] font-bold leading-[1.4] text-[#514d44] dark:text-[#c0bfba] max-[520px]:text-[0.72rem]">
               {activeLocation
                 ? activeLocation.title
                 : "Academic Journey Overview"}
             </span>
 
-            <span className="mt-[4px] block text-[0.62rem] leading-[1.6] text-[#7b7569] dark:text-[#858580] max-[520px]:text-[0.56rem]">
+            <span className="mt-[5px] block text-[0.72rem] leading-[1.65] text-[#746e62] dark:text-[#979792] max-[520px]:text-[0.62rem]">
               {activeLocation
                 ? "Klik lokasi yang sama sekali lagi atau Clear Selection untuk membatalkan pilihan."
                 : "Seluruh lokasi Academic Journey sedang ditampilkan pada peta."}
