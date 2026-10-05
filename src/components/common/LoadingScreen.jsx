@@ -65,9 +65,9 @@ export function LoadingScreen() {
             src="/logoKibot.png"
             alt=""
             draggable="false"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-[2] block h-[136px] w-[136px] max-w-none object-contain invert select-none dark:invert-0 max-[520px]:h-[114px] max-[520px]:w-[114px]"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-[2] block h-[108px] w-[108px] max-w-none object-contain invert select-none dark:invert-0 max-[520px]:h-[90px] max-[520px]:w-[90px]"
             style={{
-              transform: "translate(calc(-50% - 3px), calc(-50% - 1px))",
+              transform: "translate(-50%, -50%)",
             }}
           />
         </div>
