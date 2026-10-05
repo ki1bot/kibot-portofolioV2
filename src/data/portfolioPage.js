@@ -1,4 +1,4 @@
-import { EDUCATION, PERSONAL_INFO } from "../lib/portfolio";
+import { PERSONAL_INFO } from "../lib/portfolio";
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
@@ -11,11 +11,57 @@ export const NAV_ITEMS = [
   { label: "Contact", target: "contact", icon: "mail" },
 ];
 
-const JOURNEY_META = {
-  "Universitas Gunadarma": {
-    category: "Higher Education",
+export const JOURNEY_ITEMS = [
+  {
+    id: "smk-patriot-1-bekasi",
+    period: "2021 - 2024",
+    title: "SMK Patriot 1 Bekasi",
+    shortTitle: "SMK Patriot 1 Bekasi",
+    subtitle: "Sekolah Menengah Kejuruan",
+    category: "Vocational Education",
+    icon: "vocational",
+    address:
+      "Jl. Villa Utama No.17 Blok C, RT.003/RW.005, Kali Baru, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17132",
+    googleMapsUrl: "https://maps.app.goo.gl/3hbSN8pr8mhSHdJk6",
+    coordinates: [-6.2198, 106.977],
     details: [
-      "Currently pursuing a bachelor degree in Information Systems at Universitas Gunadarma.",
+      "Completed vocational secondary education at SMK Patriot 1 Bekasi.",
+      "Built the technical foundation used for further study, programming practice, and software development.",
+    ],
+    tags: ["Vocational School", "Technical Learning", "Programming"],
+  },
+  {
+    id: "pkl-dinas-perhubungan-kota-bekasi",
+    period: "November 2022 - Maret 2023",
+    title: "Praktik Kerja Lapangan (PKL)",
+    shortTitle: "PKL Dinas Perhubungan Kota Bekasi",
+    subtitle: "Dinas Perhubungan Kota Bekasi",
+    category: "Field Work Practice",
+    icon: "internship",
+    address:
+      "Jl. Pangeran Jayakarta No. 1 Gedung Mako Lantai 2, Kelurahan, Jl. Pangeran Jayakarta No.1, RT.004/RW.008, Harapan Mulya, Medan Satria, Bekasi, West Java 17143",
+    googleMapsUrl: "https://maps.app.goo.gl/agcscG8zbVTED35R9",
+    coordinates: [-6.2268, 106.9892],
+    details: [
+      "Completed Praktik Kerja Lapangan at Dinas Perhubungan Kota Bekasi from November 2022 until Maret 2023.",
+      "Gained practical workplace experience in a government environment while completing vocational education.",
+    ],
+    tags: ["PKL", "Work Experience", "Government"],
+  },
+  {
+    id: "universitas-gunadarma-kalimalang",
+    period: "2024 - Sekarang",
+    title: "Universitas Gunadarma Kalimalang",
+    shortTitle: "Universitas Gunadarma Kalimalang",
+    subtitle: "S1 - Sistem Informasi",
+    category: "Higher Education",
+    icon: "university",
+    address:
+      "QX2C+857, Jl. KH. Noer Ali, RT.005/RW.006A, Jakasampurna, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17145",
+    googleMapsUrl: "https://maps.app.goo.gl/xWFS3SWdvPoPnnZy5",
+    coordinates: [-6.24947, 106.97178],
+    details: [
+      "Currently pursuing a bachelor degree in Information Systems at Universitas Gunadarma Kalimalang.",
       "Developing skills in system analysis, databases, programming, software development, and application architecture through coursework and portfolio projects.",
     ],
     tags: [
@@ -25,42 +71,25 @@ const JOURNEY_META = {
       "Software Development",
     ],
   },
-  "Sekolah Menengah Kejuruan (SMK)": {
-    category: "Vocational Education",
+  {
+    id: "asisten-laboratorium-teknik-informatika",
+    period: "2026 - Sekarang",
+    title: "Asisten Laboratorium Teknik Informatika",
+    shortTitle: "Asisten Laboratorium TI",
+    subtitle: "Universitas Gunadarma",
+    category: "Laboratory Assistant",
+    icon: "laboratory",
+    address:
+      "P2QC+6VX, Jl. Cemp. - Margahayu No, Jatimulya, Kec. Tambun Sel., Kabupaten Bekasi, Jawa Barat 17510",
+    googleMapsUrl: "https://maps.app.goo.gl/wsjPhfbGfz7Mcz4p8",
+    coordinates: [-6.26151, 107.02029],
     details: [
-      "Completed vocational secondary education at SMK Patriot 1.",
-      "Built the technical foundation used for further study, programming practice, and software development.",
+      "Serving as an assistant at the Informatics Laboratory of Universitas Gunadarma.",
+      "Supporting practical learning activities, laboratory operations, and technical guidance for students.",
     ],
-    tags: ["Vocational School", "Technical Learning", "Programming"],
+    tags: ["Laboratory", "Teaching Support", "Technical Assistance"],
   },
-  "Sekolah Menengah Pertama (SMP)": {
-    category: "Secondary Education",
-    details: [
-      "Completed junior secondary education at SMP Pangeran Jayakarta.",
-    ],
-    tags: ["Secondary School"],
-  },
-  "Sekolah Dasar (SD)": {
-    category: "Primary Education",
-    details: ["Completed primary education at SDN Harapan Jaya 8."],
-    tags: ["Primary School"],
-  },
-};
-
-export const JOURNEY_ITEMS = EDUCATION.filter(
-  (item) =>
-    item.title !== "Tahun Kelahiran" && item.title !== "Taman Kanak-kanak (TK)",
-)
-  .slice(-4)
-  .reverse()
-  .map((item) => ({
-    ...item,
-    ...(JOURNEY_META[item.title] || {
-      category: "Education",
-      details: [item.subtitle],
-      tags: ["Education"],
-    }),
-  }));
+];
 
 export const TECH_CARDS = [
   {

@@ -15,9 +15,13 @@ export function SectionHeading({ eyebrow, title, accent, description }) {
         ) : null}
       </h2>
 
-      <div className="mt-7 flex items-center gap-2.5" aria-hidden="true">
-        <span className="h-[3px] w-[72px] rounded-full bg-[#ffd400]" />
-        <span className="h-[3px] w-[28px] rounded-full bg-[#ffd400]/28" />
+      <div
+        className="mt-[25px] flex h-[4px] items-center gap-[13px]"
+        aria-hidden="true"
+      >
+        <span className="block h-[4px] w-[64px] rounded-full bg-[#d7a700] shadow-[0_2px_8px_rgba(192,145,0,0.16)] dark:bg-[#ffd400] dark:shadow-none" />
+
+        <span className="block h-[4px] w-[24px] rounded-full bg-[#9f7b00]/48 dark:bg-[#ffd400]/38" />
       </div>
 
       {description ? (

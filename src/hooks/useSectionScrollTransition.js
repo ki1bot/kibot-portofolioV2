@@ -8,6 +8,18 @@ const SECTION_STATE_CLASSES = [
 
 const PART_SIDE_CLASSES = ["scroll-page-part-left", "scroll-page-part-right"];
 
+const VERTICAL_SCROLL_SECTIONS = new Set([
+  "projects",
+  "certificates",
+  "contact",
+]);
+
+const VERTICAL_SECTION_TRANSFORMS = {
+  active: "translate3d(0, 0, 0) scale(1)",
+  above: "translate3d(0, clamp(-260px, -16vh, -110px), 0) scale(0.988)",
+  below: "translate3d(0, clamp(110px, 16vh, 260px), 0) scale(0.988)",
+};
+
 const SECTION_PATHS = {
   home: "/",
   about: "/about",
@@ -149,11 +161,9 @@ function determineTargetSide(target, index, section) {
   }
 
   const targetRect = target.getBoundingClientRect();
-
   const sectionRect = section.getBoundingClientRect();
 
   const targetCenter = targetRect.left + targetRect.width / 2;
-
   const sectionCenter = sectionRect.left + sectionRect.width / 2;
 
   const deadZone = Math.min(110, Math.max(42, sectionRect.width * 0.075));
@@ -170,6 +180,12 @@ function determineTargetSide(target, index, section) {
 }
 
 function markTarget(target, side) {
+  const alreadyManaged = target.dataset.scrollPageManaged === "true";
+
+  if (!alreadyManaged) {
+    target.dataset.scrollPageOriginalTransform = target.style.transform;
+  }
+
   target.classList.add("scroll-page-part");
 
   target.classList.remove(...PART_SIDE_CLASSES);
@@ -184,9 +200,19 @@ function markTarget(target, side) {
 }
 
 function clearTarget(target) {
+  const originalTransform = target.dataset.scrollPageOriginalTransform;
+
   target.classList.remove("scroll-page-part", ...PART_SIDE_CLASSES);
 
+  if (originalTransform) {
+    target.style.transform = originalTransform;
+  } else {
+    target.style.removeProperty("transform");
+  }
+
   delete target.dataset.scrollPageManaged;
+  delete target.dataset.scrollPageOriginalTransform;
+  delete target.dataset.scrollPageAxis;
 }
 
 function markSectionTargets(section) {
@@ -201,17 +227,69 @@ function markSectionTargets(section) {
   return targets;
 }
 
+function getSectionState(section) {
+  if (section.classList.contains("scroll-page-active")) {
+    return "active";
+  }
+
+  if (section.classList.contains("scroll-page-above")) {
+    return "above";
+  }
+
+  if (section.classList.contains("scroll-page-below")) {
+    return "below";
+  }
+
+  return null;
+}
+
+function applyDirectionalTransform(section, state) {
+  const targets = section.querySelectorAll('[data-scroll-page-managed="true"]');
+
+  targets.forEach((target) => {
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    if (!VERTICAL_SCROLL_SECTIONS.has(section.id)) {
+      if (target.dataset.scrollPageAxis === "vertical") {
+        const originalTransform = target.dataset.scrollPageOriginalTransform;
+
+        if (originalTransform) {
+          target.style.transform = originalTransform;
+        } else {
+          target.style.removeProperty("transform");
+        }
+
+        delete target.dataset.scrollPageAxis;
+      }
+
+      return;
+    }
+
+    const transform = VERTICAL_SECTION_TRANSFORMS[state];
+
+    if (!transform) {
+      return;
+    }
+
+    target.dataset.scrollPageAxis = "vertical";
+    target.style.transform = transform;
+  });
+}
+
 function setSectionState(section, state) {
   section.classList.remove(...SECTION_STATE_CLASSES);
 
   section.classList.add(`scroll-page-${state}`);
+
+  applyDirectionalTransform(section, state);
 }
 
 function findInitialActiveIndex(sections) {
   const viewportCenter = window.innerHeight / 2;
 
   let closestIndex = 0;
-
   let closestDistance = Number.POSITIVE_INFINITY;
 
   sections.forEach((section, index) => {
@@ -219,19 +297,16 @@ function findInitialActiveIndex(sections) {
 
     if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
       closestIndex = index;
-
       closestDistance = 0;
 
       return;
     }
 
     const sectionCenter = rect.top + rect.height / 2;
-
     const distance = Math.abs(sectionCenter - viewportCenter);
 
     if (distance < closestDistance) {
       closestDistance = distance;
-
       closestIndex = index;
     }
   });
@@ -339,13 +414,9 @@ export function useSectionScrollTransition() {
     let programmaticTarget = initialTarget;
 
     let navigationUnlockTimer = null;
-
     let readyFrame = null;
-
     let refreshFrame = null;
-
     let initialScrollFrame = null;
-
     let initialScrollSecondFrame = null;
 
     const initialRouteTimers = [];
@@ -371,7 +442,6 @@ export function useSectionScrollTransition() {
 
       navigationUnlockTimer = window.setTimeout(() => {
         programmaticTarget = null;
-
         navigationUnlockTimer = null;
       }, 2400);
     }
@@ -388,7 +458,6 @@ export function useSectionScrollTransition() {
       }
 
       const path = getSectionPath(section.id);
-
       const currentPath = normalizePath(window.location.pathname);
 
       if (currentPath === path && !window.location.hash) {
@@ -443,6 +512,12 @@ export function useSectionScrollTransition() {
               clearTarget(target);
             }
           });
+
+        const state = getSectionState(section);
+
+        if (state) {
+          applyDirectionalTransform(section, state);
+        }
       });
     }
 
@@ -626,7 +701,6 @@ export function useSectionScrollTransition() {
 
       return () => {
         document.removeEventListener("click", handleDocumentClick);
-
         window.removeEventListener("popstate", handlePopState);
 
         if (readyFrame !== null) {
@@ -673,9 +747,7 @@ export function useSectionScrollTransition() {
       const viewportCenter = window.innerHeight / 2;
 
       let centerMatch = null;
-
       let bestIndex = activeIndex;
-
       let bestScore = Number.POSITIVE_INFINITY;
 
       sections.forEach((section, index) => {
@@ -694,7 +766,6 @@ export function useSectionScrollTransition() {
         }
 
         const visibleTop = Math.max(rect.top, 0);
-
         const visibleBottom = Math.min(rect.bottom, window.innerHeight);
 
         if (visibleBottom <= visibleTop) {
@@ -702,16 +773,12 @@ export function useSectionScrollTransition() {
         }
 
         const visibleCenter = visibleTop + (visibleBottom - visibleTop) / 2;
-
         const centerDistance = Math.abs(visibleCenter - viewportCenter);
-
         const ratioBonus = ratio * window.innerHeight * 0.32;
-
         const score = centerDistance - ratioBonus;
 
         if (score < bestScore) {
           bestScore = score;
-
           bestIndex = index;
         }
       });

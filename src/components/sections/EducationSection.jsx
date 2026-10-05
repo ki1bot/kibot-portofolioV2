@@ -2,17 +2,17 @@ import { JOURNEY_ITEMS } from "../../data/portfolioPage";
 import { JourneyMap } from "./JourneyMap";
 
 const JOURNEY_VISUALS = {
-  "Universitas Gunadarma": {
-    icon: "university",
-  },
-  "Sekolah Menengah Kejuruan (SMK)": {
+  "smk-patriot-1-bekasi": {
     icon: "vocational",
   },
-  "Sekolah Menengah Pertama (SMP)": {
-    icon: "secondary",
+  "pkl-dinas-perhubungan-kota-bekasi": {
+    icon: "internship",
   },
-  "Sekolah Dasar (SD)": {
-    icon: "primary",
+  "universitas-gunadarma-kalimalang": {
+    icon: "university",
+  },
+  "asisten-laboratorium-teknik-informatika": {
+    icon: "laboratory",
   },
 };
 
@@ -55,7 +55,7 @@ function JourneyAcademicIcon({ type, size = 23 }) {
     );
   }
 
-  if (type === "secondary") {
+  if (type === "internship") {
     return (
       <svg
         width={size}
@@ -68,8 +68,31 @@ function JourneyAcademicIcon({ type, size = 23 }) {
         strokeLinejoin="round"
         aria-hidden="true"
       >
-        <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H11v18H6.5A2.5 2.5 0 0 0 4 22V4.5Z" />
-        <path d="M20 4.5A2.5 2.5 0 0 0 17.5 2H13v18h4.5A2.5 2.5 0 0 1 20 22V4.5Z" />
+        <rect x="3" y="7" width="18" height="13" rx="2" />
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        <path d="M3 12h18" />
+        <path d="M10 12v2h4v-2" />
+      </svg>
+    );
+  }
+
+  if (type === "laboratory") {
+    return (
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M9 3h6" />
+        <path d="M10 3v6.2L5.7 17a2.6 2.6 0 0 0 2.3 4h8a2.6 2.6 0 0 0 2.3-4L14 9.2V3" />
+        <path d="M8 15h8" />
+        <path d="M10 18h4" />
       </svg>
     );
   }
@@ -97,8 +120,8 @@ function JourneyAcademicIcon({ type, size = 23 }) {
 
 function getJourneyVisual(item) {
   return (
-    JOURNEY_VISUALS[item.title] || {
-      icon: "primary",
+    JOURNEY_VISUALS[item.id] || {
+      icon: "vocational",
     }
   );
 }
@@ -139,15 +162,19 @@ export function EducationSection() {
             </strong>
           </h2>
 
-          <div className="mt-7 flex items-center gap-2.5" aria-hidden="true">
-            <span className="h-[3px] w-[72px] rounded-full bg-[#ffd400]" />
+          <div
+            className="mt-[25px] flex h-[4px] items-center gap-[13px]"
+            aria-hidden="true"
+          >
+            <span className="block h-[4px] w-[64px] rounded-full bg-[#d7a700] shadow-[0_2px_8px_rgba(192,145,0,0.16)] dark:bg-[#ffd400] dark:shadow-none" />
 
-            <span className="h-[3px] w-[28px] rounded-full bg-[#ffd400]/28" />
+            <span className="block h-[4px] w-[24px] rounded-full bg-[#9f7b00]/48 dark:bg-[#ffd400]/38" />
           </div>
 
           <p className="mt-7 max-w-[740px] text-[0.9rem] leading-[1.75] text-[#666663] dark:text-[#949491]">
-            My academic and technical journey, from vocational education to
-            Information Systems at Universitas Gunadarma.
+            My academic and technical journey, from vocational education and
+            field work practice to Information Systems study and laboratory
+            assistance at Universitas Gunadarma.
           </p>
         </div>
 
@@ -162,7 +189,7 @@ export function EducationSection() {
               return (
                 <article
                   className="relative mb-[34px] pl-[62px] last:mb-0 max-[520px]:pl-[43px]"
-                  key={`${item.period}-${item.title}`}
+                  key={item.id}
                   data-reveal="left"
                   style={{
                     "--reveal-delay": `${index * 70}ms`,

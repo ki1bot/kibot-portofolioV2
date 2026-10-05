@@ -1,51 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { JOURNEY_ITEMS } from "../../data/portfolioPage";
 
-const JOURNEY_LOCATIONS = [
-  {
-    id: "sd-harapan-jaya-8",
-    title: "SDN Harapan Jaya 8",
-    shortTitle: "SDN Harapan Jaya 8",
-    category: "Primary Education",
-    period: "2012 - 2018",
-    address:
-      "Jl. Bengawan Solo II Blok B2 No.4, RT.003/RW.008, Harapan Jaya, Kec. Bekasi Utara, Kota Bks, Jawa Barat 17124",
-    googleMapsUrl: "https://maps.app.goo.gl/9qEeQmZ4Nd5pm1bZ7",
-    coordinates: [-6.2104, 106.9836],
-  },
-  {
-    id: "smp-pangeran-jayakarta",
-    title: "SMP Pangeran Jayakarta",
-    shortTitle: "SMP Pangeran Jayakarta",
-    category: "Secondary Education",
-    period: "2018 - 2021",
-    address:
-      "Jl. Jenderal Sudirman Jl. Buaran Bong Raya No.KM 28, RT.002/RW.006, Harapan Mulya, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17143",
-    googleMapsUrl: "https://maps.app.goo.gl/TrKyXpRuFkhDA3ow6",
-    coordinates: [-6.225533, 106.986872],
-  },
-  {
-    id: "smk-patriot-1-bekasi",
-    title: "SMK Patriot 1 Bekasi",
-    shortTitle: "SMK Patriot 1 Bekasi",
-    category: "Vocational Education",
-    period: "2021 - 2024",
-    address:
-      "Jl. Villa Utama No.17 Blok C, RT.003/RW.005, Kali Baru, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17132",
-    googleMapsUrl: "https://maps.app.goo.gl/3hbSN8pr8mhSHdJk6",
-    coordinates: [-6.2198, 106.977],
-  },
-  {
-    id: "universitas-gunadarma-kalimalang",
-    title: "Universitas Gunadarma Kalimalang",
-    shortTitle: "Universitas Gunadarma",
-    category: "Higher Education",
-    period: "2024 - Sekarang",
-    address:
-      "QX2C+857, Jl. KH. Noer Ali, RT.005/RW.006A, Jakasampurna, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17145",
-    googleMapsUrl: "https://maps.app.goo.gl/xWFS3SWdvPoPnnZy5",
-    coordinates: [-6.2491875, 106.9704375],
-  },
-];
+const JOURNEY_LOCATIONS = JOURNEY_ITEMS;
 
 function createMarkerIcon(L, active) {
   const background = active ? "#ffd400" : "#171716";
@@ -644,8 +600,9 @@ export function JourneyMap() {
               </h3>
 
               <p className="mt-[12px] max-w-[470px] text-[0.86rem] leading-[1.7] text-[#5d594f] dark:text-[#9a9a95] max-[520px]:text-[0.73rem]">
-                Explore every location in my Academic Journey across Bekasi,
-                from primary education to Universitas Gunadarma.
+                Explore the locations from SMK Patriot 1 Bekasi, PKL at Dinas
+                Perhubungan Kota Bekasi, Universitas Gunadarma Kalimalang, to
+                the Informatics Laboratory assistant role.
               </p>
             </div>
 
@@ -684,7 +641,7 @@ export function JourneyMap() {
               <span className="mt-[5px] block text-[0.61rem] font-medium leading-[1.4] text-[#716a5c] dark:text-[#898984]">
                 {activeLocation
                   ? activeLocation.period
-                  : "Four education locations across Bekasi"}
+                  : "Four Academic Journey locations across Bekasi"}
               </span>
             </div>
 

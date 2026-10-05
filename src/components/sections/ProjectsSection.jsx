@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { NavIcon } from "../common/NavIcon";
 import { ProjectCard } from "../portfolio/ProjectCard";
 import { SectionHeading } from "../common/SectionHeading";
@@ -22,6 +22,8 @@ function getProjectCategory(project) {
 }
 
 export function ProjectsSection({ projects, loading, loadError }) {
+  const sectionRef = useRef(null);
+
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState("all");
 
@@ -42,6 +44,74 @@ export function ProjectsSection({ projects, loading, loadError }) {
     return filteredProjects.slice(start, start + PAGE_SIZE);
   }, [currentPage, filteredProjects]);
 
+  const visibleProjectKey = visibleProjects
+    .map((project) => project.id)
+    .join("|");
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section || loading || loadError || !visibleProjects.length) {
+      return undefined;
+    }
+
+    const cards = Array.from(
+      section.querySelectorAll("[data-project-card]"),
+    ).filter((element) => element instanceof HTMLElement);
+
+    if (!cards.length) {
+      return undefined;
+    }
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      cards.forEach((card) => {
+        card.classList.add("is-project-card-visible");
+      });
+
+      return undefined;
+    }
+
+    cards.forEach((card) => {
+      card.classList.remove("is-project-card-visible");
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!(entry.target instanceof HTMLElement)) {
+            return;
+          }
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.08) {
+            entry.target.classList.add("is-project-card-visible");
+
+            return;
+          }
+
+          if (!entry.isIntersecting) {
+            entry.target.classList.remove("is-project-card-visible");
+          }
+        });
+      },
+      {
+        threshold: [0, 0.08, 0.18, 0.35],
+        rootMargin: "0px 0px -4% 0px",
+      },
+    );
+
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [visibleProjectKey, loading, loadError, visibleProjects.length]);
+
   function changePage(nextPage) {
     if (nextPage < 1 || nextPage > pageCount || nextPage === currentPage) {
       return;
@@ -57,9 +127,61 @@ export function ProjectsSection({ projects, loading, loadError }) {
 
   return (
     <section
+      ref={sectionRef}
       className="portfolio-section !border-black/[0.1] !bg-[#f4f3ed] !bg-none before:!bg-none dark:!border-white/[0.045] dark:!bg-[#080808]"
       id="projects"
     >
+      <style>
+        {`
+          .project-card-reveal {
+            opacity: 0.04;
+            transform: translate3d(0, 52px, 0) scale(0.985);
+            transform-origin: center bottom;
+            backface-visibility: hidden;
+            will-change: opacity, transform;
+            transition:
+              opacity 760ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 920ms cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: 0ms;
+          }
+
+          .project-card-reveal.is-project-card-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            transition-delay: var(--project-card-delay-desktop, 0ms);
+          }
+
+          @media (max-width: 1120px) {
+            .project-card-reveal.is-project-card-visible {
+              transition-delay: var(--project-card-delay-tablet, 0ms);
+            }
+          }
+
+          @media (max-width: 720px) {
+            .project-card-reveal {
+              transform: translate3d(0, 38px, 0) scale(0.99);
+              transition:
+                opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 780ms cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .project-card-reveal.is-project-card-visible {
+              transform: translate3d(0, 0, 0) scale(1);
+              transition-delay: var(--project-card-delay-mobile, 0ms);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .project-card-reveal,
+            .project-card-reveal.is-project-card-visible {
+              opacity: 1;
+              transform: none;
+              transition: none;
+            }
+          }
+        `}
+      </style>
+
       <div
         className="pointer-events-none absolute inset-0 z-0 bg-[repeating-linear-gradient(135deg,rgba(17,17,16,0.105)_0px,rgba(17,17,16,0.105)_1px,transparent_1px,transparent_10px)] dark:bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.14)_0px,rgba(255,255,255,0.14)_1px,transparent_1px,transparent_10px)]"
         aria-hidden="true"
@@ -149,7 +271,17 @@ export function ProjectsSection({ projects, loading, loadError }) {
                     "--reveal-delay": `${(index % 3) * 70}ms`,
                   }}
                 >
-                  <ProjectCard project={project} />
+                  <div
+                    className="project-card-reveal h-full"
+                    data-project-card
+                    style={{
+                      "--project-card-delay-desktop": `${(index % 3) * 90}ms`,
+                      "--project-card-delay-tablet": `${(index % 2) * 90}ms`,
+                      "--project-card-delay-mobile": "0ms",
+                    }}
+                  >
+                    <ProjectCard project={project} />
+                  </div>
                 </div>
               ))}
             </div>
