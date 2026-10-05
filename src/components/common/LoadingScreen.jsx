@@ -6,12 +6,14 @@ export function LoadingScreen() {
 
   useEffect(() => {
     const body = document.body;
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
     const previousOverflow = body.style.overflow;
     const previousPaddingRight = body.style.paddingRight;
+
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;
 
@@ -30,6 +32,7 @@ export function LoadingScreen() {
 
     const hideTimer = window.setTimeout(() => {
       setVisible(false);
+
       body.style.overflow = previousOverflow;
       body.style.paddingRight = previousPaddingRight;
     }, hideDelay);
@@ -37,6 +40,7 @@ export function LoadingScreen() {
     return () => {
       window.clearTimeout(leaveTimer);
       window.clearTimeout(hideTimer);
+
       body.style.overflow = previousOverflow;
       body.style.paddingRight = previousPaddingRight;
     };
@@ -56,13 +60,23 @@ export function LoadingScreen() {
       <div className="loading-screen-shell">
         <div className="loading-screen-logo" aria-hidden="true">
           <span className="loading-screen-orbit" />
-          <span className="loading-screen-initials">RS</span>
+
+          <img
+            src="/logoKibot.png"
+            alt=""
+            draggable="false"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-[2] block h-[136px] w-[136px] max-w-none object-contain invert select-none dark:invert-0 max-[520px]:h-[114px] max-[520px]:w-[114px]"
+            style={{
+              transform: "translate(calc(-50% - 3px), calc(-50% - 1px))",
+            }}
+          />
         </div>
 
         <span className="loading-screen-kicker">PORTOFOLIO</span>
 
         <div className="loading-screen-title" aria-hidden="true">
           <span>RIFQI</span>
+
           <span className="loading-screen-title-outline">SUSANTO</span>
         </div>
 

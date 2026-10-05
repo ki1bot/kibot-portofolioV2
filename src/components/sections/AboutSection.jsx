@@ -17,10 +17,7 @@ const TECH_CARDS = [
   {
     name: "css",
     mark: "CSS",
-    slug: "css3",
-    iconColor: "ffffff",
-    iconWidth: 30,
-    iconHeight: 33,
+    iconType: "css",
     bg: "#1572b6",
     fg: "#ffffff",
     href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
@@ -301,15 +298,15 @@ const TECH_CARDS = [
     href: "https://www.docker.com/",
   },
   {
-    name: "linux",
-    mark: "LX",
-    slug: "linux",
+    name: "ubuntu",
+    mark: "UB",
+    slug: "ubuntu",
     iconColor: "ffffff",
-    iconWidth: 31,
-    iconHeight: 33,
-    bg: "#262626",
+    iconWidth: 34,
+    iconHeight: 34,
+    bg: "#e95420",
     fg: "#ffffff",
-    href: "https://www.kernel.org/",
+    href: "https://ubuntu.com/",
   },
   {
     name: "vercel",
@@ -334,6 +331,21 @@ const TECH_CARDS = [
     href: "https://code.visualstudio.com/",
   },
 ];
+
+function CssIcon() {
+  return (
+    <svg
+      width="32"
+      height="35"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className="transform-gpu transition-transform duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.1]"
+    >
+      <path d="M3 2h18l-1.64 18.4L12 22.5 4.64 20.4 3 2Zm14.34 4.15H6.66l.2 2.06h8.22l-.2 2.06H7.05l.2 2.06h7.45l-.25 2.66-2.45.66-2.45-.66-.16-1.75H7.32l.3 3.35L12 17.8l4.37-1.21.6-6.32.37-4.12Z" />
+    </svg>
+  );
+}
 
 function FlameIcon() {
   return (
@@ -408,6 +420,10 @@ function MetricIcon({ type }) {
 }
 
 function TechIcon({ item }) {
+  if (item.iconType === "css") {
+    return <CssIcon />;
+  }
+
   return (
     <>
       <img
@@ -503,6 +519,7 @@ export function AboutSection({ projectCount, certificateCount }) {
             aria-hidden="true"
           >
             <span className="block h-[4px] w-[64px] rounded-full bg-[#d7a700] shadow-[0_2px_8px_rgba(192,145,0,0.16)] dark:bg-[#ffd400] dark:shadow-none" />
+
             <span className="block h-[4px] w-[24px] rounded-full bg-[#9f7b00]/48 dark:bg-[#ffd400]/38" />
           </div>
         </div>
