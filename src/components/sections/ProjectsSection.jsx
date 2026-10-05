@@ -12,10 +12,28 @@ const WORK_PROJECTS = new Set([
 ]);
 
 const FILTERS = [
-  { id: "all", label: "All" },
-  { id: "work", label: "Work" },
-  { id: "side", label: "Side Projects" },
+  { id: "all", label: "ALL" },
+  { id: "work", label: "WORK" },
+  { id: "side", label: "SIDE PROJECTS" },
 ];
+
+const FILTER_TEXT_STYLE = {
+  fontFamily:
+    '"Inter", "Segoe UI", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif',
+  fontSize: "12px",
+  fontWeight: 800,
+  lineHeight: 1,
+  letterSpacing: "0.055em",
+};
+
+const GITHUB_TEXT_STYLE = {
+  fontFamily:
+    '"Inter", "Segoe UI", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif',
+  fontSize: "14px",
+  fontWeight: 400,
+  lineHeight: "16px",
+  letterSpacing: "-0.015em",
+};
 
 function getProjectCategory(project) {
   return WORK_PROJECTS.has(project.title) ? "work" : "side";
@@ -204,10 +222,10 @@ export function ProjectsSection({ projects, loading, loadError }) {
           className="mt-11 flex items-end justify-between gap-7 max-[820px]:flex-col max-[820px]:items-start max-[520px]:mt-9"
           data-reveal
         >
-          <div className="grid gap-3">
+          <div className="grid gap-[11px]">
             <EyebrowBadge>ALL PROJECTS</EyebrowBadge>
 
-            <small className="text-[0.61rem] tracking-[0.025em] text-[#676767] dark:text-[#929292]">
+            <small className="text-[0.76rem] font-medium leading-none tracking-[0.018em] text-[#666866] uppercase dark:text-[#999b9a] max-[520px]:text-[0.7rem]">
               SHOWING{" "}
               {filteredProjects.length ? (currentPage - 1) * PAGE_SIZE + 1 : 0}-
               {Math.min(currentPage * PAGE_SIZE, filteredProjects.length)} OF{" "}
@@ -215,37 +233,63 @@ export function ProjectsSection({ projects, loading, loadError }) {
             </small>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-[8px] max-[520px]:w-full">
             <div
-              className="flex items-center rounded-full border border-black/14 bg-white/30 p-1 dark:border-white/10 dark:bg-[#0c0c0c]/78 max-[520px]:w-full max-[520px]:justify-between"
+              className="flex h-[42px] items-center rounded-full border border-black/[0.13] bg-white/[0.12] p-[3px] dark:border-white/[0.11] dark:bg-[#101010]/88 max-[520px]:w-full"
               role="group"
               aria-label="Filter proyek"
             >
-              {FILTERS.map((item) => (
-                <button
-                  type="button"
-                  className={`min-h-[40px] cursor-pointer rounded-full px-4 text-[0.62rem] font-black tracking-[0.04em] uppercase transition-[color,background-color,box-shadow] duration-300 max-[520px]:px-3 ${
-                    filter === item.id
-                      ? "bg-[#ffd400] text-[#111] shadow-[0_5px_16px_rgba(255,212,0,0.17)]"
-                      : "text-[#666] hover:text-[#111] dark:text-[#999] dark:hover:text-white"
-                  }`}
-                  onClick={() => changeFilter(item.id)}
-                  key={item.id}
-                  aria-pressed={filter === item.id}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {FILTERS.map((item) => {
+                const sizeClass =
+                  item.id === "all"
+                    ? "w-[53px]"
+                    : item.id === "work"
+                      ? "w-[75px]"
+                      : "w-[143px]";
+
+                return (
+                  <button
+                    type="button"
+                    className={`flex h-[34px] shrink-0 items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-200 max-[520px]:h-[34px] max-[520px]:flex-1 max-[520px]:w-auto ${sizeClass} ${
+                      filter === item.id
+                        ? "bg-[#ffcc00] text-[#080808] shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+                        : "bg-transparent text-[#919493] hover:text-[#b8bab9] dark:text-[#929594] dark:hover:text-[#c1c3c2]"
+                    }`}
+                    onClick={() => changeFilter(item.id)}
+                    key={item.id}
+                    aria-pressed={filter === item.id}
+                  >
+                    <span
+                      style={{
+                        ...FILTER_TEXT_STYLE,
+                        color: filter === item.id ? "#080808" : undefined,
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
             <a
-              className="inline-flex min-h-[39px] items-center gap-2 rounded-full border border-black/17 bg-white/24 px-3.5 text-[0.62rem] text-[#5f5f5f] transition-colors hover:border-[#c7a400] hover:text-[#8d6e00] dark:border-white/12 dark:bg-white/[0.015] dark:text-[#999] dark:hover:border-[#ffd400] dark:hover:text-[#ffd400]"
+              className="inline-flex h-[42px] shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-black/[0.13] bg-white/[0.12] px-[15px] text-[#777a79] transition-[border-color,background-color,color] duration-200 hover:border-black/20 hover:bg-white/[0.2] hover:text-[#555856] dark:border-white/[0.11] dark:bg-[#101010]/88 dark:text-[#969997] dark:hover:border-white/[0.18] dark:hover:bg-[#131313] dark:hover:text-[#b9bbba] max-[520px]:h-[42px] max-[520px]:px-[14px]"
               href="https://github.com/ki1bot"
               target="_blank"
               rel="noreferrer"
             >
-              <NavIcon name="github" size={15} />
-              @ki1bot
+              <span className="inline-flex h-[16px] items-center justify-center gap-[8px] leading-none">
+                <span className="grid h-[16px] w-[16px] shrink-0 place-items-center leading-none [&>svg]:block">
+                  <NavIcon name="github" size={15} />
+                </span>
+
+                <span
+                  className="inline-flex h-[16px] items-center justify-center"
+                  style={GITHUB_TEXT_STYLE}
+                >
+                  @ki1bot
+                </span>
+              </span>
             </a>
           </div>
         </div>
