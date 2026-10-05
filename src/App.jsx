@@ -21,11 +21,8 @@ export default function App() {
 
   useSectionScrollTransition();
 
-  const projectCount = loading ? "10+" : `${portfolio.projects.length}+`;
-
-  const certificateCount = loading
-    ? "14+"
-    : `${portfolio.certificates.length}+`;
+  const projectCount = portfolio.projects.length;
+  const certificateCount = portfolio.certificates.length;
 
   return (
     <>

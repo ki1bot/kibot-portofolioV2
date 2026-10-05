@@ -458,7 +458,7 @@ export function AboutSection({ projectCount, certificateCount }) {
   const metrics = [
     {
       value: "S1",
-      label: "BACHELOR STUDENT",
+      label: "INFORMATION SYSTEMS",
       icon: "flame",
     },
     {
@@ -472,8 +472,8 @@ export function AboutSection({ projectCount, certificateCount }) {
       icon: "trophy",
     },
     {
-      value: "SI",
-      label: "INFORMATION SYSTEMS",
+      value: "3.75",
+      label: "GPA",
       icon: "education",
     },
   ];
@@ -547,9 +547,9 @@ export function AboutSection({ projectCount, certificateCount }) {
               {metrics.map((metric) => (
                 <article
                   key={metric.label}
-                  className="group flex h-[117px] cursor-default flex-col justify-center rounded-[9px] border border-[#a99558]/35 bg-[#fffdf8]/88 px-[20px] shadow-[0_8px_22px_rgba(67,52,9,0.055)] backdrop-blur-[4px] transition-[background-color,border-color,box-shadow] duration-[340ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-[#b98c00]/65 hover:bg-[#fff6cf] hover:shadow-[0_12px_28px_rgba(120,88,0,0.1)] dark:border-[#343434] dark:bg-[#0f0f0f] dark:shadow-none dark:hover:border-[#d4aa00] dark:hover:bg-[#1b170d] dark:hover:shadow-none max-[520px]:h-[108px] max-[520px]:px-[17px]"
+                  className="hero-projects-button group flex h-[117px] cursor-default flex-col justify-center rounded-[9px] px-[20px] backdrop-blur-[10px] max-[520px]:h-[108px] max-[520px]:px-[17px]"
                 >
-                  <span className="block h-[26px] text-[#b98900] transition-colors duration-[340ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:text-[#c39500] dark:text-[#efbd00] dark:group-hover:text-[#ffd400]">
+                  <span className="block h-[26px] text-[#b98900] dark:text-[#efbd00]">
                     <MetricIcon type={metric.icon} />
                   </span>
 

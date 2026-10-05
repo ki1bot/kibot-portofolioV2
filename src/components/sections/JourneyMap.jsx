@@ -649,13 +649,13 @@ export function JourneyMap() {
               </p>
             </div>
 
-            <div className="flex shrink-0 flex-col items-end gap-[8px] max-[520px]:hidden">
-              <span className="inline-flex h-[34px] items-center gap-[8px] rounded-full border border-[#cdbd93] bg-[#fffdf8]/84 px-[12px] font-mono text-[0.54rem] font-black tracking-[0.09em] text-[#625b4c] shadow-[0_4px_12px_rgba(70,52,10,0.05)] uppercase dark:border-white/[0.09] dark:bg-white/[0.035] dark:text-[#aaa9a4] dark:shadow-none">
-                <span className="h-[7px] w-[7px] rounded-full bg-[#c99a00] dark:bg-[#ffd400]" />
+            <div className="flex shrink-0 flex-col items-end gap-[10px] max-[520px]:hidden">
+              <span className="inline-flex h-[42px] items-center gap-[10px] rounded-full border border-[#cdbd93] bg-[#fffdf8]/84 px-[15px] font-mono text-[0.7rem] font-black tracking-[0.1em] text-[#625b4c] shadow-[0_4px_12px_rgba(70,52,10,0.05)] uppercase dark:border-white/[0.09] dark:bg-white/[0.035] dark:text-[#c1c1bc] dark:shadow-none">
+                <span className="h-[8px] w-[8px] rounded-full bg-[#c99a00] dark:bg-[#ffd400]" />
                 4 Locations
               </span>
 
-              <span className="font-mono text-[0.47rem] font-bold tracking-[0.08em] text-[#847e70] uppercase dark:text-[#6f6f6b]">
+              <span className="pr-[4px] font-mono text-[0.59rem] font-bold tracking-[0.1em] text-[#716b5e] uppercase dark:text-[#85857f]">
                 Bekasi · Jawa Barat
               </span>
             </div>
@@ -717,7 +717,7 @@ export function JourneyMap() {
             <button
               type="button"
               onClick={showAllLocations}
-              className={`inline-flex min-h-[44px] cursor-pointer items-center gap-[9px] rounded-full border px-[14px] transition-[transform,border-color,background-color,color,box-shadow] duration-[340ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[1px] max-[520px]:min-h-[38px] max-[520px]:px-[11px] ${
+              className={`inline-flex min-h-[52px] cursor-pointer items-center gap-[11px] rounded-full border px-[17px] transition-[transform,border-color,background-color,color,box-shadow] duration-[340ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[1px] max-[520px]:min-h-[44px] max-[520px]:gap-[8px] max-[520px]:px-[12px] ${
                 activeIndex === null
                   ? "border-[#c39b13]/45 bg-[#fff0a8]/65 text-[#725700] shadow-[0_6px_16px_rgba(119,88,0,0.08)] dark:border-[#ffd400]/22 dark:bg-[#ffd400]/[0.07] dark:text-[#e4b700] dark:shadow-none"
                   : "border-[#d2c5a7] bg-[#fffdf8]/90 text-[#686154] hover:border-[#b98c00]/55 hover:bg-[#fff6cf] hover:text-[#795c00] hover:shadow-[0_8px_18px_rgba(110,80,0,0.08)] dark:border-white/[0.085] dark:bg-white/[0.025] dark:text-[#9b9b95] dark:hover:border-[#ffd400]/25 dark:hover:bg-[#1b170d] dark:hover:text-[#d7ad00]"
@@ -726,25 +726,25 @@ export function JourneyMap() {
             >
               {activeIndex === null ? (
                 <>
-                  <span className="grid h-[25px] w-[25px] place-items-center rounded-full border border-[#b68c00]/25 bg-[#ffd400]/13 dark:border-[#ffd400]/20">
-                    <GlobeIcon size={14} />
+                  <span className="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full border border-[#b68c00]/25 bg-[#ffd400]/13 dark:border-[#ffd400]/20">
+                    <GlobeIcon size={16} />
                   </span>
 
                   <span className="grid text-left">
-                    <strong className="font-mono text-[0.62rem] leading-none font-black tracking-[0.09em] uppercase max-[520px]:text-[0.54rem]">
+                    <strong className="font-mono text-[0.78rem] leading-none font-black tracking-[0.1em] uppercase max-[520px]:text-[0.66rem]">
                       Overview
                     </strong>
 
-                    <small className="mt-[4px] font-mono text-[0.42rem] leading-none font-bold tracking-[0.08em] opacity-70 uppercase max-[520px]:hidden">
+                    <small className="mt-[5px] font-mono text-[0.54rem] leading-none font-bold tracking-[0.09em] opacity-75 uppercase max-[520px]:text-[0.47rem]">
                       All Locations
                     </small>
                   </span>
                 </>
               ) : (
                 <>
-                  <CloseIcon size={15} />
+                  <CloseIcon size={17} />
 
-                  <span className="font-mono text-[0.55rem] font-black tracking-[0.065em] uppercase">
+                  <span className="font-mono text-[0.65rem] font-black tracking-[0.07em] uppercase max-[520px]:text-[0.57rem]">
                     Clear Selection
                   </span>
                 </>
@@ -759,20 +759,20 @@ export function JourneyMap() {
               return (
                 <button
                   type="button"
-                  className={`group relative grid w-full cursor-pointer grid-cols-[54px_minmax(0,1fr)_auto] items-center gap-[16px] overflow-hidden rounded-[14px] border px-[18px] py-[18px] text-left outline-none backdrop-blur-[4px] transition-[background-color,border-color,box-shadow] duration-[340ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:ring-2 focus-visible:ring-[#c89b00]/35 max-[520px]:grid-cols-[46px_minmax(0,1fr)] max-[520px]:gap-[12px] max-[520px]:px-[14px] max-[520px]:py-[15px] ${
+                  className={`hero-projects-button group relative grid w-full cursor-pointer grid-cols-[54px_minmax(0,1fr)_auto] items-center gap-[16px] rounded-[14px] px-[18px] py-[18px] text-left outline-none backdrop-blur-[10px] focus-visible:ring-2 focus-visible:ring-[#c89b00]/35 max-[520px]:grid-cols-[46px_minmax(0,1fr)] max-[520px]:gap-[12px] max-[520px]:px-[14px] max-[520px]:py-[15px] ${
                     active
-                      ? "border-[#c39b13]/55 bg-[#fff3bc]/82 shadow-[0_10px_24px_rgba(103,76,0,0.09)] hover:border-[#b98c00]/70 hover:bg-[#ffe994] hover:shadow-[0_12px_28px_rgba(120,88,0,0.12)] dark:border-[#ffd400]/22 dark:bg-[#1b170d] dark:shadow-none dark:hover:border-[#ffd400]/40 dark:hover:bg-[#211c0e]"
-                      : "border-[#d8ccae] bg-[#fffdf8]/92 shadow-[0_8px_22px_rgba(67,52,9,0.05)] hover:border-[#b98c00]/65 hover:bg-[#fff6cf] hover:shadow-[0_12px_28px_rgba(120,88,0,0.1)] dark:border-[#343434] dark:bg-[#0f0f0f] dark:shadow-none dark:hover:border-[#d4aa00] dark:hover:bg-[#1b170d] dark:hover:shadow-none"
+                      ? "!border-[#b98c00] !bg-[#fff8dc] dark:!border-[#d6ad1d] dark:!bg-[#151515]"
+                      : ""
                   }`}
                   key={location.id}
                   onClick={() => toggleLocation(index)}
                   aria-pressed={active}
                 >
                   <span
-                    className={`grid h-[52px] w-[52px] place-items-center rounded-[12px] border transition-[border-color,background-color,color,transform] duration-[340ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] max-[520px]:h-[44px] max-[520px]:w-[44px] ${
+                    className={`grid h-[52px] w-[52px] place-items-center rounded-[12px] border max-[520px]:h-[44px] max-[520px]:w-[44px] ${
                       active
                         ? "border-[#b78d00]/35 bg-[#ffd400]/18 text-[#7c5e00] dark:border-[#ffd400]/24 dark:bg-[#ffd400]/[0.08] dark:text-[#ffd400]"
-                        : "border-[#d4c8ac] bg-[#f6f0e2] text-[#777064] group-hover:border-[#c19a28]/40 group-hover:bg-[#ffeeb4] group-hover:text-[#806100] dark:border-white/[0.085] dark:bg-white/[0.032] dark:text-[#aaa9a3] dark:group-hover:border-[#ffd400]/20 dark:group-hover:bg-[#ffd400]/7 dark:group-hover:text-[#ffd400]"
+                        : "border-black/[0.09] bg-black/[0.025] text-[#777064] dark:border-white/[0.085] dark:bg-white/[0.032] dark:text-[#aaa9a3]"
                     }`}
                     aria-hidden="true"
                   >
@@ -782,7 +782,7 @@ export function JourneyMap() {
                   <span className="min-w-0">
                     <span className="flex flex-wrap items-center gap-x-[10px] gap-y-[5px]">
                       <span
-                        className={`text-[0.9rem] font-black leading-[1.3] tracking-[-0.012em] uppercase transition-colors duration-300 max-[520px]:text-[0.76rem] ${
+                        className={`text-[0.9rem] font-black leading-[1.3] tracking-[-0.012em] uppercase max-[520px]:text-[0.76rem] ${
                           active
                             ? "text-[#795c00] dark:text-[#ffd400]"
                             : "text-[#29261f] dark:text-[#edede9]"
@@ -809,10 +809,10 @@ export function JourneyMap() {
                   </span>
 
                   <span
-                    className={`inline-flex min-h-[32px] items-center gap-[6px] rounded-full border px-[11px] font-mono text-[0.52rem] font-black tracking-[0.065em] uppercase transition-[border-color,background-color,color] duration-300 max-[520px]:col-start-2 max-[520px]:w-fit max-[520px]:min-h-[29px] max-[520px]:px-[9px] max-[520px]:text-[0.47rem] ${
+                    className={`inline-flex min-h-[32px] items-center gap-[6px] rounded-full border px-[11px] font-mono text-[0.52rem] font-black tracking-[0.065em] uppercase max-[520px]:col-start-2 max-[520px]:w-fit max-[520px]:min-h-[29px] max-[520px]:px-[9px] max-[520px]:text-[0.47rem] ${
                       active
                         ? "border-[#b78c00]/30 bg-[#ffd400]/14 text-[#785a00] dark:border-[#ffd400]/17 dark:text-[#d8ad00]"
-                        : "border-[#d4c8ac] bg-[#f7f1e4] text-[#70695d] group-hover:border-[#ba920f]/30 group-hover:bg-[#ffeeb5] group-hover:text-[#7e6000] dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-[#8a8a84]"
+                        : "border-black/[0.075] bg-black/[0.018] text-[#70695d] dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-[#8a8a84]"
                     }`}
                   >
                     {active ? (

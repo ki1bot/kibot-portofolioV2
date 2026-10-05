@@ -65,19 +65,25 @@ export function LoadingScreen() {
             src="/logoKibot.png"
             alt=""
             draggable="false"
-            className="pointer-events-none absolute top-1/2 left-1/2 z-[2] block h-[108px] w-[108px] max-w-none object-contain invert select-none dark:invert-0 max-[520px]:h-[90px] max-[520px]:w-[90px]"
+            className="pointer-events-none absolute top-1/2 left-1/2 z-[2] block h-[78px] w-[78px] max-w-none object-contain invert select-none dark:invert-0 max-[520px]:h-[64px] max-[520px]:w-[64px]"
             style={{
               transform: "translate(-50%, -50%)",
             }}
           />
         </div>
 
-        <span className="loading-screen-kicker">PORTOFOLIO</span>
+        <span className="loading-screen-kicker">RIFQI</span>
 
-        <div className="loading-screen-title" aria-hidden="true">
-          <span>RIFQI</span>
+        <div
+          className="loading-screen-title"
+          aria-hidden="true"
+          style={{
+            fontSize: "clamp(2.35rem, 4.4vw, 4.2rem)",
+          }}
+        >
+          <span>MY PORTOFOLIO</span>
 
-          <span className="loading-screen-title-outline">SUSANTO</span>
+          <span className="loading-screen-title-outline">WEBSITE</span>
         </div>
 
         <div className="loading-screen-progress" aria-hidden="true">

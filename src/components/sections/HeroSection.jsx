@@ -120,7 +120,6 @@ function DownloadIcon({ size = 15 }) {
 export function HeroSection({ projectCount, certificateCount }) {
   const stats = [
     [projectCount, "Projects"],
-    ["S1", "Student"],
     [certificateCount, "Certs"],
   ];
 
@@ -151,9 +150,9 @@ export function HeroSection({ projectCount, certificateCount }) {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto grid min-h-svh w-[min(1488px,calc(100%_-_80px))] grid-cols-[minmax(0,720px)_320px] items-center justify-start gap-[236px] pt-24 pb-24 max-[1540px]:w-[min(1320px,calc(100%_-_64px))] max-[1540px]:grid-cols-[minmax(0,660px)_300px] max-[1540px]:gap-[clamp(105px,10vw,180px)] max-[1240px]:w-[min(1100px,calc(100%_-_64px))] max-[1240px]:grid-cols-[minmax(0,620px)_290px] max-[1240px]:gap-[85px] max-[1050px]:w-[min(100%_-_42px,900px)] max-[1050px]:grid-cols-1 max-[1050px]:gap-14 max-[1050px]:pt-[132px] max-[1050px]:pb-[112px] max-[760px]:w-[min(100%_-_30px,900px)] max-[760px]:gap-11 max-[760px]:pt-[116px]">
+      <div className="relative z-10 mx-auto grid min-h-svh w-[min(1540px,calc(100%_-_56px))] grid-cols-[minmax(0,720px)_320px] items-center justify-between gap-[80px] pt-24 pb-24 max-[1540px]:w-[min(1380px,calc(100%_-_52px))] max-[1540px]:grid-cols-[minmax(0,660px)_300px] max-[1540px]:gap-[70px] max-[1240px]:w-[min(1100px,calc(100%_-_64px))] max-[1240px]:grid-cols-[minmax(0,620px)_290px] max-[1240px]:gap-[85px] max-[1050px]:w-[min(100%_-_42px,900px)] max-[1050px]:grid-cols-1 max-[1050px]:gap-14 max-[1050px]:pt-[132px] max-[1050px]:pb-[112px] max-[760px]:w-[min(100%_-_30px,900px)] max-[760px]:gap-11 max-[760px]:pt-[116px]">
         <div
-          className="w-full max-w-[720px] -translate-y-[4px] max-[1050px]:mx-auto max-[1050px]:translate-y-0 max-[760px]:text-center"
+          className="w-full max-w-[720px] translate-x-[8px] -translate-y-[4px] max-[1540px]:translate-x-[4px] max-[1240px]:translate-x-0 max-[1050px]:mx-auto max-[1050px]:translate-y-0 max-[760px]:text-center"
           data-reveal="left"
         >
           <span className="inline-flex min-h-[24px] items-center gap-2 rounded-full border border-[#b78b0a]/30 bg-white/55 px-3 py-1 text-[0.68rem] font-semibold text-[#7a5d00] shadow-[0_5px_18px_rgba(116,87,0,0.05)] backdrop-blur-[8px] transition-[color,background-color,border-color,box-shadow] duration-300 ease-out dark:border-[#ffd400]/24 dark:bg-[#ffd400]/[0.05] dark:text-[#d5ad20] dark:shadow-none max-[760px]:mx-auto max-[760px]:text-[0.64rem]">
@@ -166,8 +165,10 @@ export function HeroSection({ projectCount, certificateCount }) {
               Hi, I&apos;m
             </span>
 
-            <strong className="hero-name mt-[23px] block whitespace-nowrap text-[clamp(3.55rem,4.5vw,5.4rem)] font-black leading-[0.88] tracking-[-0.04em] max-[760px]:whitespace-normal max-[760px]:text-[clamp(2.8rem,13vw,4.4rem)]">
-              SOFTWARE ENGINEER
+            <strong className="hero-name mt-[23px] inline-grid w-max max-w-full text-[clamp(3.55rem,4.5vw,5.4rem)] font-black leading-[0.88] tracking-[-0.04em] max-[760px]:text-[clamp(2.8rem,13vw,4.4rem)]">
+              <span className="block whitespace-nowrap">SOFTWARE</span>
+
+              <span className="block whitespace-nowrap">ENGINEERING</span>
             </strong>
           </h1>
 
@@ -181,17 +182,17 @@ export function HeroSection({ projectCount, certificateCount }) {
             systems.
           </p>
 
-          <div className="mt-[44px] flex items-start gap-[42px] max-[760px]:justify-center max-[520px]:grid max-[520px]:grid-cols-3 max-[520px]:gap-3">
+          <div className="mt-[44px] grid w-fit grid-cols-2 gap-[36px] max-[760px]:mx-auto max-[520px]:gap-[28px]">
             {stats.map(([value, label]) => (
               <div
-                className="grid min-w-[50px] max-[760px]:justify-items-center"
+                className="grid min-w-[78px] justify-items-center text-center"
                 key={label}
               >
-                <strong className="text-[1.78rem] font-black leading-none tracking-[-0.055em] text-[#181817] transition-colors duration-300 ease-out dark:text-[#f2f2ef] max-[520px]:text-[1.25rem]">
+                <strong className="text-[2.05rem] font-black leading-none tracking-[-0.055em] text-[#181817] transition-colors duration-300 ease-out dark:text-[#f2f2ef] max-[760px]:text-[1.9rem] max-[520px]:text-[1.45rem]">
                   {value}
                 </strong>
 
-                <span className="mt-[6px] text-[0.66rem] text-[#5d5d58] transition-colors duration-300 ease-out dark:text-[#9d9d98] max-[520px]:text-[0.52rem]">
+                <span className="mt-[7px] text-center text-[0.78rem] leading-none font-medium text-[#5d5d58] transition-colors duration-300 ease-out dark:text-[#a7a7a2] max-[760px]:text-[0.74rem] max-[520px]:text-[0.62rem]">
                   {label}
                 </span>
               </div>
@@ -228,18 +229,20 @@ export function HeroSection({ projectCount, certificateCount }) {
               href={`mailto:${PERSONAL_INFO.email}`}
             >
               <NavIcon name="mail" size={14} />
+
               <span>{PERSONAL_INFO.email}</span>
             </a>
 
             <span className="inline-flex items-center gap-2 transition-colors duration-300 ease-out">
               <LocationIcon size={14} />
+
               <span>{PERSONAL_INFO.location}</span>
             </span>
           </div>
         </div>
 
         <div
-          className="grid -translate-y-[1px] place-items-center max-[1050px]:translate-y-0 max-[1050px]:pb-[16px]"
+          className="grid -translate-x-[12px] -translate-y-[1px] place-items-center max-[1540px]:-translate-x-[8px] max-[1240px]:translate-x-0 max-[1050px]:translate-y-0 max-[1050px]:pb-[16px]"
           data-reveal="right"
         >
           <div className="relative grid aspect-square w-[320px] place-items-center max-[1540px]:w-[300px] max-[1240px]:w-[286px] max-[1050px]:w-[min(320px,70vw)]">
