@@ -82,6 +82,16 @@ function getMotionRoot(section) {
   return section;
 }
 
+function getExplicitScrollTargets(section) {
+  const targets = Array.from(
+    section.querySelectorAll("[data-scroll-side]"),
+  ).filter((element) => element instanceof HTMLElement);
+
+  return targets.filter((target) => {
+    return !targets.some((other) => other !== target && other.contains(target));
+  });
+}
+
 function getRevealTargets(section) {
   const targets = Array.from(section.querySelectorAll("[data-reveal]")).filter(
     (element) => element instanceof HTMLElement,
@@ -101,6 +111,12 @@ function getFallbackTargets(section) {
 }
 
 function getAnimationTargets(section) {
+  const explicitScrollTargets = getExplicitScrollTargets(section);
+
+  if (explicitScrollTargets.length) {
+    return explicitScrollTargets;
+  }
+
   const revealTargets = getRevealTargets(section);
 
   if (revealTargets.length) {
@@ -133,6 +149,7 @@ function determineTargetSide(target, index, section) {
   }
 
   const targetRect = target.getBoundingClientRect();
+
   const sectionRect = section.getBoundingClientRect();
 
   const targetCenter = targetRect.left + targetRect.width / 2;
@@ -154,6 +171,7 @@ function determineTargetSide(target, index, section) {
 
 function markTarget(target, side) {
   target.classList.add("scroll-page-part");
+
   target.classList.remove(...PART_SIDE_CLASSES);
 
   if (side === "left") {
@@ -185,6 +203,7 @@ function markSectionTargets(section) {
 
 function setSectionState(section, state) {
   section.classList.remove(...SECTION_STATE_CLASSES);
+
   section.classList.add(`scroll-page-${state}`);
 }
 
@@ -192,6 +211,7 @@ function findInitialActiveIndex(sections) {
   const viewportCenter = window.innerHeight / 2;
 
   let closestIndex = 0;
+
   let closestDistance = Number.POSITIVE_INFINITY;
 
   sections.forEach((section, index) => {
@@ -199,6 +219,7 @@ function findInitialActiveIndex(sections) {
 
     if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
       closestIndex = index;
+
       closestDistance = 0;
 
       return;
@@ -210,6 +231,7 @@ function findInitialActiveIndex(sections) {
 
     if (distance < closestDistance) {
       closestDistance = distance;
+
       closestIndex = index;
     }
   });
@@ -315,10 +337,15 @@ export function useSectionScrollTransition() {
         : findInitialActiveIndex(sections);
 
     let programmaticTarget = initialTarget;
+
     let navigationUnlockTimer = null;
+
     let readyFrame = null;
+
     let refreshFrame = null;
+
     let initialScrollFrame = null;
+
     let initialScrollSecondFrame = null;
 
     const initialRouteTimers = [];
@@ -330,6 +357,7 @@ export function useSectionScrollTransition() {
 
       if (navigationUnlockTimer !== null) {
         window.clearTimeout(navigationUnlockTimer);
+
         navigationUnlockTimer = null;
       }
     }
@@ -343,6 +371,7 @@ export function useSectionScrollTransition() {
 
       navigationUnlockTimer = window.setTimeout(() => {
         programmaticTarget = null;
+
         navigationUnlockTimer = null;
       }, 2400);
     }
@@ -359,6 +388,7 @@ export function useSectionScrollTransition() {
       }
 
       const path = getSectionPath(section.id);
+
       const currentPath = normalizePath(window.location.pathname);
 
       if (currentPath === path && !window.location.hash) {
@@ -378,11 +408,13 @@ export function useSectionScrollTransition() {
       sections.forEach((section, index) => {
         if (index < activeIndex) {
           setSectionState(section, "above");
+
           return;
         }
 
         if (index > activeIndex) {
           setSectionState(section, "below");
+
           return;
         }
 
@@ -421,6 +453,7 @@ export function useSectionScrollTransition() {
 
       refreshFrame = window.requestAnimationFrame(() => {
         refreshFrame = null;
+
         refreshTargets();
       });
     }
@@ -537,6 +570,7 @@ export function useSectionScrollTransition() {
     });
 
     rewriteSectionLinks(document);
+
     refreshTargets();
 
     applySectionStates(activeIndex, false);
@@ -639,7 +673,9 @@ export function useSectionScrollTransition() {
       const viewportCenter = window.innerHeight / 2;
 
       let centerMatch = null;
+
       let bestIndex = activeIndex;
+
       let bestScore = Number.POSITIVE_INFINITY;
 
       sections.forEach((section, index) => {
@@ -647,6 +683,7 @@ export function useSectionScrollTransition() {
 
         if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
           centerMatch = index;
+
           return;
         }
 
@@ -674,6 +711,7 @@ export function useSectionScrollTransition() {
 
         if (score < bestScore) {
           bestScore = score;
+
           bestIndex = index;
         }
       });
@@ -775,6 +813,7 @@ export function useSectionScrollTransition() {
 
     return () => {
       intersectionObserver.disconnect();
+
       mutationObserver.disconnect();
 
       document.removeEventListener("click", handleDocumentClick);

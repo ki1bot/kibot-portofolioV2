@@ -1,6 +1,28 @@
 import { JOURNEY_ITEMS } from "../../data/portfolioPage";
-import { SectionHeading } from "../common/SectionHeading";
-import { NavIcon } from "../common/NavIcon";
+import { JourneyMap } from "./JourneyMap";
+
+const JOURNEY_VISUALS = {
+  "Universitas Gunadarma": {
+    mark: "UG",
+  },
+  "Sekolah Menengah Kejuruan (SMK)": {
+    mark: "SMK",
+  },
+  "Sekolah Menengah Pertama (SMP)": {
+    mark: "SMP",
+  },
+  "Sekolah Dasar (SD)": {
+    mark: "SD",
+  },
+};
+
+function getJourneyVisual(item) {
+  return (
+    JOURNEY_VISUALS[item.title] || {
+      mark: "EDU",
+    }
+  );
+}
 
 export function EducationSection() {
   return (
@@ -24,83 +46,119 @@ export function EducationSection() {
       />
 
       <div className="portfolio-container">
-        <SectionHeading
-          eyebrow="Academic journey"
-          title="MY"
-          accent="JOURNEY."
-          description="My academic and technical journey, from vocational education to Information Systems at Universitas Gunadarma."
-        />
+        <div className="max-w-[940px]" data-reveal="left">
+          <span className="inline-flex min-h-[31px] items-center gap-2.5 rounded-full border border-[#9d7a11]/35 bg-[#fffdf6]/76 px-[14px] font-mono text-[0.6rem] font-black tracking-[0.2em] text-[#725700] uppercase shadow-[0_4px_14px_rgba(95,70,0,0.05)] backdrop-blur-[5px] dark:border-white/[0.13] dark:bg-[#111]/72 dark:text-[#aaa9a3] dark:shadow-none">
+            <span className="text-[#ba8e00] dark:text-[#ffd400]">//</span>
+            Academic Journey
+          </span>
 
-        <div className="relative mx-auto mt-12 max-w-[1060px] pl-[54px] before:absolute before:inset-y-4 before:left-3 before:w-px before:bg-black/14 before:content-[''] dark:before:bg-white/13 max-[760px]:ml-0 max-[760px]:pl-[34px] max-[760px]:before:left-[9px]">
-          {JOURNEY_ITEMS.map((item, index) => (
-            <article
-              className="relative mb-7 last:mb-0"
-              key={`${item.period}-${item.title}`}
-              data-reveal
-              style={{ "--reveal-delay": `${index * 70}ms` }}
-            >
-              <span
-                className="absolute top-[24px] left-[-54px] grid h-[27px] w-[27px] place-items-center rounded-full border-2 border-[#ffd400] bg-[#f7f7f3] shadow-[0_0_0_6px_rgba(255,212,0,0.05)] dark:bg-[#080808] max-[760px]:left-[-34px] max-[760px]:h-5 max-[760px]:w-5"
-                aria-hidden="true"
-              >
-                <i className="h-[7px] w-[7px] rounded-full bg-[#ffd400] max-[760px]:h-[5px] max-[760px]:w-[5px]" />
-              </span>
+          <h2 className="mt-[29px] w-fit max-w-full font-sans text-[clamp(4.7rem,6.9vw,8.1rem)] font-black leading-[0.77] tracking-[-0.075em] uppercase max-[760px]:text-[clamp(3.4rem,14vw,4.9rem)]">
+            <span className="block text-[#111] dark:text-[#f2f2ef]">MY</span>
 
-              <div
-                className={`rounded-[12px] border bg-white/48 p-[28px] backdrop-blur-[5px] transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-[#c7a400]/45 hover:shadow-[0_14px_34px_rgba(0,0,0,0.06)] dark:bg-[#101010]/78 dark:hover:shadow-[0_14px_34px_rgba(0,0,0,0.25)] max-[520px]:p-5 ${
-                  index === 0
-                    ? "border-[#c7a400]/64 dark:border-[#ffd400]/54"
-                    : "border-black/12 dark:border-white/10"
-                }`}
-              >
-                <div className="flex items-start gap-4 max-[520px]:gap-3">
-                  <span className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-[9px] border border-[#ffd400]/34 bg-[#ffd400]/9 text-[#917100] dark:text-[#ffd400] max-[520px]:h-[38px] max-[520px]:w-[38px]">
-                    <NavIcon name="briefcase" size={16} />
+            <strong className="mt-[20px] block font-black text-transparent [-webkit-text-stroke:1.6px_rgba(17,17,17,0.76)] dark:[-webkit-text-stroke:1.6px_rgba(242,242,239,0.82)]">
+              JOURNEY.
+            </strong>
+          </h2>
+
+          <div className="mt-8 flex items-center gap-3" aria-hidden="true">
+            <span className="h-[4px] w-[76px] rounded-full bg-[#d1a100] shadow-[0_1px_5px_rgba(190,145,0,0.14)] dark:bg-[#ffd400]" />
+
+            <span className="h-[4px] w-[29px] rounded-full bg-[#b28a00]/35 dark:bg-[#ffd400]/28" />
+          </div>
+
+          <p className="mt-8 max-w-[780px] text-[0.98rem] leading-[1.78] text-[#666663] dark:text-[#949491]">
+            My academic and technical journey, from vocational education to
+            Information Systems at Universitas Gunadarma.
+          </p>
+        </div>
+
+        <div className="mt-[68px] grid w-full grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] items-start gap-x-[clamp(82px,6.5vw,128px)] gap-y-16 max-[1180px]:mx-auto max-[1180px]:max-w-[820px] max-[1180px]:grid-cols-1 max-[760px]:mt-12">
+          <div
+            className="relative w-full before:absolute before:top-[24px] before:bottom-[24px] before:left-[15px] before:w-px before:bg-black/16 before:content-[''] dark:before:bg-white/[0.13] max-[520px]:before:left-[11px]"
+            data-scroll-side="left"
+          >
+            {JOURNEY_ITEMS.map((item, index) => {
+              const visual = getJourneyVisual(item);
+
+              return (
+                <article
+                  className="group relative mb-[34px] pl-[62px] last:mb-0 max-[520px]:pl-[43px]"
+                  key={`${item.period}-${item.title}`}
+                  data-reveal="left"
+                  style={{
+                    "--reveal-delay": `${index * 70}ms`,
+                  }}
+                >
+                  <span
+                    className="absolute top-[22px] left-0 z-[2] grid h-[31px] w-[31px] place-items-center rounded-full border-2 border-[#c59a00] bg-[#f4f3ed] shadow-[0_0_0_6px_rgba(255,212,0,0.045)] transition-[border-color,background-color,box-shadow,transform] duration-300 group-hover:scale-105 dark:border-[#ffd400] dark:bg-[#080808] dark:shadow-[0_0_0_6px_rgba(255,212,0,0.04)] max-[520px]:h-[23px] max-[520px]:w-[23px]"
+                    aria-hidden="true"
+                  >
+                    <i className="h-[8px] w-[8px] rounded-full bg-[#d2a400] dark:bg-[#ffd400] max-[520px]:h-[5px] max-[520px]:w-[5px]" />
                   </span>
 
-                  <div>
-                    <span className="font-mono text-[0.5rem] font-black tracking-[0.14em] text-[#777] uppercase">
-                      {item.category}
-                    </span>
+                  <div className="relative rounded-[13px] border border-black/11 bg-white/52 p-[31px] shadow-[0_10px_28px_rgba(38,29,4,0.035)] backdrop-blur-[4px] transition-[transform,border-color,background-color,box-shadow] duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[2px] group-hover:border-black/18 group-hover:bg-white/68 group-hover:shadow-[0_16px_34px_rgba(55,42,3,0.055)] dark:border-white/[0.085] dark:bg-[#151515]/92 dark:group-hover:border-white/[0.16] dark:group-hover:bg-[#181818] dark:group-hover:shadow-[0_16px_38px_rgba(0,0,0,0.28)] max-[520px]:p-[20px]">
+                    <div className="flex min-w-0 items-start gap-[17px] max-[520px]:gap-[12px]">
+                      <span
+                        className="grid h-[50px] w-[50px] shrink-0 place-items-center rounded-[9px] border border-black/10 bg-black/[0.035] font-mono text-[0.63rem] font-black tracking-[-0.025em] text-[#595852] transition-[background-color,border-color,color,transform] duration-300 group-hover:scale-[1.025] dark:border-white/10 dark:bg-white/[0.045] dark:text-[#c2c2bd] max-[520px]:h-[41px] max-[520px]:w-[41px] max-[520px]:text-[0.52rem]"
+                        aria-hidden="true"
+                      >
+                        {visual.mark}
+                      </span>
 
-                    <h3 className="mt-1 text-[clamp(1rem,1.2vw,1.18rem)] font-black leading-[1.32] tracking-[-0.02em] uppercase">
-                      {item.title}
-                    </h3>
+                      <div className="min-w-0 flex-1 pt-[1px]">
+                        <span className="block font-mono text-[0.56rem] font-black tracking-[0.17em] text-[#77766f] uppercase dark:text-[#888883]">
+                          {item.category}
+                        </span>
 
-                    <strong className="mt-1 block text-[0.76rem] text-[#9a7800] dark:text-[#ffd400]">
-                      {item.subtitle}
-                    </strong>
+                        <h3 className="mt-[6px] text-[clamp(1.08rem,1.25vw,1.3rem)] font-black leading-[1.27] tracking-[-0.03em] text-[#171716] uppercase dark:text-[#f0f0ed]">
+                          {item.title}
+                        </h3>
 
-                    <time className="mt-1 block text-[0.62rem] text-[#777]">
-                      {item.period}
-                    </time>
+                        <strong className="mt-[6px] block text-[0.82rem] font-extrabold leading-[1.45] text-[#9a7600] dark:text-[#ffd400]">
+                          {item.subtitle}
+                        </strong>
+
+                        <time className="mt-[5px] block text-[0.68rem] font-medium text-[#77766f] dark:text-[#898984]">
+                          {item.period}
+                        </time>
+                      </div>
+                    </div>
+
+                    <div className="mt-[23px] h-px bg-black/[0.075] dark:bg-white/[0.07]" />
+
+                    <ul className="mt-[19px] grid list-none gap-[12px] p-0">
+                      {item.details.map((detail) => (
+                        <li
+                          className="relative pl-[20px] text-[0.82rem] leading-[1.72] text-[#5f5e59] before:absolute before:top-[0.72em] before:left-0 before:h-[6px] before:w-[6px] before:rounded-full before:bg-[#d1a200] before:content-[''] dark:text-[#aaa9a5] dark:before:bg-[#ffd400] max-[520px]:text-[0.72rem]"
+                          key={detail}
+                        >
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-[22px] flex flex-wrap gap-[7px]">
+                      {item.tags.map((tag) => (
+                        <span
+                          className="inline-flex min-h-[27px] items-center rounded-full border border-black/[0.09] bg-black/[0.03] px-[10px] py-[5px] text-[0.55rem] font-medium text-[#6f6e69] transition-[border-color,background-color,color] duration-300 group-hover:border-black/[0.14] dark:border-white/[0.085] dark:bg-white/[0.045] dark:text-[#959590] dark:group-hover:border-white/[0.14]"
+                          key={tag}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </article>
+              );
+            })}
+          </div>
 
-                <ul className="mt-[20px] grid list-none gap-2.5 p-0">
-                  {item.details.map((detail) => (
-                    <li
-                      className="relative pl-4 text-[0.76rem] leading-[1.7] text-[#62625f] before:absolute before:top-[0.72em] before:left-0 before:h-[5px] before:w-[5px] before:rounded-full before:bg-[#ffd400] before:content-[''] dark:text-[#999996]"
-                      key={detail}
-                    >
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-[18px] flex flex-wrap gap-1.5">
-                  {item.tags.map((tag) => (
-                    <span
-                      className="rounded-full border border-black/9 bg-black/[0.025] px-[9px] py-[5px] text-[0.5rem] text-[#777] dark:border-white/9 dark:bg-white/[0.035]"
-                      key={tag}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
+          <div
+            className="w-full min-w-0 justify-self-end max-[1180px]:justify-self-center"
+            data-scroll-side="right"
+          >
+            <JourneyMap />
+          </div>
         </div>
       </div>
     </section>
