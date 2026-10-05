@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { NavIcon } from "../common/NavIcon";
 import { ProjectCard } from "../portfolio/ProjectCard";
-import { SectionHeading } from "../common/SectionHeading";
+import { EyebrowBadge, SectionHeading } from "../common/SectionHeading";
 
 const PAGE_SIZE = 6;
 
@@ -205,9 +205,7 @@ export function ProjectsSection({ projects, loading, loadError }) {
           data-reveal
         >
           <div className="grid gap-3">
-            <span className="inline-flex w-fit rounded-full border border-black/20 bg-white/20 px-3 py-[5px] font-mono text-[0.57rem] font-black tracking-[0.15em] text-[#555] dark:border-white/14 dark:bg-white/[0.015] dark:text-[#aaa]">
-              // ALL PROJECTS
-            </span>
+            <EyebrowBadge>ALL PROJECTS</EyebrowBadge>
 
             <small className="text-[0.61rem] tracking-[0.025em] text-[#676767] dark:text-[#929292]">
               SHOWING{" "}

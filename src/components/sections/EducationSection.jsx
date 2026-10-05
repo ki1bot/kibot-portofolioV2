@@ -1,4 +1,5 @@
 import { JOURNEY_ITEMS } from "../../data/portfolioPage";
+import { SectionHeading } from "../common/SectionHeading";
 import { JourneyMap } from "./JourneyMap";
 
 const JOURNEY_VISUALS = {
@@ -148,35 +149,14 @@ export function EducationSection() {
       />
 
       <div className="portfolio-container">
-        <div className="max-w-[980px]" data-reveal="left">
-          <span className="inline-flex min-h-[31px] items-center gap-2.5 rounded-full border border-[#b99a43]/45 bg-[#fffaf0]/92 px-[14px] font-mono text-[0.6rem] font-black tracking-[0.2em] text-[#6f5500] shadow-[0_5px_18px_rgba(95,70,0,0.07)] backdrop-blur-[5px] dark:border-white/[0.13] dark:bg-[#111]/72 dark:text-[#aaa9a3] dark:shadow-none">
-            <span className="text-[#b28600] dark:text-[#ffd400]">//</span>
-            Academic Journey
-          </span>
-
-          <h2 className="mt-5 w-fit max-w-full font-sans text-[clamp(4.2rem,6.2vw,7.4rem)] font-black leading-[0.79] tracking-[-0.075em] uppercase max-[760px]:text-[clamp(3.2rem,14vw,4.6rem)]">
-            <span className="block text-[#111] dark:text-[#f2f2ef]">MY</span>
-
-            <strong className="mt-[18px] block font-black text-transparent [-webkit-text-stroke:1.5px_rgba(17,17,17,0.76)] dark:[-webkit-text-stroke:1.5px_rgba(242,242,239,0.82)]">
-              JOURNEY.
-            </strong>
-          </h2>
-
-          <div
-            className="mt-[25px] flex h-[4px] items-center gap-[13px]"
-            aria-hidden="true"
-          >
-            <span className="block h-[4px] w-[64px] rounded-full bg-[#d7a700] shadow-[0_2px_8px_rgba(192,145,0,0.16)] dark:bg-[#ffd400] dark:shadow-none" />
-
-            <span className="block h-[4px] w-[24px] rounded-full bg-[#9f7b00]/48 dark:bg-[#ffd400]/38" />
-          </div>
-
-          <p className="mt-7 max-w-[740px] text-[0.9rem] leading-[1.75] text-[#666663] dark:text-[#949491]">
-            My academic and technical journey, from vocational education and
-            field work practice to Information Systems study and laboratory
-            assistance at Universitas Gunadarma.
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Academic Journey"
+          title="MY"
+          accent="JOURNEY."
+          eyebrowVariant="pill"
+          extraDividerSpacing
+          description="My academic and technical journey, from vocational education and field work practice to Information Systems study and laboratory assistance at Universitas Gunadarma."
+        />
 
         <div className="mt-[68px] grid w-full grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] items-start gap-x-[clamp(82px,6.5vw,128px)] gap-y-16 max-[1180px]:mx-auto max-[1180px]:max-w-[820px] max-[1180px]:grid-cols-1 max-[760px]:mt-12">
           <div
