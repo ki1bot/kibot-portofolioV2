@@ -31,8 +31,16 @@ const GITHUB_TEXT_STYLE = {
     '"Inter", "Segoe UI", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif',
   fontSize: "14px",
   fontWeight: 400,
-  lineHeight: "16px",
+  lineHeight: 1,
   letterSpacing: "-0.015em",
+};
+
+const PAGE_NUMBER_TEXT_STYLE = {
+  fontFamily:
+    '"Inter", "Segoe UI", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif',
+  fontSize: "14px",
+  fontWeight: 900,
+  lineHeight: 1,
 };
 
 function getProjectCategory(project) {
@@ -216,7 +224,7 @@ export function ProjectsSection({ projects, loading, loadError }) {
       />
 
       <div className="portfolio-container">
-        <SectionHeading eyebrow="Proof of work" title="MY" accent="PROJECTS." />
+        <SectionHeading eyebrow="Proof of work" title="MY" accent="PROJECTS" />
 
         <div
           className="mt-11 flex items-end justify-between gap-7 max-[820px]:flex-col max-[820px]:items-start max-[520px]:mt-9"
@@ -278,13 +286,13 @@ export function ProjectsSection({ projects, loading, loadError }) {
               target="_blank"
               rel="noreferrer"
             >
-              <span className="inline-flex h-[16px] items-center justify-center gap-[8px] leading-none">
-                <span className="grid h-[16px] w-[16px] shrink-0 place-items-center leading-none [&>svg]:block">
+              <span className="inline-flex items-center justify-center gap-[8px] leading-none translate-y-[-0.5px]">
+                <span className="inline-flex shrink-0 items-center justify-center leading-none [&>svg]:block">
                   <NavIcon name="github" size={15} />
                 </span>
 
                 <span
-                  className="inline-flex h-[16px] items-center justify-center"
+                  className="inline-flex items-center justify-center leading-none"
                   style={GITHUB_TEXT_STYLE}
                 >
                   @ki1bot
@@ -330,12 +338,12 @@ export function ProjectsSection({ projects, loading, loadError }) {
 
             {pageCount > 1 ? (
               <div
-                className="mt-9 flex items-center justify-center gap-2"
+                className="mt-9 flex items-center justify-center gap-[8px]"
                 data-reveal
               >
                 <button
                   type="button"
-                  className="grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-black/14 bg-white/25 text-[#555] transition disabled:cursor-default disabled:opacity-25 enabled:hover:border-[#ffd400] enabled:hover:bg-[#ffd400] enabled:hover:text-[#111] dark:border-white/10 dark:bg-white/[0.015] dark:text-[#aaa]"
+                  className="grid h-[40px] w-[40px] cursor-pointer place-items-center rounded-full border border-black/[0.14] bg-transparent text-[#565656] transition-[border-color,background-color,color] duration-200 disabled:cursor-default disabled:opacity-25 enabled:hover:border-[#fdc600] enabled:hover:bg-[#fdc600] enabled:hover:text-black dark:border-[#313131] dark:bg-transparent dark:text-[#565656] dark:enabled:hover:border-[#fdc600] dark:enabled:hover:bg-[#fdc600] dark:enabled:hover:text-black"
                   onClick={() => changePage(currentPage - 1)}
                   disabled={currentPage === 1}
                   aria-label="Halaman sebelumnya"
@@ -347,23 +355,23 @@ export function ProjectsSection({ projects, loading, loadError }) {
                   (item) => (
                     <button
                       type="button"
-                      className={`grid h-9 w-9 cursor-pointer place-items-center rounded-full border text-[0.64rem] font-black transition ${
+                      className={`grid h-[40px] w-[40px] cursor-pointer place-items-center rounded-full border bg-transparent transition-[border-color,background-color,color] duration-200 ${
                         item === currentPage
-                          ? "border-[#ffd400] bg-[#ffd400] text-[#111]"
-                          : "border-black/14 bg-white/25 text-[#555] hover:border-[#ffd400] hover:bg-[#ffd400] hover:text-[#111] dark:border-white/10 dark:bg-white/[0.015] dark:text-[#aaa]"
+                          ? "border-[#fdc600] bg-[#fdc600] text-black"
+                          : "border-black/[0.14] text-[#666666] hover:border-[#fdc600] hover:bg-[#fdc600] hover:text-black dark:border-[#313131] dark:bg-transparent dark:text-[#a2a2a2] dark:hover:border-[#fdc600] dark:hover:bg-[#fdc600] dark:hover:text-black"
                       }`}
                       onClick={() => changePage(item)}
                       key={item}
                       aria-current={item === currentPage ? "page" : undefined}
                     >
-                      {item}
+                      <span style={PAGE_NUMBER_TEXT_STYLE}>{item}</span>
                     </button>
                   ),
                 )}
 
                 <button
                   type="button"
-                  className="grid h-9 w-9 cursor-pointer place-items-center rounded-full border border-black/14 bg-white/25 text-[#555] transition disabled:cursor-default disabled:opacity-25 enabled:hover:border-[#ffd400] enabled:hover:bg-[#ffd400] enabled:hover:text-[#111] dark:border-white/10 dark:bg-white/[0.015] dark:text-[#aaa]"
+                  className="grid h-[40px] w-[40px] cursor-pointer place-items-center rounded-full border border-black/[0.14] bg-transparent text-[#565656] transition-[border-color,background-color,color] duration-200 disabled:cursor-default disabled:opacity-25 enabled:hover:border-[#fdc600] enabled:hover:bg-[#fdc600] enabled:hover:text-black dark:border-[#313131] dark:bg-transparent dark:text-[#565656] dark:enabled:hover:border-[#fdc600] dark:enabled:hover:bg-[#fdc600] dark:enabled:hover:text-black"
                   onClick={() => changePage(currentPage + 1)}
                   disabled={currentPage === pageCount}
                   aria-label="Halaman berikutnya"

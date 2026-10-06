@@ -25,7 +25,7 @@ export function ContactSection() {
       />
 
       <div className="portfolio-container portfolio-container--contact">
-        <SectionHeading eyebrow="Get in touch" title="CONTACT" accent="ME." />
+        <SectionHeading eyebrow="Get in touch" title="CONTACT" accent="ME" />
 
         <div
           className="relative mx-auto mt-12 grid w-[min(980px,100%)] grid-cols-[210px_minmax(0,1fr)] items-center gap-10 rounded-[14px] border border-black/12 bg-white/48 p-9 shadow-[0_24px_70px_rgba(0,0,0,0.075)] backdrop-blur-[6px] dark:border-white/10 dark:bg-[#101010]/82 dark:shadow-[0_24px_70px_rgba(0,0,0,0.34)] max-[760px]:grid-cols-[145px_minmax(0,1fr)] max-[760px]:gap-6 max-[520px]:grid-cols-1 max-[520px]:justify-items-center max-[520px]:gap-5 max-[520px]:p-6 max-[520px]:text-center"

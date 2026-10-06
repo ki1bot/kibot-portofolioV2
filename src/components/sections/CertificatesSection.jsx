@@ -48,7 +48,7 @@ export function CertificatesSection({ certificates, loading }) {
       />
 
       <div className="portfolio-container">
-        <SectionHeading eyebrow="Proof of work" title="MY" accent="CERTS." />
+        <SectionHeading eyebrow="Proof of work" title="MY" accent="CERTS" />
 
         {loading ? (
           <div className="mt-10 grid min-h-[280px] place-items-center rounded-[12px] border border-black/12 bg-white/50 text-[0.68rem] tracking-[0.09em] text-[#777] uppercase dark:border-white/10 dark:bg-[#0d0d0d]/82">

@@ -510,7 +510,7 @@ export function AboutSection({ projectCount, certificateCount }) {
             </span>
 
             <span className="mt-[20px] block font-black text-transparent [-webkit-text-stroke:1.6px_rgba(21,19,15,0.76)] transition-all duration-300 dark:[-webkit-text-stroke:1.55px_rgba(243,243,241,0.85)]">
-              ME.
+              ME
             </span>
           </h2>
 

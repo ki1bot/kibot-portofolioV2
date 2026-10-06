@@ -152,7 +152,7 @@ export function EducationSection() {
         <SectionHeading
           eyebrow="Academic Journey"
           title="MY"
-          accent="JOURNEY."
+          accent="JOURNEY"
           eyebrowVariant="pill"
           extraDividerSpacing
           description="My academic and technical journey, from vocational education and field work practice to Information Systems study and laboratory assistance at Universitas Gunadarma."
