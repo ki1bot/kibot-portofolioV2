@@ -610,7 +610,7 @@ export function CertificateCard({ certificate, offset = 0, onSelect }) {
 
           {href ? (
             <a
-              className="mt-[22px] inline-flex h-[36px] w-[196px] shrink-0 items-center justify-center gap-[9px] rounded-[10px] border border-[#fdc600] bg-[#fdc600] px-0 text-[12px] font-black leading-none tracking-[0.025em] text-[#080808] shadow-none transition-[transform,background-color,border-color,box-shadow] duration-200 hover:-translate-y-px hover:border-[#ffd21a] hover:bg-[#ffd21a] hover:shadow-[0_8px_22px_rgba(253,198,0,0.18)] max-[760px]:mt-[17px] max-[520px]:mt-[13px]"
+              className="mt-[22px] inline-flex h-[36px] w-[196px] shrink-0 items-center justify-center gap-[9px] rounded-[10px] border border-[#fdc600] bg-[#fdc600] px-0 !text-[12px] !font-black !leading-none tracking-[0.025em] !text-[#080808] shadow-none transition-[transform,background-color,border-color,box-shadow] duration-200 hover:-translate-y-px hover:border-[#ffd21a] hover:bg-[#ffd21a] hover:shadow-[0_8px_22px_rgba(253,198,0,0.18)] max-[760px]:mt-[17px] max-[520px]:mt-[13px]"
               href={href}
               target="_blank"
               rel="noreferrer"
