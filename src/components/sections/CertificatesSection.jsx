@@ -103,11 +103,11 @@ export function CertificatesSection({ certificates, loading }) {
             backface-visibility: hidden;
             will-change: transform, opacity, filter;
             transition:
-              transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
-              filter 460ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 430ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 470ms cubic-bezier(0.22, 1, 0.36, 1),
               border-color 220ms ease,
-              box-shadow 460ms cubic-bezier(0.22, 1, 0.36, 1);
+              box-shadow 470ms cubic-bezier(0.22, 1, 0.36, 1);
           }
 
           .certificate-showcase-card[role="button"]:hover {
@@ -133,34 +133,42 @@ export function CertificatesSection({ certificates, loading }) {
                 rgba(15, 15, 15, 0) 57%
               );
             transition:
-              opacity 300ms cubic-bezier(0.22, 1, 0.36, 1);
+              opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 0ms;
           }
 
           .certificate-card-overlay.is-active {
             opacity: 1;
+            transition-duration: 280ms;
+            transition-delay: 150ms;
           }
 
           .certificate-card-copy {
             opacity: 0;
-            transform: translate3d(-18px, 0, 0);
+            transform: translate3d(-16px, 0, 0);
             transition:
-              opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+              opacity 150ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 0ms;
           }
 
           .certificate-card-copy.is-active {
             opacity: 1;
             transform: translate3d(0, 0, 0);
+            transition:
+              opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 170ms;
           }
 
           @media (max-width: 760px) {
             .certificate-showcase-card {
               transition:
-                transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 380ms cubic-bezier(0.22, 1, 0.36, 1),
-                filter 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 390ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 430ms cubic-bezier(0.22, 1, 0.36, 1),
                 border-color 200ms ease,
-                box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+                box-shadow 430ms cubic-bezier(0.22, 1, 0.36, 1);
             }
 
             .certificate-card-overlay {
@@ -173,6 +181,14 @@ export function CertificatesSection({ certificates, loading }) {
                   rgba(15, 15, 15, 0.24) 67%,
                   rgba(15, 15, 15, 0) 82%
                 );
+            }
+
+            .certificate-card-overlay.is-active {
+              transition-delay: 120ms;
+            }
+
+            .certificate-card-copy.is-active {
+              transition-delay: 140ms;
             }
           }
 
@@ -241,32 +257,36 @@ export function CertificatesSection({ certificates, loading }) {
               />
             ))}
 
-            <div className="absolute bottom-[-10px] left-1/2 z-[30] flex h-[58px] -translate-x-1/2 items-center gap-[4px] rounded-full border border-white/[0.09] bg-[#171717]/97 p-[7px] shadow-[0_16px_45px_rgba(0,0,0,0.48)] backdrop-blur-[18px] max-[1100px]:bottom-[-8px] max-[760px]:bottom-[-4px] max-[760px]:h-[52px] max-[760px]:p-[6px] max-[520px]:h-[48px]">
+            <div className="absolute bottom-[-10px] left-1/2 z-[30] flex h-[58px] -translate-x-1/2 items-center gap-[4px] rounded-full border border-white/[0.09] bg-[#171717]/97 p-[7px] shadow-[0_16px_45px_rgba(0,0,0,0.48)] backdrop-blur-[18px] max-[1600px]:bottom-[-8px] max-[1600px]:h-[54px] max-[1600px]:p-[6px] max-[760px]:bottom-[-4px] max-[760px]:h-[50px] max-[760px]:p-[5px] max-[520px]:h-[46px]">
               <button
                 type="button"
-                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-white/[0.07] bg-[#292929] text-[#e7e7e7] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:-translate-x-px enabled:hover:border-[#fdc600]/60 enabled:hover:bg-[#343434] enabled:hover:text-[#fdc600] disabled:cursor-default disabled:opacity-35 max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
+                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-white/[0.07] bg-[#292929] text-[#e7e7e7] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:-translate-x-px enabled:hover:border-[#fac600]/60 enabled:hover:bg-[#343434] enabled:hover:text-[#fac600] disabled:cursor-default disabled:opacity-35 max-[1600px]:h-[40px] max-[1600px]:w-[40px] max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
                 onClick={previous}
                 disabled={total <= 1}
                 aria-label="Sertifikat sebelumnya"
               >
-                <NavIcon name="chevron-left" size={17} />
+                <span className="grid place-items-center max-[1600px]:scale-[0.94]">
+                  <NavIcon name="chevron-left" size={17} />
+                </span>
               </button>
 
               <strong
                 aria-live="polite"
-                className="min-w-[76px] px-[5px] text-center text-[12px] font-black leading-none tracking-[-0.01em] text-white max-[760px]:min-w-[66px] max-[760px]:text-[11px] max-[520px]:min-w-[60px] max-[520px]:text-[10px]"
+                className="min-w-[76px] px-[5px] text-center text-[12px] font-extrabold leading-none tracking-[-0.01em] text-white max-[1600px]:min-w-[70px] max-[1600px]:text-[11px] max-[760px]:min-w-[64px] max-[760px]:text-[10px] max-[520px]:min-w-[58px] max-[520px]:text-[9px]"
               >
                 {currentIndex + 1} / {total}
               </strong>
 
               <button
                 type="button"
-                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-white/[0.07] bg-[#292929] text-[#e7e7e7] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:translate-x-px enabled:hover:border-[#fdc600]/60 enabled:hover:bg-[#343434] enabled:hover:text-[#fdc600] disabled:cursor-default disabled:opacity-35 max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
+                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-white/[0.07] bg-[#292929] text-[#e7e7e7] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:translate-x-px enabled:hover:border-[#fac600]/60 enabled:hover:bg-[#343434] enabled:hover:text-[#fac600] disabled:cursor-default disabled:opacity-35 max-[1600px]:h-[40px] max-[1600px]:w-[40px] max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
                 onClick={next}
                 disabled={total <= 1}
                 aria-label="Sertifikat berikutnya"
               >
-                <NavIcon name="chevron-right" size={17} />
+                <span className="grid place-items-center max-[1600px]:scale-[0.94]">
+                  <NavIcon name="chevron-right" size={17} />
+                </span>
               </button>
             </div>
           </div>
