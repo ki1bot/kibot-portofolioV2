@@ -48,10 +48,10 @@ export function ContactSection() {
         </div>
 
         <div
-          className="relative mx-auto mt-[38px] grid h-[305px] w-[420px] max-w-full grid-cols-[160px_minmax(0,1fr)] items-start gap-[24px] overflow-visible rounded-[7px] border border-black/[0.12] bg-[#fffdf8] px-[33px] pt-[33px] pb-[42px] shadow-[0_14px_35px_rgba(0,0,0,0.075)] transition-[background-color,border-color,box-shadow] duration-300 dark:border-[#292929] dark:bg-[#111111] dark:shadow-[0_12px_35px_rgba(0,0,0,0.3)] max-[520px]:h-auto max-[520px]:min-h-[365px] max-[520px]:grid-cols-1 max-[520px]:justify-items-center max-[520px]:gap-[18px] max-[520px]:px-[25px] max-[520px]:pt-[29px] max-[520px]:pb-[65px] max-[520px]:text-center"
+          className="relative mx-auto mt-[38px] h-[305px] w-[420px] max-w-full overflow-visible rounded-[7px] border border-black/[0.12] bg-[#fffdf8] shadow-[0_14px_35px_rgba(0,0,0,0.075)] transition-[background-color,border-color,box-shadow] duration-300 dark:border-[#292929] dark:bg-[#111111] dark:shadow-[0_12px_35px_rgba(0,0,0,0.3)] max-[560px]:flex max-[560px]:h-auto max-[560px]:min-h-[355px] max-[560px]:flex-col max-[560px]:items-center max-[560px]:gap-[18px] max-[560px]:px-[24px] max-[560px]:pt-[28px] max-[560px]:pb-[66px]"
           data-reveal="scale"
         >
-          <div className="relative h-[160px] w-[160px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#d3a800] bg-[#181818] shadow-[0_6px_15px_rgba(0,0,0,0.12)] dark:border-[#ffd400] dark:shadow-[0_5px_18px_rgba(0,0,0,0.32)]">
+          <div className="absolute top-[33px] left-[33px] h-[160px] w-[160px] overflow-hidden rounded-full border-[3px] border-[#d3a800] bg-[#181818] shadow-[0_6px_15px_rgba(0,0,0,0.12)] dark:border-[#ffd400] dark:shadow-[0_5px_18px_rgba(0,0,0,0.32)] max-[560px]:static max-[560px]:h-[150px] max-[560px]:w-[150px] max-[560px]:shrink-0">
             <img
               src={PERSONAL_INFO.profileImage}
               alt={`Foto profil ${PERSONAL_INFO.fullName}`}
@@ -61,22 +61,22 @@ export function ContactSection() {
             />
           </div>
 
-          <div className="min-w-0 pt-[4px] max-[520px]:pt-0">
-            <h3 className="m-0 font-sans text-[24px] leading-[1.2] font-black tracking-[-0.045em] text-[#1b1b1b] uppercase dark:text-[#f3f3f0] max-[520px]:text-[25px]">
-              {PERSONAL_INFO.name}
+          <div className="absolute top-[35px] right-[27px] left-[217px] min-w-0 max-[560px]:static max-[560px]:w-full max-[560px]:max-w-[290px] max-[560px]:text-center">
+            <h3 className="m-0 whitespace-nowrap font-sans text-[20px] leading-[1.3] font-black tracking-[-0.045em] text-[#1b1b1b] uppercase dark:text-[#f3f3f0] max-[560px]:text-[23px]">
+              {PERSONAL_INFO.fullName}
             </h3>
 
-            <p className="mt-[12px] mb-0 text-[14px] leading-[1.65] font-normal text-[#62625f] dark:text-[#b6b6b6] max-[520px]:mx-auto max-[520px]:max-w-[280px]">
-              Software Engineer specializing in React, Laravel, and Flutter,
-              with experience in backend systems — building practical and
-              scalable web applications.
+            <p className="mt-[12px] mb-0 text-[14px] leading-[1.65] font-normal text-[#62625f] dark:text-[#b6b6b6] max-[560px]:mt-[10px] max-[560px]:text-[13px]">
+              Software Engineer specializing in React, Laravel, and Node.js —
+              building reliable web and mobile applications that deliver real
+              value.
             </p>
           </div>
 
           <a
             href={`mailto:${PERSONAL_INFO.email}`}
             aria-label={`Hubungi ${PERSONAL_INFO.fullName} melalui email`}
-            className="absolute bottom-0 left-1/2 z-[5] inline-flex h-[48px] w-[200px] -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border border-[#d4aa00] bg-[#ffd400] px-[24px] text-center font-sans text-[15px] leading-none font-black tracking-[-0.025em] text-[#111111] uppercase shadow-[0_5px_16px_rgba(0,0,0,0.16)] outline-none transition-[background-color,box-shadow,transform] duration-300 hover:-translate-x-1/2 hover:translate-y-[40%] hover:bg-[#ffe033] hover:shadow-[0_9px_22px_rgba(255,212,0,0.22)] focus-visible:ring-[3px] focus-visible:ring-[#ffd400]/40 active:translate-y-1/2 dark:border-[#ffd400] dark:bg-[#ffd400] dark:hover:bg-[#ffe033]"
+            className="absolute bottom-0 left-1/2 z-[5] inline-flex h-[48px] w-[200px] -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border border-[#d4aa00] bg-[#ffd400] px-[24px] text-center font-sans text-[15px] leading-none font-black tracking-[-0.025em] text-[#111111] uppercase shadow-[0_5px_16px_rgba(0,0,0,0.16)] outline-none transition-[background-color,box-shadow] duration-300 hover:bg-[#ffe033] hover:shadow-[0_9px_22px_rgba(255,212,0,0.22)] focus-visible:ring-[3px] focus-visible:ring-[#ffd400]/40 dark:border-[#ffd400] dark:bg-[#ffd400] dark:hover:bg-[#ffe033]"
           >
             CONTACT ME
           </a>
