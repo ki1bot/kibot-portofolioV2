@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPortfolioData } from "../lib/portfolio";
+import { synchronizeCertificates } from "../lib/certificateCatalog";
 
 const INITIAL_PORTFOLIO = {
   projects: [],
@@ -9,7 +10,6 @@ const INITIAL_PORTFOLIO = {
 
 export function usePortfolioData() {
   const [portfolio, setPortfolio] = useState(INITIAL_PORTFOLIO);
-
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
@@ -18,13 +18,26 @@ export function usePortfolioData() {
 
     getPortfolioData()
       .then((data) => {
-        if (!active) return;
+        if (!active) {
+          return;
+        }
 
-        setPortfolio(data);
+        setPortfolio({
+          ...data,
+          certificates: synchronizeCertificates(data.certificates),
+        });
+
         setLoadError("");
       })
       .catch(() => {
-        if (!active) return;
+        if (!active) {
+          return;
+        }
+
+        setPortfolio((current) => ({
+          ...current,
+          certificates: synchronizeCertificates(current.certificates),
+        }));
 
         setLoadError("Data portofolio belum dapat dimuat.");
       })
