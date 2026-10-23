@@ -1,6 +1,6 @@
 import { ASSET_BASE_URL } from "./portfolio";
 
-const definitions = [
+const certificateDefinitions = [
   [1, "Dicoding Certificate 1", "dicoding1"],
   [2, "Dicoding Certificate 2", "dicoding2"],
   [3, "Dicoding Certificate 3", "dicoding3"],
@@ -50,29 +50,64 @@ function fileNameFromUrl(value) {
   }
 }
 
+function buildAssetUrl(fileName, extension) {
+  return `${ASSET_BASE_URL}/sertifikat/${fileName}.${extension}`;
+}
+
+function matchesCertificate(certificate, definition) {
+  const [id, title, imageName, pdfName = imageName] = definition;
+
+  const normalizedTitle = normalizeTitle(certificate?.title);
+  const normalizedImage = fileNameFromUrl(certificate?.img);
+  const normalizedPdf = fileNameFromUrl(certificate?.pdf_url);
+
+  const expectedImage = `${imageName}.png`.toLowerCase();
+  const expectedPdf = `${pdfName}.pdf`.toLowerCase();
+
+  if (normalizedTitle === normalizeTitle(title)) {
+    return true;
+  }
+
+  if (normalizedImage === expectedImage) {
+    return true;
+  }
+
+  if (normalizedPdf === expectedPdf) {
+    return true;
+  }
+
+  if (
+    id === 14 &&
+    normalizedImage === "finalis software development kompres 16.png"
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 export function synchronizeCertificates(certificates) {
   const available = Array.isArray(certificates) ? [...certificates] : [];
 
-  return definitions.map(([id, title, imageName, pdfName = imageName]) => {
-    const defaultImage = `${ASSET_BASE_URL}/sertifikat/${imageName}.png`;
-    const defaultPdf = `${ASSET_BASE_URL}/sertifikat/${pdfName}.pdf`;
+  return certificateDefinitions.map((definition) => {
+    const [id, title, imageName, pdfName = imageName] = definition;
 
-    const matchingIndex = available.findIndex((certificate) => {
-      return (
-        normalizeTitle(certificate?.title) === normalizeTitle(title) ||
-        fileNameFromUrl(certificate?.img) === fileNameFromUrl(defaultImage)
-      );
-    });
+    const defaultImage = buildAssetUrl(imageName, "png");
+    const defaultPdf = buildAssetUrl(pdfName, "pdf");
+
+    const matchingIndex = available.findIndex((certificate) =>
+      matchesCertificate(certificate, definition),
+    );
 
     const existing =
-      matchingIndex === -1 ? null : available.splice(matchingIndex, 1)[0];
+      matchingIndex >= 0 ? available.splice(matchingIndex, 1)[0] : null;
 
     return {
       ...existing,
       id,
       title,
       img: id === 14 ? defaultImage : existing?.img || defaultImage,
-      pdf_url: existing?.pdf_url || defaultPdf,
+      pdf_url: id === 14 ? defaultPdf : existing?.pdf_url || defaultPdf,
       type: "pdf",
       order_index: id,
     };

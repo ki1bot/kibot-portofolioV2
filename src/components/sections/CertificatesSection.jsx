@@ -29,7 +29,7 @@ function getCarouselOffset(index, activeIndex, total) {
   return offset;
 }
 
-export function CertificatesSection({ certificates, loading }) {
+export function CertificatesSection({ certificates = [], loading }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = certificates.length;
   const currentIndex = normalizeIndex(activeIndex, total);
@@ -85,44 +85,99 @@ export function CertificatesSection({ certificates, loading }) {
 
   return (
     <section
-      className="portfolio-section !border-black/[0.1] !bg-[#f4f3ed] !bg-none before:!bg-none dark:!border-white/[0.045] dark:!bg-[#080808]"
       id="certificates"
+      className="portfolio-section !border-black/[0.1] !bg-[#f4f3ed] !bg-none before:!bg-none dark:!border-white/[0.045] dark:!bg-[#080808]"
     >
       <style>
         {`
-          .certificate-showcase-card {
-            opacity: var(--certificate-opacity);
-            filter:
-              brightness(var(--certificate-brightness))
-              grayscale(var(--certificate-grayscale));
-            transform:
-              translate(-50%, -50%)
-              translate3d(var(--certificate-x), 0, 0)
-              scale(var(--certificate-scale));
-            transform-origin: center center;
-            backface-visibility: hidden;
-            will-change: transform, opacity, filter;
-            transition:
-              transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 430ms cubic-bezier(0.22, 1, 0.36, 1),
-              filter 470ms cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 220ms ease,
-              box-shadow 470ms cubic-bezier(0.22, 1, 0.36, 1);
+          #certificates {
+            --certificate-card-background: #fffdf7;
+            --certificate-card-border: rgba(75, 62, 34, 0.17);
+            --certificate-card-shadow:
+              0 28px 76px rgba(78, 62, 31, 0.16),
+              0 4px 20px rgba(78, 62, 31, 0.06);
+
+            --certificate-card-surface:
+              linear-gradient(
+                145deg,
+                #ffffff 0%,
+                #fffdf7 42%,
+                #f0e9d9 100%
+              );
+
+            --certificate-image-background: #f5f1e8;
+            --certificate-image-border: rgba(70, 59, 40, 0.12);
+
+            --certificate-title-color: #181818;
+            --certificate-description-color: #595751;
+            --certificate-issuer-color: #876700;
+
+            --certificate-tag-background: rgba(255, 248, 230, 0.88);
+            --certificate-tag-border: rgba(103, 84, 37, 0.3);
+            --certificate-tag-color: #39342b;
+
+            --certificate-ring-color: rgba(68, 52, 21, 0.07);
+
+            --certificate-overlay-desktop:
+              linear-gradient(
+                90deg,
+                rgba(255, 253, 247, 1) 0%,
+                rgba(255, 253, 247, 0.99) 19%,
+                rgba(255, 253, 247, 0.94) 29%,
+                rgba(255, 253, 247, 0.75) 39%,
+                rgba(255, 253, 247, 0.3) 51%,
+                rgba(255, 253, 247, 0) 63%
+              );
+
+            --certificate-overlay-tablet:
+              linear-gradient(
+                90deg,
+                rgba(255, 253, 247, 1) 0%,
+                rgba(255, 253, 247, 0.99) 29%,
+                rgba(255, 253, 247, 0.87) 45%,
+                rgba(255, 253, 247, 0.4) 66%,
+                rgba(255, 253, 247, 0) 83%
+              );
+
+            --certificate-overlay-mobile:
+              linear-gradient(
+                90deg,
+                rgba(255, 253, 247, 1) 0%,
+                rgba(255, 253, 247, 0.99) 38%,
+                rgba(255, 253, 247, 0.85) 58%,
+                rgba(255, 253, 247, 0.32) 80%,
+                rgba(255, 253, 247, 0) 96%
+              );
           }
 
-          .certificate-showcase-card[role="button"]:hover {
-            border-color: rgba(255, 255, 255, 0.13);
-          }
+          .dark #certificates {
+            --certificate-card-background: #202020;
+            --certificate-card-border: rgba(255, 255, 255, 0.085);
+            --certificate-card-shadow:
+              0 30px 90px rgba(0, 0, 0, 0.48);
 
-          .certificate-showcase-card[aria-current="true"] {
-            box-shadow:
-              0 34px 100px rgba(0, 0, 0, 0.5),
-              0 0 0 1px rgba(255, 255, 255, 0.012);
-          }
+            --certificate-card-surface:
+              linear-gradient(
+                180deg,
+                #292929 0%,
+                #1a1a1a 58%,
+                #111111 100%
+              );
 
-          .certificate-card-overlay {
-            opacity: 0;
-            background:
+            --certificate-image-background: #263541;
+            --certificate-image-border: transparent;
+
+            --certificate-title-color: #ffffff;
+            --certificate-description-color: #c5c5c5;
+            --certificate-issuer-color: #fdc600;
+
+            --certificate-tag-background: rgba(0, 0, 0, 0.08);
+            --certificate-tag-border: rgba(255, 255, 255, 0.27);
+            --certificate-tag-color: #f0f0f0;
+
+            --certificate-ring-color: rgba(255, 255, 255, 0.035);
+
+            --certificate-overlay-desktop:
               linear-gradient(
                 90deg,
                 rgba(15, 15, 15, 0.995) 0%,
@@ -132,37 +187,162 @@ export function CertificatesSection({ certificates, loading }) {
                 rgba(15, 15, 15, 0.25) 48%,
                 rgba(15, 15, 15, 0) 57%
               );
+
+            --certificate-overlay-tablet:
+              linear-gradient(
+                90deg,
+                rgba(15, 15, 15, 0.995) 0%,
+                rgba(15, 15, 15, 0.98) 28%,
+                rgba(15, 15, 15, 0.78) 45%,
+                rgba(15, 15, 15, 0.24) 67%,
+                rgba(15, 15, 15, 0) 82%
+              );
+
+            --certificate-overlay-mobile:
+              linear-gradient(
+                90deg,
+                rgba(15, 15, 15, 0.995) 0%,
+                rgba(15, 15, 15, 0.97) 36%,
+                rgba(15, 15, 15, 0.72) 57%,
+                rgba(15, 15, 15, 0.18) 78%,
+                rgba(15, 15, 15, 0) 92%
+              );
+          }
+
+          #certificates .certificate-showcase-card {
+            opacity: var(--certificate-opacity);
+            background: var(--certificate-card-background);
+            border-color: var(--certificate-card-border);
+            box-shadow: var(--certificate-card-shadow);
+
+            filter:
+              grayscale(var(--certificate-grayscale));
+
+            transform:
+              translate(-50%, -50%)
+              translate3d(var(--certificate-x), 0, 0)
+              scale(var(--certificate-scale));
+
+            transform-origin: center center;
+            backface-visibility: hidden;
+            will-change: transform, opacity, filter;
+
+            transition:
+              transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 430ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 470ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 220ms ease,
+              box-shadow 470ms cubic-bezier(0.22, 1, 0.36, 1);
+          }
+
+          .dark #certificates .certificate-showcase-card {
+            filter:
+              brightness(var(--certificate-brightness))
+              grayscale(var(--certificate-grayscale));
+          }
+
+          #certificates .certificate-showcase-card[role="button"] {
+            opacity: 0.58;
+          }
+
+          .dark #certificates .certificate-showcase-card[role="button"] {
+            opacity: var(--certificate-opacity);
+          }
+
+          #certificates .certificate-showcase-card[role="button"]:hover {
+            border-color: rgba(163, 125, 23, 0.42);
+          }
+
+          .dark #certificates .certificate-showcase-card[role="button"]:hover {
+            border-color: rgba(255, 255, 255, 0.13);
+          }
+
+          #certificates .certificate-showcase-card[aria-current="true"] {
+            opacity: 1;
+            box-shadow:
+              0 34px 88px rgba(75, 59, 25, 0.2),
+              0 0 0 1px rgba(76, 59, 20, 0.035);
+          }
+
+          .dark #certificates .certificate-showcase-card[aria-current="true"] {
+            box-shadow:
+              0 34px 100px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255, 255, 255, 0.012);
+          }
+
+          #certificates .certificate-showcase-card > div:first-child {
+            background: var(--certificate-card-surface);
+          }
+
+          #certificates .certificate-showcase-card > div:nth-child(2) {
+            background: var(--certificate-image-background);
+            border: 1px solid var(--certificate-image-border);
+            border-radius: 4px;
+          }
+
+          #certificates .certificate-card-overlay {
+            opacity: 0;
+            background: var(--certificate-overlay-desktop);
+
             transition:
               opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
+
             transition-delay: 0ms;
           }
 
-          .certificate-card-overlay.is-active {
+          #certificates .certificate-card-overlay.is-active {
             opacity: 1;
             transition-duration: 280ms;
             transition-delay: 150ms;
           }
 
-          .certificate-card-copy {
+          #certificates .certificate-card-copy {
             opacity: 0;
             transform: translate3d(-16px, 0, 0);
+
             transition:
               opacity 150ms cubic-bezier(0.22, 1, 0.36, 1),
               transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+
             transition-delay: 0ms;
           }
 
-          .certificate-card-copy.is-active {
+          #certificates .certificate-card-copy.is-active {
             opacity: 1;
             transform: translate3d(0, 0, 0);
+
             transition:
               opacity 280ms cubic-bezier(0.22, 1, 0.36, 1),
               transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+
             transition-delay: 170ms;
           }
 
+          #certificates .certificate-card-copy > div > div:first-child {
+            color: var(--certificate-issuer-color);
+          }
+
+          #certificates .certificate-card-copy h3 {
+            color: var(--certificate-title-color);
+          }
+
+          #certificates .certificate-card-copy p {
+            color: var(--certificate-description-color);
+          }
+
+          #certificates .certificate-card-copy span.rounded-full {
+            color: var(--certificate-tag-color);
+            background: var(--certificate-tag-background);
+            border-color: var(--certificate-tag-border);
+          }
+
+          #certificates .certificate-showcase-card > div:last-child {
+            box-shadow:
+              inset 0 0 0 1px var(--certificate-ring-color);
+          }
+
           @media (max-width: 760px) {
-            .certificate-showcase-card {
+            #certificates .certificate-showcase-card {
               transition:
                 transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
                 opacity 390ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -171,45 +351,37 @@ export function CertificatesSection({ certificates, loading }) {
                 box-shadow 430ms cubic-bezier(0.22, 1, 0.36, 1);
             }
 
-            .certificate-card-overlay {
-              background:
-                linear-gradient(
-                  90deg,
-                  rgba(15, 15, 15, 0.995) 0%,
-                  rgba(15, 15, 15, 0.98) 28%,
-                  rgba(15, 15, 15, 0.78) 45%,
-                  rgba(15, 15, 15, 0.24) 67%,
-                  rgba(15, 15, 15, 0) 82%
-                );
+            #certificates .certificate-card-overlay {
+              background: var(--certificate-overlay-tablet);
             }
 
-            .certificate-card-overlay.is-active {
+            #certificates .certificate-card-overlay.is-active {
               transition-delay: 120ms;
             }
 
-            .certificate-card-copy.is-active {
+            #certificates .certificate-card-copy.is-active {
               transition-delay: 140ms;
             }
           }
 
           @media (max-width: 520px) {
-            .certificate-card-overlay {
-              background:
-                linear-gradient(
-                  90deg,
-                  rgba(15, 15, 15, 0.995) 0%,
-                  rgba(15, 15, 15, 0.97) 36%,
-                  rgba(15, 15, 15, 0.72) 57%,
-                  rgba(15, 15, 15, 0.18) 78%,
-                  rgba(15, 15, 15, 0) 92%
-                );
+            #certificates .certificate-card-overlay {
+              background: var(--certificate-overlay-mobile);
+            }
+
+            #certificates .certificate-showcase-card[role="button"] {
+              opacity: 0.42;
+            }
+
+            .dark #certificates .certificate-showcase-card[role="button"] {
+              opacity: var(--certificate-opacity);
             }
           }
 
           @media (prefers-reduced-motion: reduce) {
-            .certificate-showcase-card,
-            .certificate-card-overlay,
-            .certificate-card-copy {
+            #certificates .certificate-showcase-card,
+            #certificates .certificate-card-overlay,
+            #certificates .certificate-card-copy {
               transition: none;
             }
           }
@@ -232,7 +404,7 @@ export function CertificatesSection({ certificates, loading }) {
       />
 
       <div className="portfolio-container">
-        <SectionHeading eyebrow="Proof of work" title="MY" accent="CERTS." />
+        <SectionHeading eyebrow="Proof of work" title="MY" accent="CERTS" />
 
         {loading ? (
           <div className="mt-10 grid min-h-[280px] place-items-center rounded-[12px] border border-black/12 bg-white/50 text-[0.68rem] tracking-[0.09em] text-[#777] uppercase dark:border-white/10 dark:bg-[#0d0d0d]/82">
@@ -246,7 +418,7 @@ export function CertificatesSection({ certificates, loading }) {
             onKeyDown={handleCarouselKeyDown}
             aria-label="Certificate carousel"
           >
-            <div className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[76%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/5 blur-[90px] dark:bg-black/42" />
+            <div className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[76%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9c8051]/10 blur-[90px] dark:bg-black/42" />
 
             {carouselCertificates.map(({ certificate, offset }) => (
               <CertificateCard
@@ -257,10 +429,10 @@ export function CertificatesSection({ certificates, loading }) {
               />
             ))}
 
-            <div className="absolute bottom-[-10px] left-1/2 z-[30] flex h-[58px] -translate-x-1/2 items-center gap-[4px] rounded-full border border-white/[0.09] bg-[#171717]/97 p-[7px] shadow-[0_16px_45px_rgba(0,0,0,0.48)] backdrop-blur-[18px] max-[1600px]:bottom-[-8px] max-[1600px]:h-[54px] max-[1600px]:p-[6px] max-[760px]:bottom-[-4px] max-[760px]:h-[50px] max-[760px]:p-[5px] max-[520px]:h-[46px]">
+            <div className="absolute bottom-[-10px] left-1/2 z-[30] flex h-[58px] -translate-x-1/2 items-center gap-[4px] rounded-full border border-[#d7cdb6] bg-[#fffaf0]/95 p-[7px] shadow-[0_12px_32px_rgba(82,67,36,0.16)] backdrop-blur-[18px] dark:border-white/[0.09] dark:bg-[#171717]/97 dark:shadow-[0_16px_45px_rgba(0,0,0,0.48)] max-[1600px]:bottom-[-8px] max-[1600px]:h-[54px] max-[1600px]:p-[6px] max-[760px]:bottom-[-4px] max-[760px]:h-[50px] max-[760px]:p-[5px] max-[520px]:h-[46px]">
               <button
                 type="button"
-                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-white/[0.07] bg-[#292929] text-[#e7e7e7] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:-translate-x-px enabled:hover:border-[#fac600]/60 enabled:hover:bg-[#343434] enabled:hover:text-[#fac600] disabled:cursor-default disabled:opacity-35 max-[1600px]:h-[40px] max-[1600px]:w-[40px] max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
+                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-[#d9cfba] bg-[#f3ebdb] text-[#423b30] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:-translate-x-px enabled:hover:border-[#b99528] enabled:hover:bg-[#ffe5a0] enabled:hover:text-[#30250e] disabled:cursor-default disabled:opacity-35 dark:border-white/[0.07] dark:bg-[#292929] dark:text-[#e7e7e7] dark:enabled:hover:border-[#fac600]/60 dark:enabled:hover:bg-[#343434] dark:enabled:hover:text-[#fac600] max-[1600px]:h-[40px] max-[1600px]:w-[40px] max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
                 onClick={previous}
                 disabled={total <= 1}
                 aria-label="Sertifikat sebelumnya"
@@ -272,14 +444,14 @@ export function CertificatesSection({ certificates, loading }) {
 
               <strong
                 aria-live="polite"
-                className="min-w-[76px] px-[5px] text-center text-[12px] font-extrabold leading-none tracking-[-0.01em] text-white max-[1600px]:min-w-[70px] max-[1600px]:text-[11px] max-[760px]:min-w-[64px] max-[760px]:text-[10px] max-[520px]:min-w-[58px] max-[520px]:text-[9px]"
+                className="min-w-[76px] px-[5px] text-center text-[12px] font-extrabold leading-none tracking-[-0.01em] text-[#28241d] dark:text-white max-[1600px]:min-w-[70px] max-[1600px]:text-[11px] max-[760px]:min-w-[64px] max-[760px]:text-[10px] max-[520px]:min-w-[58px] max-[520px]:text-[9px]"
               >
                 {currentIndex + 1} / {total}
               </strong>
 
               <button
                 type="button"
-                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-white/[0.07] bg-[#292929] text-[#e7e7e7] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:translate-x-px enabled:hover:border-[#fac600]/60 enabled:hover:bg-[#343434] enabled:hover:text-[#fac600] disabled:cursor-default disabled:opacity-35 max-[1600px]:h-[40px] max-[1600px]:w-[40px] max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
+                className="grid h-[43px] w-[43px] shrink-0 place-items-center rounded-full border border-[#d9cfba] bg-[#f3ebdb] text-[#423b30] transition-[transform,background-color,border-color,color] duration-200 enabled:hover:translate-x-px enabled:hover:border-[#b99528] enabled:hover:bg-[#ffe5a0] enabled:hover:text-[#30250e] disabled:cursor-default disabled:opacity-35 dark:border-white/[0.07] dark:bg-[#292929] dark:text-[#e7e7e7] dark:enabled:hover:border-[#fac600]/60 dark:enabled:hover:bg-[#343434] dark:enabled:hover:text-[#fac600] max-[1600px]:h-[40px] max-[1600px]:w-[40px] max-[760px]:h-[38px] max-[760px]:w-[38px] max-[520px]:h-[35px] max-[520px]:w-[35px]"
                 onClick={next}
                 disabled={total <= 1}
                 aria-label="Sertifikat berikutnya"
