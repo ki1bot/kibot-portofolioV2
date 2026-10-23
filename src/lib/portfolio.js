@@ -3,8 +3,8 @@ import { isSupabaseConfigured, supabase } from "./supabase";
 export const ASSET_BASE_URL = "https://assets.rifqii.com";
 
 export const PERSONAL_INFO = {
-  name: "Rifqi",
-  fullName: "Rifqi Susanto",
+  name: "kibot",
+  fullName: "Rifqi",
   role: "Information Systems Student",
   headline: "Software Engineer",
   location: "Kota Bekasi, Jawa Barat, Indonesia",

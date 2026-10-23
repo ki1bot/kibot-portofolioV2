@@ -55,7 +55,7 @@ export function LoadingScreen() {
       className={`loading-screen${leaving ? " is-leaving" : ""}`}
       role="status"
       aria-live="polite"
-      aria-label="Memuat portfolio Rifqi Susanto"
+      aria-label="Memuat portfolio Rifqi"
     >
       <div className="loading-screen-shell">
         <div className="loading-screen-logo" aria-hidden="true">
